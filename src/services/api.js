@@ -1,5 +1,3 @@
-import { alertMessage } from '../components/errors/errors.js'
-
 const CallAPI = async (url, method) => {
   try {
     const response = await fetch(url, method);
@@ -7,7 +5,7 @@ const CallAPI = async (url, method) => {
     return data;
   } 
   catch {
-    alertMessage('Ops! Something went wrong. Please, try again.');
+    alert('Ops! Something went wrong. Please, try again.');
   }
 };
 

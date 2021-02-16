@@ -2,34 +2,18 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import RequestOptions from "../../components/object/requestOptions";
 import AllModelsObject from "../../components/object/models";
-import Footer from "../../components/footer.js";
+import Footer from "../../components/footer";
 import Logo from "../../components/logo";
 import CallAPI from "../../services/api";
-import { getError, printMessageError } from "../../components/errors/errors.js";
+import ErrorAuth from "../../components/errors";
+import ModalMessage from "../../components/modal"
 
 const userData = AllModelsObject.authAndUsers;
 
-const sendUserMessage = (message) => alert(message);
-
-const createUser = (props) => {
-  const { email, password, role, name, users } = props;
-  const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${name}`;
-  const method = RequestOptions.post(body);
-
-  CallAPI(users, method)
-    .then((json) => {
-      if (json.code) {
-        getError(json.code)
-      }
-      else {
-        sendUserMessage('User successfully registered!');
-        //linha para mudar a rota
-      }
-    })
-}
-
 const Register = () => {
   const [user, setUser] = useState(userData);
+  const [modalShow, setModalShow] = useState(false);
+  const [statusCode, setStatusCode] = useState('');
 
   useEffect(() => {
     setUser({ ...user, completeName: user.name + '' + user.lastName })
@@ -37,11 +21,29 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (user.password === user.confirmPassword)
+    if (user.password === user.confirmPassword) {
       createUser(user);
-    else {
-      printMessageError('Passwords do not match. Please try again.')
     }
+    else {
+      setStatusCode('405');
+    }
+  }
+
+  const createUser = (props) => {
+    const { email, password, role, name, users } = props;
+    const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${name}`;
+    const method = RequestOptions.post(body);
+
+    CallAPI(users, method)
+      .then((json) => {
+        if (json.code) {
+          setStatusCode(json.code);
+        }
+        else {
+          setModalShow(true); //linha para mudar a rota
+          setStatusCode('');
+        }
+      })
   }
 
   return (
@@ -51,6 +53,7 @@ const Register = () => {
           <p className="back-button"><Link to="/">BACK</Link></p>
           <Logo />
         </div>
+
         <form onSubmit={(event) => { handleSubmit(event) }}>
           <label>
             Name:
@@ -81,11 +84,17 @@ const Register = () => {
               <option value='Kitchen'>Kitchen</option>
             </select>
           </label>
-          <p id="error-login"></p>
+
+            {statusCode && <ErrorAuth/>}
 
           <button type="submit"> SIGN UP </button>
         </form>
       </div>
+      
+      <ModalMessage
+        onHide={() => setModalShow(false)}
+        show={modalShow} 
+      />
       <Footer />
     </>
   );
