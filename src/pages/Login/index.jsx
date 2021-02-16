@@ -6,13 +6,14 @@ import Logo from "../../components/logo";
 import Container from "../../components/main";
 import Footer from "../../components/footer.js";
 import CallAPI from "../../services/api";
-import { getError } from "../../components/errors/errors.js";
+import ErrorAuth from "../../components/errors";
 
 const userData = AllModelsObject.authAndUsers;;
 
 const Login = () => {
   const history = useHistory();
   const [user, setUser] = useState(userData);
+  const [statusCode, setStatusCode] = useState('');
 
   const loginPage = (props) => {
     const { email, password, auth } = props;
@@ -42,6 +43,22 @@ const Login = () => {
     loginPage(user);
   };
 
+  const loginPage = (props) => {
+    const { email, password, auth } = props;
+    const body = `email=${email}&password=${password}`;
+    const method = RequestOptions.post(body);
+
+    CallAPI(auth, method)
+      .then((json) => {
+        if (json.code) {
+          setStatusCode(json.code);
+        }
+        else {
+          alert("Acessou") //linha para mudar a rota
+        }
+      })
+  };
+
   return (
     <>
       <Container>
@@ -58,7 +75,7 @@ const Login = () => {
                 placeholder="Password" required
               />
             </label>
-            <p id="error-login"></p>
+            {statusCode && <ErrorAuth />}
             <button type="submit"> SIGN IN </button>
             <p> Do not have an account? <span> <Link to="/Register">Register</Link> </span></p>
           </form>
