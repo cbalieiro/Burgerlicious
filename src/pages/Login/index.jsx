@@ -6,7 +6,7 @@ import Logo from "../../components/logo";
 import Container from "../../components/main";
 import Footer from "../../components/footer.js";
 import CallAPI from "../../services/api";
-import ErrorAuth from "../../components/errors";
+import ErrorAuth from "../../components/errors/errors"
 
 const userData = AllModelsObject.authAndUsers;;
 
@@ -23,7 +23,7 @@ const Login = () => {
     CallAPI(auth, method)
       .then((json) => {
         if (json.code) {
-          getError(json.code)
+          setStatusCode(json.code);
         }
 
         localStorage.setItem(`currentUser`, JSON.stringify(json))
@@ -43,22 +43,7 @@ const Login = () => {
     loginPage(user);
   };
 
-  const loginPage = (props) => {
-    const { email, password, auth } = props;
-    const body = `email=${email}&password=${password}`;
-    const method = RequestOptions.post(body);
-
-    CallAPI(auth, method)
-      .then((json) => {
-        if (json.code) {
-          setStatusCode(json.code);
-        }
-        else {
-          alert("Acessou") //linha para mudar a rota
-        }
-      })
-  };
-
+  
   return (
     <>
       <Container>
