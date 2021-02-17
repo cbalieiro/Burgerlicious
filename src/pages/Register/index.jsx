@@ -5,7 +5,7 @@ import AllModelsObject from "../../components/object/models";
 import Footer from "../../components/footer";
 import Logo from "../../components/logo";
 import CallAPI from "../../services/api";
-import ErrorAuth from "../../components/errors";
+import ErrorAuth from "../../components/errors/errors";
 import ModalMessage from "../../components/modal"
 
 const userData = AllModelsObject.authAndUsers;

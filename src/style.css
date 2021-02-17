@@ -203,3 +203,27 @@ select.select-style:focus-within{
 /* .modal-title {
   color: #fff8d8;
 } */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 45px;
+  background-color: #FFE1AC;
+  
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-button span {
+  color: #FFF8D8;
+  font-size: 30px;
+}
+
+.orders-button {
+  border: none;
+  background-color: transparent;
+}
