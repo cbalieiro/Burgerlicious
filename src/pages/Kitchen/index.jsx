@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../../components/headerKitchen'
+import Footer from "../../components/footer";
 
 const Kitchen = () => {
 // const nameLS = JSON.parse(localStorage.getItem('currentUser'));
@@ -21,10 +22,18 @@ const Kitchen = () => {
 // // };
 // //   return result()
 
+const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+
 return (
   <>
-  <Header />
-  <Footer />
+    <Header
+      role={'Chef'}
+      name={nameLS.name}
+    />
+    <main className="main-kitchen">
+      <h1>Aqui aparecerá os pedidos</h1>
+    </main>
+    <Footer />
   </>
 )
 
