@@ -10,6 +10,32 @@ const RequestOptions = {
     };
     return request;
   },
+
+  getAndDelete(method , token) {
+      const request = {
+      method: method,
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+        'Authorization': `${token}`,
+      },
+    };
+    return request;
+  },
+
+  put(token , body) {
+    const request = {
+      method: "PUT",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
+        'Authorization': `${token}`,
+      },
+      body:body,
+    };
+    return request;
+  },
+
 };
 
 export default RequestOptions;
