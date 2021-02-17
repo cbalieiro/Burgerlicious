@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import RequestOptions from "../../components/object/requestOptions";
+import React from "react"
+// import React, { useState } from "react";
+// import RequestOptions from "../../components/object/requestOptions";
 // import AllModelsObject from "../../components/object/models";
-import CallAPI from "../../services/api";
+// import CallAPI from "../../services/api";
 import HeaderKitchen from "../../components/headerKitchen";
 import CardsKitchen from "../../components/cardsKitchen";
 
@@ -31,7 +32,7 @@ const Kitchen = () => {
   // const [orderDB, setorderDB] = useState([]);
   const nameLS = JSON.parse(localStorage.getItem("currentUser"));
   const { name, role, token } = nameLS;
-
+  console.log(token);
   const { table, clientName, createdAt } = teste;
 
   // const orderList = () => {
