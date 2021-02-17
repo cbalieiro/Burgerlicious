@@ -12,7 +12,7 @@ return <header>
   history.push("/")
   localStorage.clear() 
 }
-}>BACK</button>
+}>LOGOUT</button>
 </header>
 }
 
