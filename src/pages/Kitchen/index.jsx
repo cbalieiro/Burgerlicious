@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
+import Header from "../../components/header";
+import Footer from "../../components/footer";
 import CardsKitchen from '../../components/cardsKitchen'
-import HeaderKitchen from '../../components/headerKitchen'
 
 const date = new Date();
 
@@ -10,40 +11,38 @@ const teste = {
   userId: 296,
   table: "007",
   status: "Pending",
-  processedAt:"",
+  processedAt: "",
   createdAt: date.getTime(),
-  updatedAt:"",
-  products:	[{
+  updatedAt: "",
+  products: [{
     id: 1,
-    name: "Café americano" ,
+    name: "Café americano",
     flavor: null,
     complement: null,
     qtd: 2
-    }]
-  }
+  }]
+}
 
 const Kitchen = () => {
-const nameLS = JSON.parse(localStorage.getItem('currentUser'));
-const {name, role} = nameLS;
-const {table, clientName, createdAt} = teste;
+  const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+  const { table, clientName, createdAt } = teste;
 
+  return (
+    <>
+      <Header
+        role={'Chef'}
+        name={nameLS.name}
+      />
 
-function result () {
-  if (role === "kitchen"){
-    return <div>
-      <HeaderKitchen chef={`${name}`}/>
-      <CardsKitchen table={table} clientName={clientName} createdAt={createdAt}  />
-      <h1>Aqui só tem Chefs</h1>
-    </div>
-  }
-  else {
-    return alert("bocó")
-  }
-  
+      <main className="home">
+        <h1>
+          <CardsKitchen table={table} clientName={clientName} createdAt={createdAt} />
+        </h1>
+      </main>
+
+      <Footer />
+    </>
+  )
 };
-
-  return result()
-
-  };
 
 export default Kitchen;

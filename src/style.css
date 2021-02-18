@@ -17,7 +17,7 @@ a {
   margin-left: 5px;
 }
 
-a:hover {
+a:active, a:hover {
   text-decoration: underline;
   color: #fca730;
 }
@@ -78,7 +78,7 @@ form button {
   color: #FFF8D8;
 }
 
-form button:hover {
+form button:active, form button:hover {
   background-color: #FFE1AC;
   color: #584944;
 }
@@ -116,7 +116,7 @@ footer a {
   font-weight: bold;
 }
 
-.select-style select{
+.select-style select {
   display: none;
 }
 
@@ -170,7 +170,7 @@ select.select-style:focus {
   outline: transparent;
 }
 
-select.select-style:focus-within{
+select.select-style:focus-within {
   color: #fca730;
   padding: 5px;
   border: 0;
@@ -203,3 +203,64 @@ select.select-style:focus-within{
 /* .modal-title {
   color: #fff8d8;
 } */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  background-color: #FFE1AC;
+  
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.orders-button span {
+  color:  #FFE1AC;
+  font-size: 30px;
+  padding-right: 5px;
+}
+
+.orders-button {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffbb5a;
+  border-radius: 10px;
+  padding: 8px;
+  margin: 4px 0px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFE1AC;
+}
+
+.orders-button:active, .orders-button:hover {
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  background-color: #FFF8D8;
+  color:  #584944;
+}
+
+.orders-button span:active, .orders-button span:hover  {
+  color:  #584944;
+}
+
+.user-info {
+  font-size: 18px;
+}
+
+.team-work {
+  font-weight: bold;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  padding: 30px 45px;
+}
