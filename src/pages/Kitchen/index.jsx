@@ -23,7 +23,7 @@ const Kitchen = () => {
   // //   return result()
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
-
+  console.log(nameLS)
   return (
     <>
       <Header
