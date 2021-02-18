@@ -261,6 +261,62 @@ header {
 
 .home {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 30px 45px;
+}
+
+.item-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 0;
+  border-bottom: 1px solid #D1BEB8;
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 18px;
+  color: #584944;
+  padding: 10px 0px;
+}
+
+.last-menu-item {
+  border: 0;
+}
+
+.menu-button:active {
+  color: #FFBB5A;
+  font-weight: 700;
+}
+
+.card-header {
+  background: #FFE1AC;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 18px;
+  color: #584944;
+  text-align: left;
+  min-width: 325px;
+}
+
+.card-header:active {
+  background: #FFBB5A;
+  color: #FFF8D8;
+}
+
+.card-body {
+  background-color: #FFF8D8;
+}
+
+.menu-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-summary {
+  padding-top: 30px;
 }
