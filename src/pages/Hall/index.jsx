@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "../../components/header";
 import Footer from "../../components/footer";
+import Menu from "../../components/menu";
 
 const Hall = () => {
 
@@ -14,7 +15,15 @@ const Hall = () => {
       />
 
       <main className="home">
-        <h1>Aqui aparecerá os outros componentes</h1>
+        <section className="menu-details">
+          <Menu />
+        </section>
+
+        <section className="order-summary">
+          <p>
+            Aqui vai aparecer o resumo do pedido
+        </p>
+        </section>
       </main>
 
       <Footer />
