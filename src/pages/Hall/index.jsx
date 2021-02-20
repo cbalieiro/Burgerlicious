@@ -17,7 +17,6 @@ const Hall = () => {
       <main className="home">
         <section className="menu-details">
           <Menu />
-          <p> Aqui vai aparecer as opções para escolha</p>
         </section>
 
         <section className="order-summary">

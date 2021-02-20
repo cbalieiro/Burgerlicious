@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
+import Burger from '../components/burgeroptions'
+import Sides from '../components/sides'
+import Drinks from '../components/drinks'
+import Snacks from '../components/snacks'
+import Coffee from '../components/coffee'
 
 const Menu = () => {
+    const [option, setOptions] = useState('');
+    const Details = ({ item }) => {
+        return (
+            <>
+                {item === 'Snacks' && (
+                    <Snacks />
+                )}
+                {item === 'DrinksCoffee' && (
+                    <Coffee />
+                )}
+                {option === 'Burgers' && (
+                    <Burger />
+                )}
+
+                {option === 'Sides' && (
+                    <Sides />
+                )}
+                {option === 'Drinks' && (
+                    <Drinks />
+                )}
+            </>
+        )
+    }
+
     return (
         <>
-            <section>
+            <section className="items-accordion">
                 <Accordion defaultActiveKey="0">
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="0">
@@ -15,15 +44,15 @@ const Menu = () => {
                         <Accordion.Collapse eventKey="0">
                             <Card.Body className="card-accordion">
                                 <section className="item-menu">
-                                    <button className="menu-button">
+                                    <button className="menu-button" onClick={() => setOptions('Snacks')}>
                                         Snacks
-                                        <span class="material-icons">
+                                        <span className="material-icons">
                                             keyboard_arrow_right
                                         </span>
                                     </button>
-                                    <button className="menu-button last-menu-item">
+                                    <button className="menu-button last-menu-item" onClick={() => setOptions('DrinksCoffee')}>
                                         Drinks
-                                        <span class="material-icons">
+                                        <span className="material-icons">
                                             keyboard_arrow_right
                                         </span>
                                     </button>
@@ -34,25 +63,25 @@ const Menu = () => {
                     <Card>
                         <Accordion.Toggle as={Card.Header} eventKey="1">
                             BURGER
-    </Accordion.Toggle>
+                </Accordion.Toggle>
                         <Accordion.Collapse eventKey="1">
                             <Card.Body>
                                 <section className="item-menu">
-                                    <button className="menu-button">
+                                    <button className="menu-button" onClick={() => setOptions('Burgers')}>
                                         Burgers
-                                        <span class="material-icons">
+                                        <span className="material-icons">
                                             keyboard_arrow_right
                                         </span>
                                     </button >
-                                    <button className="menu-button">
+                                    <button className="menu-button" onClick={() => setOptions('Sides')}>
                                         Sides
-                                        <span class="material-icons">
+                                        <span className="material-icons">
                                             keyboard_arrow_right
                                         </span>
                                     </button>
-                                    <button className="menu-button last-menu-item">
+                                    <button className="menu-button last-menu-item" onClick={() => setOptions('Drinks')}>
                                         Drinks
-                                        <span class="material-icons">
+                                        <span className="material-icons">
                                             keyboard_arrow_right
                                         </span>
                                     </button>
@@ -61,41 +90,13 @@ const Menu = () => {
                         </Accordion.Collapse>
                     </Card>
                 </Accordion>
-
             </section>
+            <section className="detailsk">
+                <Details item={option} />
+            </section>
+            <button className="send-button">ADD ITEM</button>
         </>
     )
 };
 
 export default Menu;
-
-{/* <button>Burgers</button>
-<p>Smash burger   $10
-Double burger   $10
-Meat
-Chicken
-Veggie
-<p>Cheese $1<button>add</button></p>
-<p>Egg $1<button>add</button></p>
-<p>ADD ITEM</p>
-</p>
-
-<button>Sides</button>
-<p>Fries $5<button>add</button></p>
-<p>Onion rings $5<button>add</button></p>
-<p>ADD ITEM</p>
-
-<button>Drinks</button>
-<p>Water 500ml $5<button>add</button></p>
-<p>Water 750ml $7<button>add</button></p>
-<p>Soda 500ml $7<button>add</button></p>
-<p>Soda 750ml $10<button>add</button></p>
-<p>ADD ITEM</p> */}
-
-{/* <button>Snacks</button>
-<p> Grilled Cheese Sandwich $10</p>
-
-<button>Drinks</button>
-<p>Americano Coffee 5
-Coffee with milk 7
-Natural fruit juice 7</p> */}
