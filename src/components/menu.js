@@ -2,36 +2,10 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
-import Burger from '../components/burgeroptions'
-import Sides from '../components/sides'
-import Drinks from '../components/drinks'
-import Snacks from '../components/snacks'
-import Coffee from '../components/coffee'
+import MenuItems from '../components/menudetails'
 
 const Menu = () => {
     const [option, setOptions] = useState('');
-    const Details = ({ item }) => {
-        return (
-            <>
-                {item === 'Snacks' && (
-                    <Snacks />
-                )}
-                {item === 'DrinksCoffee' && (
-                    <Coffee />
-                )}
-                {option === 'Burgers' && (
-                    <Burger />
-                )}
-
-                {option === 'Sides' && (
-                    <Sides />
-                )}
-                {option === 'Drinks' && (
-                    <Drinks />
-                )}
-            </>
-        )
-    }
 
     return (
         <>
@@ -92,7 +66,7 @@ const Menu = () => {
                 </Accordion>
             </section>
             <section className="detailsk">
-                <Details item={option} />
+                <MenuItems item={option} />
             </section>
             <button className="send-button">ADD ITEM</button>
         </>
