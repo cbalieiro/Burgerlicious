@@ -1,13 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from "../../components/header";
+import Footer from "../../components/footer";
+import Menu from "../../components/menu";
 
-const Hall = () => (
-  <div>
-    <h1>Aqui só tem garçons</h1>
-    <p>
-      <Link to="/Kitchen"> VOLTE PARA O LOGIN </Link>
-    </p>
-  </div>
-);
+const Hall = () => {
+
+  const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+
+  return (
+    <>
+      <Header
+        role={'Attendant'}
+        name={nameLS.name}
+      />
+
+      <main className="home">
+        <section className="menu-details">
+          <Menu />
+        </section>
+
+        <section className="order-summary">
+          <p>
+            Aqui vai aparecer o resumo do pedido
+        </p>
+        </section>
+      </main>
+
+      <Footer />
+    </>
+  )
+};
 
 export default Hall;

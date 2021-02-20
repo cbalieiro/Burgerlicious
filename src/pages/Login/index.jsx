@@ -6,7 +6,7 @@ import Logo from "../../components/logo";
 import Container from "../../components/main";
 import Footer from "../../components/footer.js";
 import CallAPI from "../../services/api";
-import ErrorAuth from "../../components/errors/errors"
+import ErrorAuth from "../../components/errors/errors";
 
 const userData = AllModelsObject.authAndUsers;;
 
@@ -42,7 +42,6 @@ const Login = () => {
     loginPage(user);
   };
 
-  
   return (
     <>
       <Container>
