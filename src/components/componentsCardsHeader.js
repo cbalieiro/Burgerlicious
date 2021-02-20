@@ -1,14 +1,14 @@
 import React from 'react';
 
-const CardsHeader = (props) => (
+const CardsHeader = ({ table, clientName, createdAt }) => (
   <div>
     <div className="table-info">
       <p>Table:</p>
-      <p>{props.table}</p>
+      <p>{table}</p>
     </div>
     <div className="attendant-info">
-      <p>Attendant:{props.clientName} </p>
-      <p>Time: {props.createdAt}</p>
+      <p>Attendant:{clientName} </p>
+      <p>Time: {createdAt}</p>
     </div>
   </div>
 );

@@ -1,12 +1,10 @@
-import React from 'react';
 import React, { useState } from 'react';
 import RequestOptions from '../../components/object/requestOptions';
 // import AllModelsObject from "../../components/object/models";
 import CallAPI from '../../services/api';
-import CardsKitchen from '../../components/cardsKitchen';
+// import CardsKitchen from '../../components/cardsKitchen';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import CardsKitchen from '../../components/cardsKitchen';
 
 // const orderData = AllModelsObject.ordersList;
 
@@ -21,20 +19,18 @@ const Kitchen = () => {
 
     CallAPI(URL, method).then((json) => {
       setOrderDB([...orderDB, json]);
-      // const orders = json;
-      // orders.forEach((item) => {
-      // console.log(item)
-      // setOrderList(item)});
     });
   };
 
+  orderList();
+
   function result() {
     if (role === 'kitchen') {
-      // return orderDB.forEach((item) => {
-      //   console.log(item);
       return (
         <>
           <Header role={role} name={name} />
+          <section>{/* <CardsKitchen /> */}</section>
+          <Footer />
         </>
       );
     } else {
@@ -44,3 +40,5 @@ const Kitchen = () => {
 
   return result();
 };
+
+export default Kitchen;
