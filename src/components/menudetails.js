@@ -22,6 +22,7 @@ const MenuItems = ({ item }) => {
     //     }]
     // }
 
+    //não deixar diminuir se o estado for 0 nos botões, como pegar o que vem da API pra renderizar?
     //pegar o nome e a quantidade de um produto e adicionar em um objeto
     //esse objeto deve ser repassado à um array de produtos
     //esse array vai fazer parte de um outro objeto que é o pedido
@@ -43,7 +44,7 @@ const MenuItems = ({ item }) => {
 
         return (
             <section className="menu-description">
-                <p className="product">Grilled Cheese Sandwich $10</p>
+                <p className="product">Grilled Cheese Sandwich</p>
                 <p className="price">$10</p>
                 <section className="input-group">
                     <button onClick={() => setCount(count + 1)}> + </button>
@@ -55,7 +56,9 @@ const MenuItems = ({ item }) => {
     }
 
     const Coffee = () => {
-        const [count, setCount] = useState(0);
+        const [countAmericano, setAmericano] = useState(0);
+        const [countCoffee, setCoffee] = useState(0);
+        const [countJuice, setJuice] = useState(0);
 
         return (
             <section className="menu-description">
@@ -63,9 +66,9 @@ const MenuItems = ({ item }) => {
                     <p className="product">Americano Coffee</p>
                     <p className="price">$5</p>
                     <section className="input-group">
-                        <button onClick={() => setCount(count + 1)}> + </button>
-                        <p className="quantity-field">{count}</p>
-                        <button onClick={() => setCount(count - 1)}> - </button>
+                        <button onClick={() => setAmericano(countAmericano + 1)}> + </button>
+                        <p className="quantity-field">{countAmericano}</p>
+                        <button onClick={() => setAmericano(countAmericano - 1)}> - </button>
                     </section>
                 </section>
 
@@ -73,9 +76,9 @@ const MenuItems = ({ item }) => {
                     <p className="product">Coffee with milk</p>
                     <p className="price">$7</p>
                     <section className="input-group">
-                        <button onClick={() => setCount(count + 1)}> + </button>
-                        <p className="quantity-field">{count}</p>
-                        <button onClick={() => setCount(count - 1)}> - </button>
+                        <button onClick={() => setCoffee(countCoffee + 1)}> + </button>
+                        <p className="quantity-field">{countCoffee}</p>
+                        <button onClick={() => setCoffee(countCoffee - 1)}> - </button>
                     </section>
                 </section>
 
@@ -83,9 +86,9 @@ const MenuItems = ({ item }) => {
                     <p className="product">Natural fruit juice</p>
                     <p className="price">$7</p>
                     <section className="input-group">
-                        <button onClick={() => setCount(count + 1)}> + </button>
-                        <p className="quantity-field">{count}</p>
-                        <button onClick={() => setCount(count - 1)}> - </button>
+                        <button onClick={() => setJuice(countJuice + 1)}> + </button>
+                        <p className="quantity-field">{countJuice}</p>
+                        <button onClick={() => setJuice(countJuice - 1)}> - </button>
                     </section>
                 </section>
             </section>
@@ -120,92 +123,98 @@ const MenuItems = ({ item }) => {
 
                     <label>
                         Veggie
-                    <input type="radio" id="louie" name="burger" value="louie" />
+                    <input type="radio" name="burger" />
                     </label>
                 </section>
 
-                <section className="add-items">
-                    <p className="extra-ingredient">Cheese $1</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
-                </section>
+                <label>
+                    Cheese $1
+                    <input type="radio" name="extra" />
+                </label>
 
-                <section className="add-items">
-                    <p className="extra-ingredient">Egg $1</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
-                </section>
+                <label>
+                    Egg $1
+                    <input type="radio" name="extra" />
+                </label>
             </section>
         )
     }
 
     const Sides = () => {
+        const [countFries, setFries] = useState(0);
+        const [countOnion, setOnion] = useState(0);
+
         return (
             <section className="sides-details">
-                <section className="add-items">
-                    <p className="sides">Fries $5</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Fries</p>
+                    <p className="price">$5</p>
+                    <section className="input-group">
+                        <button onClick={() => setFries(countFries + 1)}> + </button>
+                        <p className="quantity-field">{countFries}</p>
+                        <button onClick={() => setFries(countFries - 1)}> - </button>
+                    </section>
                 </section>
 
-                <section className="add-items">
-                    <p className="sides">Onion rings $5</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Onion rings</p>
+                    <p className="price">$5</p>
+                    <section className="input-group">
+                        <button onClick={() => setOnion(countOnion + 1)}> + </button>
+                        <p className="quantity-field">{countOnion}</p>
+                        <button onClick={() => setOnion(countOnion - 1)}> - </button>
+                    </section>
                 </section>
             </section>
         )
     }
 
     const Drinks = () => {
+        const [countWater500, setWater500] = useState(0);
+        const [countWater750, setWater750] = useState(0);
+        const [countSoda500, setSoda500] = useState(0);
+        const [countSoda750, setSoda750] = useState(0);
+
         return (
             <section className="drinks-details">
-                <section>
-                    <p>Water 500ml $5</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Water 500ml</p>
+                    <p className="price">$5</p>
+                    <section className="input-group">
+                        <button onClick={() => setWater500(countWater500 + 1)}> + </button>
+                        <p className="quantity-field">{countWater500}</p>
+                        <button onClick={() => setWater500(countWater500 - 1)}> - </button>
+                    </section>
                 </section>
 
-                <section>
-                    <p>Water 750ml $7</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Water 750ml</p>
+                    <p className="price">$7</p>
+                    <section className="input-group">
+                        <button onClick={() => setWater750(countWater750 + 1)}> + </button>
+                        <p className="quantity-field">{countWater750}</p>
+                        <button onClick={() => setWater750(countWater750 - 1)}> - </button>
+                    </section>
                 </section>
 
-                <section>
-                    <p>Soda 500ml $7</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Soda 500ml</p>
+                    <p className="price">$7</p>
+                    <section className="input-group">
+                        <button onClick={() => setSoda500(countSoda500 + 1)}> + </button>
+                        <p className="quantity-field">{countSoda500}</p>
+                        <button onClick={() => setSoda500(countSoda500 - 1)}> - </button>
+                    </section>
                 </section>
 
-                <section>
-                    <p>Soda 750ml $10</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                <section className="menu-description">
+                    <p className="product">Soda 750ml</p>
+                    <p className="price">$10</p>
+                    <section className="input-group">
+                        <button onClick={() => setSoda750(countSoda750 + 1)}> + </button>
+                        <p className="quantity-field">{countSoda750}</p>
+                        <button onClick={() => setSoda750(countSoda750 - 1)}> - </button>
+                    </section>
                 </section>
             </section>
         )
