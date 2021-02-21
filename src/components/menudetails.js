@@ -1,44 +1,94 @@
 import React, { useState } from 'react';
 
 const MenuItems = ({ item }) => {
-    const [product, setProducts] = useState('');
+
+    // const date = new Date();
+
+    // const orderData = {
+    //     id: "",
+    //     clientName: "",
+    //     userId: "",
+    //     table: "",
+    //     status: "",
+    //     processedAt: "",
+    //     createdAt: date.getTime(),
+    //     updatedAt: "",
+    //     products: [{
+    //         id: "",
+    //         name: "",
+    //         flavor: "",
+    //         complement: "",
+    //         qtd: ""
+    //     }]
+    // }
+
+    //pegar o nome e a quantidade de um produto e adicionar em um objeto
+    //esse objeto deve ser repassado à um array de produtos
+    //esse array vai fazer parte de um outro objeto que é o pedido
+    //pegar nome do cliente e da mesa
+    // permitir que a pessoa delete
+
+    // const itemsData = {
+    //     name: "",
+    //     qtd: "",
+    //     price: "",
+    // }
+
+    // console.log(itemsData)
+
+    // const [items, setItems] = useState(itemsData);
 
     const Snacks = () => {
+        const [count, setCount] = useState(0);
+
         return (
-            <p> Grilled Cheese Sandwich $10</p>
+            <section className="menu-description">
+                <p className="product">Grilled Cheese Sandwich $10</p>
+                <p className="price">$10</p>
+                <section className="input-group">
+                    <button onClick={() => setCount(count + 1)}> + </button>
+                    <p className="quantity-field">{count}</p>
+                    <button onClick={() => setCount(count - 1)}> - </button>
+                </section>
+            </section>
         )
     }
 
     const Coffee = () => {
+        const [count, setCount] = useState(0);
+
         return (
-            <>
+            <section className="menu-description">
                 <section className="drinks">
-                    <p className="extra-ingredient">Americano Coffee $5</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                    <p className="product">Americano Coffee</p>
+                    <p className="price">$5</p>
+                    <section className="input-group">
+                        <button onClick={() => setCount(count + 1)}> + </button>
+                        <p className="quantity-field">{count}</p>
+                        <button onClick={() => setCount(count - 1)}> - </button>
+                    </section>
                 </section>
 
                 <section className="drinks">
-                    <p className="extra-ingredient">Coffee with milk $7</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                    <p className="product">Coffee with milk</p>
+                    <p className="price">$7</p>
+                    <section className="input-group">
+                        <button onClick={() => setCount(count + 1)}> + </button>
+                        <p className="quantity-field">{count}</p>
+                        <button onClick={() => setCount(count - 1)}> - </button>
+                    </section>
                 </section>
 
                 <section className="drinks">
-                    <p className="extra-ingredient">Natural fruit juice $7</p>
-                    <div className="input-group">
-                        <input type="button" value="-" className="button-minus" data-field="quantity" />
-                        <input type="number" step="1" max="" value="0" name="quantity" className="quantity-field" />
-                        <input type="button" value="+" className="button-plus" data-field="quantity" />
-                    </div>
+                    <p className="product">Natural fruit juice</p>
+                    <p className="price">$7</p>
+                    <section className="input-group">
+                        <button onClick={() => setCount(count + 1)}> + </button>
+                        <p className="quantity-field">{count}</p>
+                        <button onClick={() => setCount(count - 1)}> - </button>
+                    </section>
                 </section>
-            </>
+            </section>
         )
     }
 
