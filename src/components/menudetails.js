@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const MenuItems = ({ item }) => {
 
-    const [count, setCount] = useState(0);
+    const [countSnacks, setSnacks] = useState(0);
 
     const [countAmericano, setAmericano] = useState(0);
     const [countCoffee, setCoffee] = useState(0);
@@ -31,7 +31,6 @@ const MenuItems = ({ item }) => {
 
     // permitir que a pessoa deletar
     // como pegar o que vem da API pra renderizar?
-    //não deixar diminuir se o estado for 0 nos botões
 
     const Snacks = () => {
 
@@ -40,9 +39,9 @@ const MenuItems = ({ item }) => {
                 <p className="product">Grilled Cheese Sandwich</p>
                 <p className="price">$10</p>
                 <section className="input-group">
-                    <button onClick={() => setCount(count + 1)}> + </button>
-                    <p className="quantity-field">{count}</p>
-                    <button onClick={() => setCount(count - 1)}> - </button>
+                    <button onClick={() => setSnacks(countSnacks + 1)}> + </button>
+                    <p className="quantity-field">{countSnacks}</p>
+                    <button onClick={() => countSnacks > 0 && setSnacks(countSnacks - 1)}> - </button>
                 </section>
                 
                 <button className="send-button">ADD ITEM</button>
@@ -60,7 +59,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setAmericano(countAmericano + 1)}> + </button>
                         <p className="quantity-field">{countAmericano}</p>
-                        <button onClick={() => setAmericano(countAmericano - 1)}> - </button>
+                        <button onClick={() => countAmericano > 0 && setAmericano(countAmericano - 1)}> - </button>
                     </section>
                 </section>
 
@@ -70,7 +69,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setCoffee(countCoffee + 1)}> + </button>
                         <p className="quantity-field">{countCoffee}</p>
-                        <button onClick={() => setCoffee(countCoffee - 1)}> - </button>
+                        <button onClick={() => countCoffee > 0 && setCoffee(countCoffee - 1)}> - </button>
                     </section>
                 </section>
 
@@ -80,7 +79,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setJuice(countJuice + 1)}> + </button>
                         <p className="quantity-field">{countJuice}</p>
-                        <button onClick={() => setJuice(countJuice - 1)}> - </button>
+                        <button onClick={() => countJuice > 0 && setJuice(countJuice - 1)}> - </button>
                     </section>
                 </section>
                 
@@ -146,7 +145,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setFries(countFries + 1)}> + </button>
                         <p className="quantity-field">{countFries}</p>
-                        <button onClick={() => setFries(countFries - 1)}> - </button>
+                        <button onClick={() => countFries > 0 && setFries(countFries - 1)}> - </button>
                     </section>
                 </section>
 
@@ -156,7 +155,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setOnion(countOnion + 1)}> + </button>
                         <p className="quantity-field">{countOnion}</p>
-                        <button onClick={() => setOnion(countOnion - 1)}> - </button>
+                        <button onClick={() => countOnion > 0 && setOnion(countOnion - 1)}> - </button>
                     </section>
                 </section>
                 
@@ -175,7 +174,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setWater500(countWater500 + 1)}> + </button>
                         <p className="quantity-field">{countWater500}</p>
-                        <button onClick={() => setWater500(countWater500 - 1)}> - </button>
+                        <button onClick={() => countWater500 > 0 && setWater500(countWater500 - 1)}> - </button>
                     </section>
                 </section>
 
@@ -185,7 +184,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setWater750(countWater750 + 1)}> + </button>
                         <p className="quantity-field">{countWater750}</p>
-                        <button onClick={() => setWater750(countWater750 - 1)}> - </button>
+                        <button onClick={() => countWater750 > 0 && setWater750(countWater750 - 1)}> - </button>
                     </section>
                 </section>
 
@@ -195,7 +194,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setSoda500(countSoda500 + 1)}> + </button>
                         <p className="quantity-field">{countSoda500}</p>
-                        <button onClick={() => setSoda500(countSoda500 - 1)}> - </button>
+                        <button onClick={() => countSoda500 > 0 && setSoda500(countSoda500 - 1)}> - </button>
                     </section>
                 </section>
 
@@ -205,7 +204,7 @@ const MenuItems = ({ item }) => {
                     <section className="input-group">
                         <button onClick={() => setSoda750(countSoda750 + 1)}> + </button>
                         <p className="quantity-field">{countSoda750}</p>
-                        <button onClick={() => setSoda750(countSoda750 - 1)}> - </button>
+                        <button onClick={() => countSoda750 > 0 && setSoda750(countSoda750 - 1)}> - </button>
                     </section>
                 </section>
                 
