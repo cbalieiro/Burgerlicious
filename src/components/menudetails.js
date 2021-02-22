@@ -2,6 +2,28 @@ import React, { useState } from 'react';
 
 const MenuItems = ({ item }) => {
 
+    const handleClick = () => {
+        const product = document.querySelector(".product").innerText;
+        const price = document.querySelector(".price").innerText;
+        const qtd = document.querySelector(".quantity-field").innerText;
+        console.log(price, product, qtd)
+        // setItems({ ...items, qtd: oi })
+        // console.log(itemsData)
+        // setItems({ ...items, qtd: quantity})
+        // setItems({ ...items, price: cost})
+    }
+    //esse objeto deve ser repassado à um array de produtos
+    //const [countProducts, setProducts] = useState([]);
+
+    //pegar o nome e a quantidade do produto e salvar em um objeto
+    const itemsData = {
+        name: "",
+        qtd: null,
+        price: "",
+    }
+
+    const [items, setItems] = useState(itemsData);
+
     const [countSnacks, setSnacks] = useState(0);
 
     const [countAmericano, setAmericano] = useState(0);
@@ -16,19 +38,9 @@ const MenuItems = ({ item }) => {
     const [countSoda500, setSoda500] = useState(0);
     const [countSoda750, setSoda750] = useState(0);
 
-    // const itemsData = {
-    //     name: "",
-    //     qtd: "",
-    //     price: "",
-    // }
-    // console.log(itemsData)
-    // const [items, setItems] = useState(itemsData);
 
-    //pegar o nome e a quantidade do produto e salvar em um objeto
-    //esse objeto deve ser repassado à um array de produtos
     //esse array vai fazer parte de um outro objeto que é o pedido
     //pegar nome do cliente e da mesa
-
     // permitir que a pessoa deletar
     // como pegar o que vem da API pra renderizar?
 
@@ -43,8 +55,8 @@ const MenuItems = ({ item }) => {
                     <p className="quantity-field">{countSnacks}</p>
                     <button onClick={() => countSnacks > 0 && setSnacks(countSnacks - 1)}> - </button>
                 </section>
-                
-                <button className="send-button">ADD ITEM</button>
+
+                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
             </section>
         )
     }
@@ -82,7 +94,7 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => countJuice > 0 && setJuice(countJuice - 1)}> - </button>
                     </section>
                 </section>
-                
+
                 <button className="send-button">ADD ITEM</button>
             </section>
         )
@@ -129,7 +141,7 @@ const MenuItems = ({ item }) => {
                     Egg $1
                     <input type="radio" name="extra" />
                 </label>
-            
+
                 <button className="send-button">ADD ITEM</button>
             </section>
         )
@@ -158,7 +170,7 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => countOnion > 0 && setOnion(countOnion - 1)}> - </button>
                     </section>
                 </section>
-                
+
                 <button className="send-button">ADD ITEM</button>
             </section>
         )
@@ -207,7 +219,7 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => countSoda750 > 0 && setSoda750(countSoda750 - 1)}> - </button>
                     </section>
                 </section>
-                
+
                 <button className="send-button">ADD ITEM</button>
             </section>
         )
