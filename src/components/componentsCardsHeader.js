@@ -2,7 +2,7 @@ import React from 'react';
 
 const CardsHeader = () => (
   <div>
-    Bla Bla Bla
+    Lindeza
   </div>
 );
 
