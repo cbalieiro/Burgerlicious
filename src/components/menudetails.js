@@ -2,45 +2,38 @@ import React, { useState } from 'react';
 
 const MenuItems = ({ item }) => {
 
-    // const date = new Date();
+    const [count, setCount] = useState(0);
 
-    // const orderData = {
-    //     id: "",
-    //     clientName: "",
-    //     userId: "",
-    //     table: "",
-    //     status: "",
-    //     processedAt: "",
-    //     createdAt: date.getTime(),
-    //     updatedAt: "",
-    //     products: [{
-    //         id: "",
-    //         name: "",
-    //         flavor: "",
-    //         complement: "",
-    //         qtd: ""
-    //     }]
-    // }
+    const [countAmericano, setAmericano] = useState(0);
+    const [countCoffee, setCoffee] = useState(0);
+    const [countJuice, setJuice] = useState(0);
 
-    //não deixar diminuir se o estado for 0 nos botões, como pegar o que vem da API pra renderizar?
-    //pegar o nome e a quantidade de um produto e adicionar em um objeto
-    //esse objeto deve ser repassado à um array de produtos
-    //esse array vai fazer parte de um outro objeto que é o pedido
-    //pegar nome do cliente e da mesa
-    // permitir que a pessoa delete
+    const [countFries, setFries] = useState(0);
+    const [countOnion, setOnion] = useState(0);
+
+    const [countWater500, setWater500] = useState(0);
+    const [countWater750, setWater750] = useState(0);
+    const [countSoda500, setSoda500] = useState(0);
+    const [countSoda750, setSoda750] = useState(0);
 
     // const itemsData = {
     //     name: "",
     //     qtd: "",
     //     price: "",
     // }
-
     // console.log(itemsData)
-
     // const [items, setItems] = useState(itemsData);
 
+    //pegar o nome e a quantidade do produto e salvar em um objeto
+    //esse objeto deve ser repassado à um array de produtos
+    //esse array vai fazer parte de um outro objeto que é o pedido
+    //pegar nome do cliente e da mesa
+
+    // permitir que a pessoa deletar
+    // como pegar o que vem da API pra renderizar?
+    //não deixar diminuir se o estado for 0 nos botões
+
     const Snacks = () => {
-        const [count, setCount] = useState(0);
 
         return (
             <section className="menu-description">
@@ -51,14 +44,13 @@ const MenuItems = ({ item }) => {
                     <p className="quantity-field">{count}</p>
                     <button onClick={() => setCount(count - 1)}> - </button>
                 </section>
+                
+                <button className="send-button">ADD ITEM</button>
             </section>
         )
     }
 
     const Coffee = () => {
-        const [countAmericano, setAmericano] = useState(0);
-        const [countCoffee, setCoffee] = useState(0);
-        const [countJuice, setJuice] = useState(0);
 
         return (
             <section className="menu-description">
@@ -91,6 +83,8 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => setJuice(countJuice - 1)}> - </button>
                     </section>
                 </section>
+                
+                <button className="send-button">ADD ITEM</button>
             </section>
         )
     }
@@ -136,13 +130,13 @@ const MenuItems = ({ item }) => {
                     Egg $1
                     <input type="radio" name="extra" />
                 </label>
+            
+                <button className="send-button">ADD ITEM</button>
             </section>
         )
     }
 
     const Sides = () => {
-        const [countFries, setFries] = useState(0);
-        const [countOnion, setOnion] = useState(0);
 
         return (
             <section className="sides-details">
@@ -165,15 +159,13 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => setOnion(countOnion - 1)}> - </button>
                     </section>
                 </section>
+                
+                <button className="send-button">ADD ITEM</button>
             </section>
         )
     }
 
     const Drinks = () => {
-        const [countWater500, setWater500] = useState(0);
-        const [countWater750, setWater750] = useState(0);
-        const [countSoda500, setSoda500] = useState(0);
-        const [countSoda750, setSoda750] = useState(0);
 
         return (
             <section className="drinks-details">
@@ -216,6 +208,8 @@ const MenuItems = ({ item }) => {
                         <button onClick={() => setSoda750(countSoda750 - 1)}> - </button>
                     </section>
                 </section>
+                
+                <button className="send-button">ADD ITEM</button>
             </section>
         )
     }
