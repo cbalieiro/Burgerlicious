@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
 
 const MenuItems = ({ item }) => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
     const { data, request } = useFetch();
-    React.useEffect(() => {
+    let snacksList = [];
+    let coffeeList = [];
+    let burgerList = [];
+    let drinksList = [];
+    let sidesList = [];
+    
+    useEffect(() => {
         async function fetchProducts() {
             const method = requestOptions.getAndDelete('GET', nameLS.token);
             const URL = 'https://lab-api-bq.herokuapp.com/products';
@@ -14,12 +20,16 @@ const MenuItems = ({ item }) => {
         fetchProducts();
     }, [request, nameLS.token]);
 
+    useEffect(() => {
+        if(!data) return
         const allProducts = data;
-        const snacksList = allProducts.filter((item) => item.name.includes("Misto"));
-        const coffeeList = allProducts.filter((item) => item.name.includes("Café" || "Suco"));
-        const burgerList = allProducts.filter((item) => item.name.includes("Hambúrguer"));
-        const drinksList = allProducts.filter((item) => item.name.includes("Água" || "Refrigerante"));
-        const sidesList = allProducts.filter((item) => item.name.includes("Batata" || "Cebola"));    
+        snacksList = allProducts.filter((item) => item.name.includes("Misto"));
+        coffeeList = allProducts.filter((item) => item.name.includes("Café" || "Suco"));
+        burgerList = allProducts.filter((item) => item.name.includes("Hambúrguer"));
+        drinksList = allProducts.filter((item) => item.name.includes("Água" || "Refrigerante"));
+        sidesList = allProducts.filter((item) => item.name.includes("Batata" || "Cebola"));
+    }, [data])
+
 
     //fazer uma função anterior ao handleClick
     const handleClick = (count) => {
@@ -52,22 +62,24 @@ const MenuItems = ({ item }) => {
     // permitir que a pessoa deletar
     // como pegar o que vem da API pra renderizar?
 
-    const Snacks = () => {
+    const Snacks = ({list}) => {
         const [countSnacks, setSnacks] = useState(0);
 
-        return (
-            <section className="menu-description">
-                <p className="product">Grilled Cheese Sandwich</p>
-                <p className="price">$10</p>
-                <section className="input-group">
-                    <button onClick={() => setSnacks(countSnacks + 1)}> + </button>
-                    <p className="quantity-field">{countSnacks}</p>
-                    <button onClick={() => countSnacks > 0 && setSnacks(countSnacks - 1)}> - </button>
-                </section>
+        return list.forEach((item) => {
+            return (
+                <section className="menu-description">
+                    <p className="product">Grilled Cheese Sandwich</p>
+                    <p className="price">{item.name}</p>
+                    <section className="input-group">
+                        <button onClick={() => setSnacks(countSnacks + 1)}> + </button>
+                        <p className="quantity-field">{countSnacks}</p>
+                        <button onClick={() => countSnacks > 0 && setSnacks(countSnacks - 1)}> - </button>
+                    </section>
 
-                <button className="send-button" onClick={() => { handleClick(countSnacks) }}>ADD ITEM</button>
-            </section>
-        )
+                    <button className="send-button" onClick={() => { handleClick(countSnacks) }}>ADD ITEM</button>
+                </section>
+            )
+        })
     }
 
     const Coffee = () => {
@@ -246,7 +258,7 @@ const MenuItems = ({ item }) => {
     return (
         <>
             {item === 'Snacks' && (
-                <Snacks />
+                <Snacks list={snacksList}/>
             )}
             {item === 'DrinksCoffee' && (
                 <Coffee />
