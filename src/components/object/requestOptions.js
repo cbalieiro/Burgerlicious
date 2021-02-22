@@ -31,7 +31,7 @@ const RequestOptions = {
         "Content-Type": "application/x-www-form-urlencoded",
         'Authorization': `${token}`,
       },
-      body:body,
+      body: `status=${body}`      
     };
     return request;
   },

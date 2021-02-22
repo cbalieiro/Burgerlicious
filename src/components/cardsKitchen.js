@@ -24,14 +24,16 @@ const CardsKitchen = ({
             <td>QTD</td>
             <td>PRODUCTS</td>
           </tr>
-           {product.map(({ name, flavor, complement, qtd }) => (
-              <tr><CardsBody
+          {product.map(({ name, flavor, complement, qtd }) => (
+            <tr>
+              <CardsBody
                 name={name}
                 flavor={flavor}
                 complement={complement}
                 qtd={qtd}
-              /></tr>
-            ))}
+              />
+            </tr>
+          ))}
         </table>
       </div>
       <Button status={status} id={id} />
