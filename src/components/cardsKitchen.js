@@ -1,11 +1,13 @@
 import React from 'react';
 import CardsHeader from './componentsCardsHeader'
 import CardsBody from './componentsCardsBody'
+import Button from './buttonstatus'
 
-const CardsKitchen = ({table,clientName,createdAt,qtd,name}) => (
-  <div className="card-template">
-    <CardsHeader table={table} clientName={clientName} createdAt={createdAt}/>
-    <CardsBody qtd={qtd} name={name}/>
+const CardsKitchen = () => (
+   <div className="card-template">
+    <CardsHeader />
+    <CardsBody />
+    <Button status="peding" />
   </div>
 );
 
