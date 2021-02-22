@@ -22,12 +22,13 @@ const Kitchen = () => {
 
   function result() {
     if (role === 'kitchen') {
-      if (data)
+      if (data) {
+        const orderList = data.filter(({ status }) => status !== 'done');
         return (
           <>
             <Header role={role} name={name} />
             <section>
-              {data
+              {orderList
                 .sort((a, b) => (a.id > b.id ? 1 : -1))
                 .map(
                   ({ id, client_name, table, status, createdAt, Products }) => {
@@ -49,7 +50,7 @@ const Kitchen = () => {
             <Footer />
           </>
         );
-      else return null;
+      } else return null;
     } else {
       return alert('Você não possui acesso a esse Módulo');
     }
