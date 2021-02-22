@@ -1,47 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import useFetch from "../services/Hooks/useFetch";
+import requestOptions from "../components/object/requestOptions"
 
 const MenuItems = ({ item }) => {
+    const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+    const { data, request } = useFetch();
+    React.useEffect(() => {
+        async function fetchProducts() {
+            const method = requestOptions.getAndDelete('GET', nameLS.token);
+            const URL = 'https://lab-api-bq.herokuapp.com/products';
+            await request(URL, method);
+        }
+        fetchProducts();
+    }, [request, nameLS.token]);
 
-    const handleClick = () => {
+        const allProducts = data;
+        const snacksList = allProducts.filter((item) => item.name.includes("Misto"));
+        const coffeeList = allProducts.filter((item) => item.name.includes("Café" || "Suco"));
+        const burgerList = allProducts.filter((item) => item.name.includes("Hambúrguer"));
+        const drinksList = allProducts.filter((item) => item.name.includes("Água" || "Refrigerante"));
+        const sidesList = allProducts.filter((item) => item.name.includes("Batata" || "Cebola"));    
+
+    //fazer uma função anterior ao handleClick
+    const handleClick = (count) => {
+        console.log(count)
         const product = document.querySelector(".product").innerText;
         const cost = document.querySelector(".price").innerText;
-        const qt = document.querySelector(".quantity-field").innerText;
-        
-        //fazer um loop para pegar os items de todas as classes
-        
+        // const qt = document.querySelector(".quantity-field").innerText;
+
         const itemsData = {
             name: product,
-            qquantity: qt,
+            quantity: count,
             price: cost,
         }
 
-        addItem(itemsData)
-
+        addItem(itemsData);
     }
 
-    
     const [products, setProducts] = useState([]);
 
     const addItem = (item) => {
-      const order = products;
-      order.push(item);
-      setProducts(order);
+        const order = products;
+        order.push(item);
+        setProducts(order);
+
+        console.log(order)
     }
-
-    const [countSnacks, setSnacks] = useState(0);
-
-    const [countAmericano, setAmericano] = useState(0);
-    const [countCoffee, setCoffee] = useState(0);
-    const [countJuice, setJuice] = useState(0);
-
-    const [countFries, setFries] = useState(0);
-    const [countOnion, setOnion] = useState(0);
-
-    const [countWater500, setWater500] = useState(0);
-    const [countWater750, setWater750] = useState(0);
-    const [countSoda500, setSoda500] = useState(0);
-    const [countSoda750, setSoda750] = useState(0);
-
 
     //esse array vai fazer parte de um outro objeto que é o pedido
     //pegar nome do cliente e da mesa
@@ -49,6 +53,7 @@ const MenuItems = ({ item }) => {
     // como pegar o que vem da API pra renderizar?
 
     const Snacks = () => {
+        const [countSnacks, setSnacks] = useState(0);
 
         return (
             <section className="menu-description">
@@ -60,12 +65,15 @@ const MenuItems = ({ item }) => {
                     <button onClick={() => countSnacks > 0 && setSnacks(countSnacks - 1)}> - </button>
                 </section>
 
-                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
+                <button className="send-button" onClick={() => { handleClick(countSnacks) }}>ADD ITEM</button>
             </section>
         )
     }
 
     const Coffee = () => {
+        const [countAmericano, setAmericano] = useState(0);
+        const [countCoffee, setCoffee] = useState(0);
+        const [countJuice, setJuice] = useState(0);
 
         return (
             <section className="menu-description">
@@ -99,7 +107,7 @@ const MenuItems = ({ item }) => {
                     </section>
                 </section>
 
-                <button className="send-button">ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
             </section>
         )
     }
@@ -152,6 +160,8 @@ const MenuItems = ({ item }) => {
     }
 
     const Sides = () => {
+        const [countFries, setFries] = useState(0);
+        const [countOnion, setOnion] = useState(0);
 
         return (
             <section className="sides-details">
@@ -175,12 +185,16 @@ const MenuItems = ({ item }) => {
                     </section>
                 </section>
 
-                <button className="send-button">ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
             </section>
         )
     }
 
     const Drinks = () => {
+        const [countWater500, setWater500] = useState(0);
+        const [countWater750, setWater750] = useState(0);
+        const [countSoda500, setSoda500] = useState(0);
+        const [countSoda750, setSoda750] = useState(0);
 
         return (
             <section className="drinks-details">
@@ -224,7 +238,7 @@ const MenuItems = ({ item }) => {
                     </section>
                 </section>
 
-                <button className="send-button">ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
             </section>
         )
     }
