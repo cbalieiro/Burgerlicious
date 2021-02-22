@@ -4,25 +4,29 @@ const MenuItems = ({ item }) => {
 
     const handleClick = () => {
         const product = document.querySelector(".product").innerText;
-        const price = document.querySelector(".price").innerText;
-        const qtd = document.querySelector(".quantity-field").innerText;
-        console.log(price, product, qtd)
-        // setItems({ ...items, qtd: oi })
-        // console.log(itemsData)
-        // setItems({ ...items, qtd: quantity})
-        // setItems({ ...items, price: cost})
-    }
-    //esse objeto deve ser repassado à um array de produtos
-    //const [countProducts, setProducts] = useState([]);
+        const cost = document.querySelector(".price").innerText;
+        const qt = document.querySelector(".quantity-field").innerText;
+        
+        //fazer um loop para pegar os items de todas as classes
+        
+        const itemsData = {
+            name: product,
+            qquantity: qt,
+            price: cost,
+        }
 
-    //pegar o nome e a quantidade do produto e salvar em um objeto
-    const itemsData = {
-        name: "",
-        qtd: null,
-        price: "",
+        addItem(itemsData)
+
     }
 
-    const [items, setItems] = useState(itemsData);
+    
+    const [products, setProducts] = useState([]);
+
+    const addItem = (item) => {
+      const order = products;
+      order.push(item);
+      setProducts(order);
+    }
 
     const [countSnacks, setSnacks] = useState(0);
 
