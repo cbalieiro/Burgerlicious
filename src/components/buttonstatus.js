@@ -16,7 +16,7 @@ const Button = ({ status, id }) => {
     CallAPI(URL, method);
   }
 
-  return <button onClick={handleClick}>{condition ? 'Doing' : 'Done'}</button>;
+  return <button className={condition ? 'btn-doing' : 'btn-done'} onClick={handleClick}>{condition ? 'Doing' : 'Done'}</button>;
 };
 
 export default Button;
