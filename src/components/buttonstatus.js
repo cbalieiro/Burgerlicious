@@ -1,6 +1,7 @@
 import React from 'react';
 
-const Button = ({ status }) => {
+const Button = ({ status, id }) => {
+  console.log( status, id );
   const validation = status === 'pending';
   const [condition, setCondition] = React.useState(validation);
 
