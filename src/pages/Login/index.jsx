@@ -22,12 +22,11 @@ const Login = () => {
 
     CallAPI(auth, method)
       .then((json) => {
+        localStorage.setItem(`currentUser`, JSON.stringify(json))
+        localStorage.setItem(`token`, `${json.token}`)
         if (json.code) {
           setStatusCode(json.code);
         }
-
-        localStorage.setItem(`currentUser`, JSON.stringify(json))
-        localStorage.setItem(`token`, `${json.token}`)
 
         if (json.role === "hall") {
           history.push("/Hall")

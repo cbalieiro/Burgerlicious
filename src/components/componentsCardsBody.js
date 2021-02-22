@@ -1,15 +1,14 @@
 import React from 'react';
 
-const CardsBody = (props) => (
-      <div>
-        <div className="order-title">
-          <h2>ORDER SUMMARY:</h2>
-        </div>
-        <div className="products-info">
-          <h3> <span>QT</span> PRODUCTS </h3>
-          <p> <span>{props.qtd} </span>{props.clientName}</p>
-        </div>
-      </div>
+const CardsBody = ({ name, flavor, complement, qtd }) => (
+  <>
+    <td>{qtd}</td>
+    <td>
+      <p>{name}</p>
+      <p>{flavor}</p>                                                      
+      <p>{complement}</p>
+    </td>
+  </>
 );
 
 export default CardsBody;

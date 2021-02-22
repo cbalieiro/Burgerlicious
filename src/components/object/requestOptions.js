@@ -12,8 +12,8 @@ const RequestOptions = {
   },
 
   getAndDelete(method , token) {
-    const request = {
-      method: {method},
+      const request = {
+      method: method,
       headers: {
         accept: "application/json",
         "Content-Type": "application/x-www-form-urlencoded",
@@ -31,7 +31,7 @@ const RequestOptions = {
         "Content-Type": "application/x-www-form-urlencoded",
         'Authorization': `${token}`,
       },
-      body:body,
+      body: `status=${body}`      
     };
     return request;
   },

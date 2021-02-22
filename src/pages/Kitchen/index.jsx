@@ -1,48 +1,62 @@
-import React from "react";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import CardsKitchen from '../../components/cardsKitchen'
-
-const date = new Date();
-
-const teste = {
-  id: 1,
-  clientName: "Camila",
-  userId: 296,
-  table: "007",
-  status: "Pending",
-  processedAt: "",
-  createdAt: date.getTime(),
-  updatedAt: "",
-  products: [{
-    id: 1,
-    name: "Café americano",
-    flavor: null,
-    complement: null,
-    qtd: 2
-  }]
-}
+import React from 'react';
+import RequestOptions from '../../components/object/requestOptions';
+import useFetch from '../../services/Hooks/useFetch';
+import CardsKitchen from '../../components/cardsKitchen';
+import Header from '../../components/header';
+import Footer from '../../components/footer';
 
 const Kitchen = () => {
+  const { data, error, loading, request } = useFetch();
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
-  const { table, clientName, createdAt } = teste;
+  const { name, role, token } = nameLS;
 
-  return (
-    <>
-      <Header
-        role={'Chef'}
-        name={nameLS.name}
-      />
+  React.useEffect(() => {
+    async function fetchOrders() {
+      const method = RequestOptions.getAndDelete('GET', token);
+      const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
+      const { response, json } = await request(URL, method);
+      console.log(json, response);
+    }
+    fetchOrders();
+  }, [request, token]);
 
-      <main className="home">
-        <h1>
-          <CardsKitchen table={table} clientName={clientName} createdAt={createdAt} />
-        </h1>
-      </main>
+  function result() {
+    if (role === 'kitchen') {
+      if (data) {
+        const orderList = data.filter(({ status }) => status !== 'done');
+        return (
+          <>
+            <Header role={role} name={name} />
+            <section>
+              {orderList
+                .sort((a, b) => (a.id > b.id ? 1 : -1))
+                .map(
+                  ({ id, client_name, table, status, createdAt, Products }) => {
+                    const productList = Products.map((item) => item);
+                    return (
+                      <CardsKitchen
+                        key={id}
+                        id={id}
+                        clientName={client_name}
+                        table={table}
+                        status={status}
+                        date={createdAt}
+                        product={productList}
+                      />
+                    );
+                  },
+                )}
+            </section>
+            <Footer />
+          </>
+        );
+      } else return null;
+    } else {
+      return alert('Você não possui acesso a esse Módulo');
+    }
+  }
 
-      <Footer />
-    </>
-  )
+  return result();
 };
 
 export default Kitchen;
