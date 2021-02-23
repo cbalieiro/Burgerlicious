@@ -25,11 +25,14 @@ const MenuItems = ({ item }) => {
 
         const allProducts = data;
 
+        // const newArrayCoffee = allProducts.filter((item) => item.name.includes("Café", "Suco")));
+        // const newArrayJuice = 
+
         setSnacksList(allProducts.filter((item) => item.name.includes("Misto")));
-        setCoffeeList(allProducts.filter((item) => item.name.includes("Café", "Suco")));
+        setCoffeeList(allProducts.filter((item) => item.name.includes("Café") || item.name.includes("Suco")));
         setBurgerList(allProducts.filter((item) => item.name.includes("Hambúrguer")));
-        setDrinksList(allProducts.filter((item) => item.name.includes("Água", "Refrigerante")));
-        setSidesList(allProducts.filter((item) => item.name.includes("Batata", "Cebola")));
+        setDrinksList(allProducts.filter((item) => item.name.includes("Água") || item.name.includes("Refrigerante")));
+        setSidesList(allProducts.filter((item) => item.name.includes("Batata") || item.name.includes("Anéis")));
     }, [data])
 
     const handleClick = (items) => {

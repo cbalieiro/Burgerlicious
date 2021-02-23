@@ -365,5 +365,12 @@ input, textarea {
 /* pedido */
 
 .order-summary {
+  display: flex;
+  flex-direction: column;
   padding-top: 30px;
+}
+
+.section-order-summary {
+  display: flex;
+  justify-content: space-between;
 }
