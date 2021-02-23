@@ -84,26 +84,26 @@ const MenuItems = ({ item }) => {
         // const [countCoffee, setCoffee] = useState(0);
         // const [countJuice, setJuice] = useState(0);
 
-        const handleCount = (action) => {
-            if(action.target.innerText === '+') {
-                
-
+        const handleCount = (id, teste) => {
+            // console.log(count)
+            // const qtd = count + 1;
+            const newItem = {
+                id: id,
+                quantity: teste,
             }
-            else {
-
-            }
+            setCount([...count, newItem])
+            console.log(count)
         }
+
+        const [count, setCount] = useState([]);
 
         return (<>
             {list.length && list.map((item) => {
-
-                // const [count`${item.name}`, set`${item.name}`] = useState(0) o que eu queria, mas não posso
-
                 return (<section className="menu-description" key={item.id}>
                     <p className="product">{item.name}</p>
                     <p className="price">${item.price}</p>
                     <section className="input-group">
-                        <button onClick={(event) => handleCount(event)}> + </button>
+                        <button onClick={() => handleCount(item.id, (count + 1))}> + </button>
                         <p className="quantity-field">0</p>
                         {/* <button onClick={() => countSnacks > 0 && handleCount}> - </button> */}
                     </section>
