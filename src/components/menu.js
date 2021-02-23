@@ -7,25 +7,6 @@ import MenuItems from '../components/menudetails'
 const Menu = () => {
     const [option, setOptions] = useState('');
 
-    // const date = new Date();
-    // const orderData = {
-    //     id: "",
-    //     clientName: "",
-    //     userId: "",
-    //     table: "",
-    //     status: "",
-    //     processedAt: "",
-    //     createdAt: date.getTime(),
-    //     updatedAt: "",
-    //     products: [{
-    //         id: "",
-    //         name: "",
-    //         flavor: "",
-    //         complement: "",
-    //         qtd: ""
-    //     }]
-    // }
-
     return (
         <>
             <section className="items-accordion">

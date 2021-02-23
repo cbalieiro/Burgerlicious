@@ -5,12 +5,12 @@ import requestOptions from "../components/object/requestOptions"
 const MenuItems = ({ item }) => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
     const { data, request } = useFetch();
-    let snacksList = [];
-    let coffeeList = [];
-    let burgerList = [];
-    let drinksList = [];
-    let sidesList = [];
-    
+    const [snacksList, setSnacksList] = useState([]);
+    const [coffeeList, setCoffeeList] = useState([]);
+    const [burgerList, setBurgerList] = useState([]);
+    const [drinksList, setDrinksList] = useState([]);
+    const [sidesList, setSidesList] = useState([]);
+
     useEffect(() => {
         async function fetchProducts() {
             const method = requestOptions.getAndDelete('GET', nameLS.token);
@@ -21,13 +21,15 @@ const MenuItems = ({ item }) => {
     }, [request, nameLS.token]);
 
     useEffect(() => {
-        if(!data) return
+        if (!data) return
+
         const allProducts = data;
-        snacksList = allProducts.filter((item) => item.name.includes("Misto"));
-        coffeeList = allProducts.filter((item) => item.name.includes("Café" || "Suco"));
-        burgerList = allProducts.filter((item) => item.name.includes("Hambúrguer"));
-        drinksList = allProducts.filter((item) => item.name.includes("Água" || "Refrigerante"));
-        sidesList = allProducts.filter((item) => item.name.includes("Batata" || "Cebola"));
+
+        setSnacksList(allProducts.filter((item) => item.name.includes("Misto")));
+        setCoffeeList(allProducts.filter((item) => item.name.includes("Café" || "Suco")));
+        setBurgerList(allProducts.filter((item) => item.name.includes("Hambúrguer")));
+        setDrinksList(allProducts.filter((item) => item.name.includes("Água" || "Refrigerante")));
+        setSidesList(allProducts.filter((item) => item.name.includes("Batata" || "Cebola")));
     }, [data])
 
 
@@ -57,19 +59,14 @@ const MenuItems = ({ item }) => {
         console.log(order)
     }
 
-    //esse array vai fazer parte de um outro objeto que é o pedido
-    //pegar nome do cliente e da mesa
-    // permitir que a pessoa deletar
-    // como pegar o que vem da API pra renderizar?
-
     const Snacks = ({list}) => {
         const [countSnacks, setSnacks] = useState(0);
-
-        return list.forEach((item) => {
-            return (
-                <section className="menu-description">
-                    <p className="product">Grilled Cheese Sandwich</p>
-                    <p className="price">{item.name}</p>
+        
+        return (<>
+            {list.length && list.map((item) => {
+                return (<section className="menu-description" key={item.id}>
+                    <p className="product">{item.name}</p>
+                    <p className="price">${item.price}</p>
                     <section className="input-group">
                         <button onClick={() => setSnacks(countSnacks + 1)}> + </button>
                         <p className="quantity-field">{countSnacks}</p>
@@ -77,51 +74,45 @@ const MenuItems = ({ item }) => {
                     </section>
 
                     <button className="send-button" onClick={() => { handleClick(countSnacks) }}>ADD ITEM</button>
-                </section>
-            )
-        })
+                </section>)
+            })}
+        </>)
     }
 
-    const Coffee = () => {
-        const [countAmericano, setAmericano] = useState(0);
-        const [countCoffee, setCoffee] = useState(0);
-        const [countJuice, setJuice] = useState(0);
+    const Coffee = ({list}) => {
+        // const [countAmericano, setAmericano] = useState(0);
+        // const [countCoffee, setCoffee] = useState(0);
+        // const [countJuice, setJuice] = useState(0);
 
-        return (
-            <section className="menu-description">
-                <section className="drinks">
-                    <p className="product">Americano Coffee</p>
-                    <p className="price">$5</p>
+        const handleCount = (action) => {
+            if(action.target.innerText === '+') {
+                
+
+            }
+            else {
+
+            }
+        }
+
+        return (<>
+            {list.length && list.map((item) => {
+
+                // const [count`${item.name}`, set`${item.name}`] = useState(0) o que eu queria, mas não posso
+
+                return (<section className="menu-description" key={item.id}>
+                    <p className="product">{item.name}</p>
+                    <p className="price">${item.price}</p>
                     <section className="input-group">
-                        <button onClick={() => setAmericano(countAmericano + 1)}> + </button>
-                        <p className="quantity-field">{countAmericano}</p>
-                        <button onClick={() => countAmericano > 0 && setAmericano(countAmericano - 1)}> - </button>
+                        <button onClick={(event) => handleCount(event)}> + </button>
+                        <p className="quantity-field">0</p>
+                        {/* <button onClick={() => countSnacks > 0 && handleCount}> - </button> */}
                     </section>
-                </section>
 
-                <section className="drinks">
-                    <p className="product">Coffee with milk</p>
-                    <p className="price">$7</p>
-                    <section className="input-group">
-                        <button onClick={() => setCoffee(countCoffee + 1)}> + </button>
-                        <p className="quantity-field">{countCoffee}</p>
-                        <button onClick={() => countCoffee > 0 && setCoffee(countCoffee - 1)}> - </button>
-                    </section>
-                </section>
-
-                <section className="drinks">
-                    <p className="product">Natural fruit juice</p>
-                    <p className="price">$7</p>
-                    <section className="input-group">
-                        <button onClick={() => setJuice(countJuice + 1)}> + </button>
-                        <p className="quantity-field">{countJuice}</p>
-                        <button onClick={() => countJuice > 0 && setJuice(countJuice - 1)}> - </button>
-                    </section>
-                </section>
-
-                <button className="send-button" onClick={() => handleClick()}>ADD ITEM</button>
-            </section>
-        )
+                    <button className="send-button" onClick={(event) => { handleClick(event) }}>ADD ITEM</button> 
+                    {/* passar para o menu */}
+                </section>)
+            })}
+        </>)
     }
 
     const Burger = () => {
@@ -258,10 +249,10 @@ const MenuItems = ({ item }) => {
     return (
         <>
             {item === 'Snacks' && (
-                <Snacks list={snacksList}/>
+                <Snacks list={snacksList} />
             )}
             {item === 'DrinksCoffee' && (
-                <Coffee />
+                <Coffee list={coffeeList}/>
             )}
             {item === 'Burgers' && (
                 <Burger />
