@@ -27,7 +27,7 @@ const Kitchen = () => {
         return (
           <>
             <Header role={role} name={name} />
-            <section>
+            <section className="container-cards">
               {orderList
                 .sort((a, b) => (a.id > b.id ? 1 : -1))
                 .map(

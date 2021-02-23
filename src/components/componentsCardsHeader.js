@@ -1,10 +1,21 @@
 import React from 'react';
 
 const CardsHeader = ({ clientName, table, date }) => (
-  <>
-    <p>Table:{" "}{table} </p>
-    <p>Client:{" "}{clientName}</p>
-    <p>Time:{" "}{date}</p>
-  </>
+  <div>
+    <div className="card-table-info">
+      <p className="text-card">Table:</p>
+      <p className="title-number-card">{table}</p>
+    </div>
+    <div>
+      <p className="title-card">
+        {' '}
+        Client: <span className="title-card">{clientName}</span>
+      </p>
+      <p className="title-card">
+        {' '}
+        Time: <span className="text-card">{date}</span>
+      </p>
+    </div>
+  </div>
 );
 export default CardsHeader;
