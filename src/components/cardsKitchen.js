@@ -14,27 +14,28 @@ const CardsKitchen = ({
 }) => {
   return (
     <div key={key} className="card-template">
-      <div>
+      <div className="card-container-text">
         <CardsHeader table={table} clientName={clientName} date={date} />
-      </div>
-      <div>
-        <table style={{ border: '1' }}>
-          <tr>ORDER SUMMARY</tr>
-          <tr>
-            <td>QTD</td>
-            <td>PRODUCTS</td>
-          </tr>
-          {product.map(({ name, flavor, complement, qtd }) => (
+        <div>
+          <hr/>
+          <table>
+            <tr>ORDER SUMMARY</tr>
             <tr>
-              <CardsBody
-                name={name}
-                flavor={flavor}
-                complement={complement}
-                qtd={qtd}
-              />
+              <td style={{width:"70px"}}>QTD</td>
+              <td>PRODUCTS</td>
             </tr>
-          ))}
-        </table>
+            {product.map(({ name, flavor, complement, qtd }) => (
+              <tr>
+                <CardsBody
+                  name={name}
+                  flavor={flavor}
+                  complement={complement}
+                  qtd={qtd}
+                />
+              </tr>
+            ))}
+          </table>
+        </div>
       </div>
       <Button status={status} id={id} />
     </div>

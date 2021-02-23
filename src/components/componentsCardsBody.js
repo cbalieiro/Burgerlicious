@@ -2,11 +2,11 @@ import React from 'react';
 
 const CardsBody = ({ name, flavor, complement, qtd }) => (
   <>
-    <td>{qtd}</td>
+    <td className="text-card">{qtd}</td>
     <td>
-      <p>{name}</p>
-      <p>{flavor}</p>                                                      
-      <p>{complement}</p>
+      <p className="text-card">{name}</p>
+      <p className="complement-text-card">{flavor}</p>                                                      
+      <p className="complement-text-card">{complement}</p>
     </td>
   </>
 );

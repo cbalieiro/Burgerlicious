@@ -3,6 +3,7 @@ import RequestOptions from './object/requestOptions';
 import CallAPI from '../services/api';
 
 const Button = ({ status, id }) => {
+  console.log(status)
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token } = nameLS;
   const validation = status === 'pending';
