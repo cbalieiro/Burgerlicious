@@ -4,12 +4,16 @@ import requestOptions from "../components/object/requestOptions"
 
 const MenuItems = ({ item }) => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+
     const { data, request } = useFetch();
+
     const [snacksList, setSnacksList] = useState([]);
     const [coffeeList, setCoffeeList] = useState([]);
     const [burgerList, setBurgerList] = useState([]);
     const [drinksList, setDrinksList] = useState([]);
     const [sidesList, setSidesList] = useState([]);
+
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         async function fetchProducts() {
@@ -25,20 +29,30 @@ const MenuItems = ({ item }) => {
 
         const allProducts = data;
 
-        // const newArrayCoffee = allProducts.filter((item) => item.name.includes("Café", "Suco")));
-        // const newArrayJuice = 
+        // const allProducts = data.reduce((acumulator, currentObject) => ({ ...acumulator, [currentObject.id]: {...currentObject} }), [])
 
         setSnacksList(allProducts.filter((item) => item.name.includes("Misto")));
         setCoffeeList(allProducts.filter((item) => item.name.includes("Café") || item.name.includes("Suco")));
-        setBurgerList(allProducts.filter((item) => item.name.includes("Hambúrguer")));
+        setBurgerList(allProducts.filter((item) => item.sub_type.includes("hamburguer")));
         setDrinksList(allProducts.filter((item) => item.name.includes("Água") || item.name.includes("Refrigerante")));
         setSidesList(allProducts.filter((item) => item.name.includes("Batata") || item.name.includes("Anéis")));
+
     }, [data])
 
     const handleClick = (items) => {
         for (const property in items) {
             createItemObject(property, items[property]);
         }
+    }
+
+    const getBurgerId = (burger) => {
+        const chosenBurger = burger;
+
+        const burgerById = burgerList.filter((item) => {
+            if (!chosenBurger.complement) return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === null
+            return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
+        })
+        addItem(burgerById)
     }
 
     const createItemObject = (code, count) => {
@@ -52,8 +66,6 @@ const MenuItems = ({ item }) => {
 
         addItem(itemsData);
     }
-
-    const [products, setProducts] = useState([]);
 
     const addItem = (item) => {
         const order = products;
@@ -121,48 +133,58 @@ const MenuItems = ({ item }) => {
     }
 
     const Burger = () => {
+        const newBurger = {
+            name: "",
+            flavor: "",
+            complement: "",
+        }
+
+        const [burger, setBurger] = useState(newBurger);
+
         return (
             <section className="burger-details">
                 <section className="burger-items">
                     <label>
                         Smash burger $10
-            <input type="radio" name="size" value="huey" checked />
+                        <input type="radio" name="size" value={"Hambúrguer simples"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                     </label>
 
                     <label>
                         Double burger $10
-            <input type="radio" name="size" value="dewey" />
+                        <input type="radio" name="size" value={"Hambúrguer duplo"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                     </label>
                 </section>
 
                 <section className="burger-items">
                     <label>
                         Meet
-                    <input type="radio" id="huey" name="burger" value="huey" checked />
+                    <input type="radio" name="burger" value={"carne"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
 
                     <label>
                         Chicken
-                    <input type="radio" id="dewey" name="burger" value="dewey" />
+                    <input type="radio" name="burger" value={"frango"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
 
                     <label>
                         Veggie
-                    <input type="radio" name="burger" />
+                    <input type="radio" name="burger" value={"vegetariano"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
                 </section>
 
-                <label>
-                    Cheese $1
-                    <input type="radio" name="extra" />
-                </label>
+                <section className="burger-items">
+                    <label>
+                        Cheese $1
+                        <input type="radio" name="extra" value={"queijo"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                    </label>
 
-                <label>
-                    Egg $1
-                    <input type="radio" name="extra" />
-                </label>
+                    <label>
+                        Egg $1
+                    <input type="radio" name="extra" value={"ovo"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                    </label>
+                </section>
 
-                <button className="send-button">ADD ITEM</button>
+                <button className="send-button" onClick={() => { getBurgerId(burger) }} >ADD ITEM</button>
             </section>
         )
     }
@@ -234,19 +256,19 @@ const MenuItems = ({ item }) => {
                 <Coffee list={coffeeList} />
             )}
 
-            {/* para o burger eu vou ter que dar um outro tratamento, vai ter que ser feito manualmente mesmo */}
             {item === 'Burgers' && (
                 <Burger />
             )}
 
             {item === 'Sides' && (
-                <Sides list={sidesList}/>
+                <Sides list={sidesList} />
             )}
             {item === 'Drinks' && (
-                <Drinks list={drinksList}/>
+                <Drinks list={drinksList} />
             )}
         </>
     )
 }
 
 export default MenuItems;
+

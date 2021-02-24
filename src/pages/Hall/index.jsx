@@ -7,7 +7,19 @@ const Hall = () => {
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
 
+  const newOrder = {
+      client: "",
+      table: "",
+      products: [
+        {
+          id: 0,
+          qtd: 0
+        }
+      ]
+  }
+
   const [totalToPay, setTotal] = useState(0)
+  const [order, setOrder] = useState(newOrder)
 
   return (
     <>
@@ -25,24 +37,27 @@ const Hall = () => {
           <section className="section-order-summary">
             <label>
               Client:
-            <input type="text" placeholder="Client name" />
+            <input type="text" placeholder="Client name" value={order.client} onChange={(event) => { setOrder({ ...order, client: event.target.value }) }}/>
             </label>
+
             <label>
               Table:
-            <input type="number" placeholder="Table number" />
+            <input type="number" placeholder="Table number" value={order.table} onChange={(event) => { setOrder({ ...order, table: event.target.value }) }} />
             </label>
           </section>
+
           <p>
             Aqui vai aparecer o resumo do pedido
           </p>
+
           <section className="section-order-summary">
             <p>{totalToPay}</p>
             <button>CANCEL</button>
-            <button>SEND</button>
+            <button onClick={console.log(order)}>SEND</button>
           </section>
         </section>
       </main>
-
+    
       <Footer />
     </>
   )
