@@ -3,6 +3,7 @@ import RequestOptions from './object/requestOptions';
 import CallAPI from '../services/api';
 
 const Button = ({ status, id }) => {
+  console.log(status)
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token } = nameLS;
   const validation = status === 'pending';
@@ -16,7 +17,7 @@ const Button = ({ status, id }) => {
     CallAPI(URL, method);
   }
 
-  return <button onClick={handleClick}>{condition ? 'Doing' : 'Done'}</button>;
+  return <button className={condition ? 'btn-doing' : 'btn-done'} onClick={handleClick}>{condition ? 'Doing' : 'Done'}</button>;
 };
 
 export default Button;
