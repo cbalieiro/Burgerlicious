@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
 
-const MenuItems = ({ item }) => {
+const MenuItems = ({ option, addItem }) => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
 
     const { data, request } = useFetch();
@@ -12,8 +12,6 @@ const MenuItems = ({ item }) => {
     const [burgerList, setBurgerList] = useState([]);
     const [drinksList, setDrinksList] = useState([]);
     const [sidesList, setSidesList] = useState([]);
-
-    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         async function fetchProducts() {
@@ -39,6 +37,16 @@ const MenuItems = ({ item }) => {
 
     }, [data])
 
+    const newBurger = {
+        name: "",
+        flavor: "",
+        complement: "",
+        quantity: 1,
+    }
+
+    const [burger, setBurger] = useState(newBurger);    
+    const [items, setItems] = useState({});
+
     const handleClick = (items) => {
         for (const property in items) {
             createItemObject(property, items[property]);
@@ -48,11 +56,13 @@ const MenuItems = ({ item }) => {
     const getBurgerId = (burger) => {
         const chosenBurger = burger;
 
-        const burgerById = burgerList.filter((item) => {
+        const burgerById = burgerList.find((item) => {
             if (!chosenBurger.complement) return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === null
             return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
         })
-        addItem(burgerById)
+
+        console.log(chosenBurger)
+        addItem({...chosenBurger, ...burgerById})
     }
 
     const createItemObject = (code, count) => {
@@ -67,16 +77,7 @@ const MenuItems = ({ item }) => {
         addItem(itemsData);
     }
 
-    const addItem = (item) => {
-        const order = products;
-        order.push(item);
-        setProducts(order);
-        console.log(order)
-    }
-
     const Snacks = ({ list }) => {
-        const [items, setItems] = useState({});
-
         return (
             <section className="menu-description">
                 {list.length && list.map((item) => {
@@ -98,14 +99,12 @@ const MenuItems = ({ item }) => {
                             </section>
                         </section>)
                 })}
-                <button className="send-button" onClick={() => { handleClick(items) }}>ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
             </section>
         )
     }
 
     const Coffee = ({ list }) => {
-        const [items, setItems] = useState({});
-
         return (
             <section className="menu-description">
                 {list.length && list.map((item) => {
@@ -127,20 +126,12 @@ const MenuItems = ({ item }) => {
                             </section>
                         </section>)
                 })}
-                <button className="send-button" onClick={() => { handleClick(items) }}>ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
             </section>
         )
     }
 
     const Burger = () => {
-        const newBurger = {
-            name: "",
-            flavor: "",
-            complement: "",
-        }
-
-        const [burger, setBurger] = useState(newBurger);
-
         return (
             <section className="burger-details">
                 <section className="burger-items">
@@ -190,8 +181,6 @@ const MenuItems = ({ item }) => {
     }
 
     const Sides = ({ list }) => {
-        const [items, setItems] = useState({});
-
         return (
             <section className="menu-description">
                 {list.length && list.map((item) => {
@@ -213,14 +202,12 @@ const MenuItems = ({ item }) => {
                             </section>
                         </section>)
                 })}
-                <button className="send-button" onClick={() => { handleClick(items) }}>ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
             </section>
         )
     }
 
     const Drinks = ({ list }) => {
-        const [items, setItems] = useState({});
-
         return (
             <section className="menu-description">
                 {list.length && list.map((item) => {
@@ -242,28 +229,28 @@ const MenuItems = ({ item }) => {
                             </section>
                         </section>)
                 })}
-                <button className="send-button" onClick={() => { handleClick(items) }}>ADD ITEM</button>
+                <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
             </section>
         )
     }
 
     return (
         <>
-            {item === 'Snacks' && (
+            {option === 'Snacks' && (
                 <Snacks list={snacksList} />
             )}
-            {item === 'DrinksCoffee' && (
+            {option === 'DrinksCoffee' && (
                 <Coffee list={coffeeList} />
             )}
 
-            {item === 'Burgers' && (
+            {option === 'Burgers' && (
                 <Burger />
             )}
 
-            {item === 'Sides' && (
+            {option === 'Sides' && (
                 <Sides list={sidesList} />
             )}
-            {item === 'Drinks' && (
+            {option === 'Drinks' && (
                 <Drinks list={drinksList} />
             )}
         </>

@@ -10,12 +10,7 @@ const Hall = () => {
   const newOrder = {
       client: "",
       table: "",
-      products: [
-        {
-          id: 0,
-          qtd: 0
-        }
-      ]
+      products: []
   }
 
   const [totalToPay, setTotal] = useState(0)
@@ -46,13 +41,9 @@ const Hall = () => {
             </label>
           </section>
 
-          <p>
-            Aqui vai aparecer o resumo do pedido
-          </p>
-
           <section className="section-order-summary">
-            <p>{totalToPay}</p>
-            <button>CANCEL</button>
+            <p>TOTAL: ${totalToPay}</p>
+            <button onClick={console.log('limpar toda a tela')}>CANCEL</button>
             <button onClick={console.log(order)}>SEND</button>
           </section>
         </section>
@@ -64,3 +55,67 @@ const Hall = () => {
 };
 
 export default Hall;
+
+
+/*
+PAI
+const SearchableList = ({ list }) => (
+  <div>
+    <Search>Search List:</Search>
+    <List list={list} />
+  </div>
+
+FILHOS
+const Search = ({ children }) => {
+  const [query, setQuery] = React.useState('');
+ 
+  const handleQuery = event => {
+    setQuery(event.target.value);
+  };
+ 
+  return (
+    <div>
+      {children}
+      <input type="text" value={query} onChange={handleQuery} />
+    </div>
+  );
+};
+
+*******
+
+const List = ({ list }) => (
+  <ul>
+    {list.map(item => (
+      <li key={item.id}>{item.name}</li>
+    ))}
+  </ul>
+);
+*/
+
+/*
+
+const Search = ({ query, handleQuery, children }) => ( // query e handle são passados agora como parâmetro
+  <div>
+    {children}
+    <input type="text" value={query} onChange={handleQuery} />
+  </div>
+);
+
+const SearchableList = ({ list }) => { //o estado tá sendo criado no pai e ele fica responsável por cuidar do estado do filho
+  const [query, setQuery] = React.useState('');
+ 
+  const handleQuery = event => {
+    setQuery(event.target.value);
+  };
+ 
+  return (
+    <div>
+      <Search query={query} handleQuery={handleQuery}>
+        Search List:
+      </Search>
+      <List list={list} />
+    </div>
+  );
+};
+
+*/
