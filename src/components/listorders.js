@@ -2,6 +2,7 @@ import React from 'react';
 import RequestOptions from './object/requestOptions';
 import useFetch from '../services/Hooks/useFetch';
 import CardsKitchen from './cardsKitchen';
+import Button from './buttonorderstatus';
 
 function ListOrders() {
   const { data, request } = useFetch();
@@ -28,6 +29,7 @@ function ListOrders() {
               return (
                 <div key={item.id} className="card-template">
                   <CardsKitchen>{item}</CardsKitchen>
+                  <Button />
                 </div>
               );
             })}
@@ -35,7 +37,6 @@ function ListOrders() {
       );
     } else return null;
   }
-
   return result();
 }
 
