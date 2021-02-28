@@ -9,10 +9,32 @@ const Menu = () => {
     const [products, setProducts] = useState([]);
 
     const addItem = (item) => {
-        const order = [...products];
-        order.push(item);
-        setProducts(order);
-        console.log(order)
+        console.log(products)
+        const productToSet = item;
+        const isOnTheList = products.some(item => item.id === productToSet.id);
+
+        if (!isOnTheList) {
+            setProducts((productsState) => [...productsState, productToSet]);
+        }
+        else {
+            const newQuantity = productToSet.quantity;
+            const itemUptaded = products.map(i => {
+                if (i.id === productToSet.id) {
+                    i.quantity += newQuantity
+                }
+                return i
+            })
+            setProducts((productsState) => [...productsState, itemUptaded]);
+        }
+
+        // if (!products[item.id]) {
+        //     setProducts({...products, ...item})
+        // }
+        // else {
+        //     const newProducts = { ...products }
+        //     newProducts[item.id].quantity += item.quantity
+        //     setProducts(newProduct)
+        // }
     }
 
     return (
@@ -82,9 +104,9 @@ const Menu = () => {
             </section>
 
             <section className="renderizacao-pedido">
-                {products.length && products.map((item) => {
+                {products.length > 0 && products.map((item) => {
                     return (
-                        <section className="item-description" key={item.id}>
+                        <section className="item-description" key={item.name}>
                             <p className="product">{item.name}</p>
                             <section className="input-group">
                                 <button onClick={() => setProducts({ ...products, [item]: [item.quantity] + 1 })}> + </button>

@@ -49,7 +49,7 @@ const Hall = () => {
         </section>
       </main>
     
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 };

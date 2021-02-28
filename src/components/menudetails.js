@@ -27,8 +27,6 @@ const MenuItems = ({ option, addItem }) => {
 
         const allProducts = data;
 
-        // const allProducts = data.reduce((acumulator, currentObject) => ({ ...acumulator, [currentObject.id]: {...currentObject} }), [])
-
         setSnacksList(allProducts.filter((item) => item.name.includes("Misto")));
         setCoffeeList(allProducts.filter((item) => item.name.includes("Café") || item.name.includes("Suco")));
         setBurgerList(allProducts.filter((item) => item.sub_type.includes("hamburguer")));
@@ -51,6 +49,8 @@ const MenuItems = ({ option, addItem }) => {
         for (const property in items) {
             createItemObject(property, items[property]);
         }
+
+        setItems({})
     }
 
     const getBurgerId = (burger) => {
@@ -61,20 +61,24 @@ const MenuItems = ({ option, addItem }) => {
             return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
         })
 
-        console.log(chosenBurger)
         addItem({...chosenBurger, ...burgerById})
     }
 
     const createItemObject = (code, count) => {
-        //montar igual a API pede // como pegar o name e o price
-        const itemsData = {
-            id: code,
-            // name: product,
-            quantity: count,
-            // price: cost,
-        }
+        if (!data) return
+        
+        // const allProductById = data.reduce((init, currentObject) => {
+        //     const {...rest} = currentObject
+        //     init[currentObject.id] = rest
+        //     return init
+        // }, {})
 
-        addItem(itemsData);
+        // const getItem = {quantity: count, ...allProductById[code]}
+        // addItem(getItem);
+
+        const updatedItem = data.find(i => i.id == code)
+        const newProduct = {quantity: count, ...updatedItem}
+        addItem(newProduct);
     }
 
     const Snacks = ({ list }) => {
@@ -258,4 +262,3 @@ const MenuItems = ({ option, addItem }) => {
 }
 
 export default MenuItems;
-
