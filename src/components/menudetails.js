@@ -7,6 +7,15 @@ const MenuItems = ({ option, addItem }) => {
 
     const { data, request } = useFetch();
 
+    const newBurger = {
+        name: "",
+        flavor: "",
+        complement: "",
+        quantity: 1,
+    }
+
+    const [burger, setBurger] = useState(newBurger);    
+    const [items, setItems] = useState({});
     const [snacksList, setSnacksList] = useState([]);
     const [coffeeList, setCoffeeList] = useState([]);
     const [burgerList, setBurgerList] = useState([]);
@@ -34,16 +43,6 @@ const MenuItems = ({ option, addItem }) => {
         setSidesList(allProducts.filter((item) => item.name.includes("Batata") || item.name.includes("Anéis")));
 
     }, [data])
-
-    const newBurger = {
-        name: "",
-        flavor: "",
-        complement: "",
-        quantity: 1,
-    }
-
-    const [burger, setBurger] = useState(newBurger);    
-    const [items, setItems] = useState({});
 
     const handleClick = (items) => {
         for (const property in items) {

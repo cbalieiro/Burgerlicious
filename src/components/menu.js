@@ -50,6 +50,12 @@ const Menu = () => {
         }
     }
 
+    const deleteProduct = (index) => {
+        const getProductsArray = [...products]
+        const newArrayProducts = getProductsArray.splice(index, 1);
+        setProducts(newArrayProducts)
+    }
+
     return (
         <>
             <section className="menu-info">
@@ -131,16 +137,16 @@ const Menu = () => {
                 </section>
                 
                 <section className="products-info">
-                    {products.length > 0 && products.map((item) => {
+                    {products.length > 0 && products.map((item, index) => {
                         return (
-                            <section className="item-description" key={item.name}>
+                            <section className="item-description" key={item.id}>
                                 <p className="product">{item.name}</p>
                                 <section className="input-group">
                                     <button onClick={() => console.log('somar')}> + </button>
                                     <p className="quantity-field">{item.quantity}</p>
                                     <button onClick={() => console.log('tirar')}> - </button>
                                 </section>
-                                <button onClick={() => console.log('apagar o item')}>
+                                <button onClick={() => deleteProduct(index)}>
                                     <span className="material-icons">
                                         delete
                                 </span>
