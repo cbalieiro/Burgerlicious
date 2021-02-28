@@ -7,15 +7,6 @@ const Hall = () => {
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
 
-  const newOrder = {
-      client: "",
-      table: "",
-      products: []
-  }
-
-  const [totalToPay, setTotal] = useState(0)
-  const [order, setOrder] = useState(newOrder)
-
   return (
     <>
       <Header
@@ -26,26 +17,6 @@ const Hall = () => {
       <main className="home">
         <section className="menu-details">
           <Menu />
-        </section>
-
-        <section className="order-summary">
-          <section className="section-order-summary">
-            <label>
-              Client:
-            <input type="text" placeholder="Client name" value={order.client} onChange={(event) => { setOrder({ ...order, client: event.target.value }) }}/>
-            </label>
-
-            <label>
-              Table:
-            <input type="number" placeholder="Table number" value={order.table} onChange={(event) => { setOrder({ ...order, table: event.target.value }) }} />
-            </label>
-          </section>
-
-          <section className="section-order-summary">
-            <p>TOTAL: ${totalToPay}</p>
-            <button onClick={console.log('limpar toda a tela')}>CANCEL</button>
-            <button onClick={console.log(order)}>SEND</button>
-          </section>
         </section>
       </main>
     

@@ -66,16 +66,6 @@ const MenuItems = ({ option, addItem }) => {
 
     const createItemObject = (code, count) => {
         if (!data) return
-        
-        // const allProductById = data.reduce((init, currentObject) => {
-        //     const {...rest} = currentObject
-        //     init[currentObject.id] = rest
-        //     return init
-        // }, {})
-
-        // const getItem = {quantity: count, ...allProductById[code]}
-        // addItem(getItem);
-
         const updatedItem = data.find(i => i.id == code)
         const newProduct = {quantity: count, ...updatedItem}
         addItem(newProduct);
