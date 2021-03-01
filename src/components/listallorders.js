@@ -33,7 +33,7 @@ function ListOrders() {
     }
     setLoading(false);
     fetchOrders();
-  }, [request, token, role]);
+  }, [request, token, role, id]);
 
   function result() {
     let orderlist = null;
