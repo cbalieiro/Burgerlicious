@@ -11,12 +11,7 @@ function ListOrders() {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token, role, id } = nameLS;
 
-  React.useEffect(() => {
-    setLoading(true);
-  }, []);
-
-  React.useEffect(() => {
-    async function fetchOrders() {
+  const fetchOrders = React.useCallback ( async () => {
       const method = RequestOptions.getAndDelete('GET', token);
       const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
       const { json } = await request(URL, method);
@@ -29,11 +24,18 @@ function ListOrders() {
           ({ status, uid }) => status === 'done' && uid === id,
         );
         setDone(orderDone);
-      }
-    }
+      } 
+      fetchOrders();
+    },[id, request, role, token])
+
+  React.useEffect(() => {
+    setLoading(true);
+  }, []);
+
+  React.useEffect(() => {
     setLoading(false);
     fetchOrders();
-  }, [request, token, role, id]);
+  }, [request, token, role, id, fetchOrders]);
 
   function result() {
     let orderlist = null;
