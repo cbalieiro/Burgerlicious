@@ -254,7 +254,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 45px;
+  padding: 30px 45px 80px;
 }
 
 .item-menu {
@@ -305,6 +305,7 @@ header {
 
 .menu-details {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
@@ -469,4 +470,27 @@ font-size: 24px;
   border: 2px solid #bfc57b;
   box-sizing: border-box;
   border-radius: 0px 0px 10px 10px;
+}
+
+
+
+.menu-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-info, .bottom-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-description {
+  display: flex;
+  justify-content: space-between;
+  max-width: 327px;
 }

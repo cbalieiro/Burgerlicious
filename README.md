@@ -371,7 +371,6 @@ O restaurante oferece dois menus, o do café da manhã e o do resto do dia. A in
 ## 3. Processo
 
 :date: **Planejamento**
-&nbsp;
 
 Como as histórias de usuário já estavam definidas pelo Product Owner, desenvolvemos o [planejamento](https://trello.com/b/7wlIHXY5/midterm-hackton) para a implementação do produto utilizando o modelo de Kanban. Para o desenvolvimento do código trabalhamos com o code review. :muscle:
 
