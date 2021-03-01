@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/header';
-import ListOrders from '../../components/listorders';
+import ListOrders from '../../components/listallorders';
 import Footer from '../../components/footer';
 
 const Kitchen = () => {

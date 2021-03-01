@@ -1,17 +1,16 @@
 import React from 'react';
 import CardsHeader from './componentsCardsHeader'
 import CardsBody from './componentsCardsBody'
-import Button from './buttonorderstatus';
 
-const CardsKitchen = ({ children }) => {
+
+const CardsKitchen = ({ children, props }) => {
     return (
     <>
     <div className="card-container-text">
       <CardsHeader>{children}</CardsHeader>
       <hr />
-      <CardsBody>{children}</CardsBody>
+      <CardsBody onClick={props}>{children}</CardsBody>
     </div>
-    <Button/>
     </>
   );
 };
