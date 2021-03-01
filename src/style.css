@@ -254,7 +254,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 30px 45px;
+  padding: 30px 45px 80px;
 }
 
 .item-menu {
