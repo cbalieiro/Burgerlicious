@@ -52,8 +52,20 @@ const Menu = () => {
 
     const deleteProduct = (index) => {
         const getProductsArray = [...products]
-        const newArrayProducts = getProductsArray.splice(index, 1);
-        setProducts(newArrayProducts)
+        getProductsArray.splice(index, 1);
+        setProducts(getProductsArray)
+    }
+
+    const handlePlusClick = (index) => {        
+        const productsList = [ ...products ]
+        productsList[index].quantity++
+        setProducts(productsList)
+    }
+
+    const handleMinusClick = (index) => {        
+        const productsList = [ ...products ]
+        productsList[index].quantity--
+        setProducts(productsList)
     }
 
     return (
@@ -123,6 +135,7 @@ const Menu = () => {
                     />
                 </section>
             </section>
+            
             <section className="order-summary">
                 <section className="client-info">
                     <label>
@@ -138,20 +151,22 @@ const Menu = () => {
                 
                 <section className="products-info">
                     {products.length > 0 && products.map((item, index) => {
-                        return (
-                            <section className="item-description" key={item.id}>
-                                <p className="product">{item.name}</p>
-                                <section className="input-group">
-                                    <button onClick={() => console.log('somar')}> + </button>
-                                    <p className="quantity-field">{item.quantity}</p>
-                                    <button onClick={() => console.log('tirar')}> - </button>
+                       if(item.quantity > 0) {
+                            return (
+                                <section className="item-description" key={item.id}>
+                                    <p className="product">{item.name}</p>
+                                    <section className="input-group">
+                                        <button onClick={() => handlePlusClick(index)}> + </button>
+                                        <p className="quantity-field">{item.quantity}</p>
+                                        <button onClick={() => item.quantity > 0 && handleMinusClick(index)}> - </button>
+                                    </section>
+                                    <button onClick={() => deleteProduct(index)}>
+                                        <span className="material-icons">
+                                            delete
+                                        </span>
+                                    </button>
                                 </section>
-                                <button onClick={() => deleteProduct(index)}>
-                                    <span className="material-icons">
-                                        delete
-                                </span>
-                                </button>
-                            </section>)
+                        )}
                     })}
                 </section>
                 
