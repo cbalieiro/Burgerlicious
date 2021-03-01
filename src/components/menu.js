@@ -5,12 +5,15 @@ import Card from 'react-bootstrap/Card'
 import MenuItems from '../components/menudetails'
 
 const Menu = () => {
+    const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+    const { token } = nameLS;
+
     const newOrder = {
         client: "",
         table: "",
         products: []
     }
-    
+
     const [menuSection, setMenuSection] = useState('');
     const [products, setProducts] = useState([]);
     const [totalToPay, setTotal] = useState(0)
@@ -18,10 +21,10 @@ const Menu = () => {
 
     useEffect(() => {
         setTotal(() => {
-            
-             const newTotal = products.reduce((accumulator, current) => {
-                const {quantity, price} = current;
-                accumulator = Number(quantity * price + accumulator) 
+
+            const newTotal = products.reduce((accumulator, current) => {
+                const { quantity, price } = current;
+                accumulator = Number(quantity * price + accumulator)
                 console.log(accumulator)
                 return accumulator
             }, 0)
@@ -46,7 +49,7 @@ const Menu = () => {
                 }
                 return i
             })
-            setProducts((productsState) => [...productsState, itemUptaded]);
+            setProducts(() => itemUptaded);
         }
     }
 
@@ -56,14 +59,14 @@ const Menu = () => {
         setProducts(getProductsArray)
     }
 
-    const handlePlusClick = (index) => {        
-        const productsList = [ ...products ]
+    const handlePlusClick = (index) => {
+        const productsList = [...products]
         productsList[index].quantity++
         setProducts(productsList)
     }
 
-    const handleMinusClick = (index) => {        
-        const productsList = [ ...products ]
+    const handleMinusClick = (index) => {
+        const productsList = [...products]
         productsList[index].quantity--
         setProducts(productsList)
     }
@@ -71,8 +74,36 @@ const Menu = () => {
     const handleSendOrder = () => {
         const productsList = [...products];
         setOrder({ ...order, products: productsList })
-        console.log(order) //enviar para a cozinha
-        alert('Pedido enviado para cozinha!') //sumir com o alert
+        createOrder(order)
+    }
+
+    const createOrder = ({ client, table, products }) => {
+        const body = JSON.stringify({
+            "client": client,
+            "table": table,
+            "products": products.map((item) => (
+                {
+                    "id": item.id,
+                    "qtd": item.quantity
+                }
+            ))
+        })
+
+        fetch('https://lab-api-bq.herokuapp.com/orders', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "accept": "application/json",
+                "Authorization": token
+            },
+            body
+        })
+            .then((response) => response.json())
+            .then((json) => {
+                console.log(json)
+                alert('Pedido enviado para cozinha!') //sumir com o alert
+                setOrder({});
+            })
     }
 
     return (
@@ -142,7 +173,7 @@ const Menu = () => {
                     />
                 </section>
             </section>
-            
+
             <section className="order-summary">
                 <section className="client-info">
                     <label>
@@ -155,10 +186,10 @@ const Menu = () => {
                     <input type="number" placeholder="Table number" value={order.table} onChange={(event) => { setOrder({ ...order, table: event.target.value }) }} />
                     </label>
                 </section>
-                
+
                 <section className="products-info">
                     {products.length > 0 && products.map((item, index) => {
-                       if(item.quantity > 0) {
+                        if (item.quantity > 0) {
                             return (
                                 <section className="item-description" key={item.id}>
                                     <p className="product">{item.name}</p>
@@ -173,13 +204,14 @@ const Menu = () => {
                                         </span>
                                     </button>
                                 </section>
-                        )}
+                            )
+                        }
                     })}
                 </section>
-                
+
                 <section className="bottom-section">
                     <p>TOTAL: ${totalToPay}</p>
-                    <button onClick={console.log('limpar toda a tela')}>CANCEL</button>
+                    <button onClick={() => setOrder({})}>DELETE ITEMS</button>
                     <button onClick={() => handleSendOrder()}>SEND</button>
                 </section>
             </section>
