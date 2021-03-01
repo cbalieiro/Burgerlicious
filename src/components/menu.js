@@ -68,6 +68,13 @@ const Menu = () => {
         setProducts(productsList)
     }
 
+    const handleSendOrder = () => {
+        const productsList = [...products];
+        setOrder({ ...order, products: productsList })
+        console.log(order) //enviar para a cozinha
+        alert('Pedido enviado para cozinha!') //sumir com o alert
+    }
+
     return (
         <>
             <section className="menu-info">
@@ -173,7 +180,7 @@ const Menu = () => {
                 <section className="bottom-section">
                     <p>TOTAL: ${totalToPay}</p>
                     <button onClick={console.log('limpar toda a tela')}>CANCEL</button>
-                    <button onClick={console.log(order)}>SEND</button>
+                    <button onClick={() => handleSendOrder()}>SEND</button>
                 </section>
             </section>
         </>
