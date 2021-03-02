@@ -516,6 +516,8 @@ font-size: 24px;
   justify-content: space-between;
   align-items: flex-start;
   align-content: start;
+  flex-wrap: wrap;
+  max-width: 325px;
 }
 
 .item-description {
@@ -597,4 +599,8 @@ font-size: 24px;
   min-width: 310px;
 }
 
-
+.burger-info {
+  margin-left: 35px;
+  font-size: 14px;
+  font-weight: normal;
+}

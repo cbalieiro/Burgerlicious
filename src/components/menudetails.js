@@ -3,9 +3,25 @@ import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
 
 const MenuItems = ({ option, addItem }) => {
-    const nameLS = JSON.parse(localStorage.getItem('currentUser'));
-
-    const { data, request } = useFetch();
+    const translatePTtoEN = {
+        "Misto quente": "Cheese Sandwich",
+        "Café americano": "Americano Coffee",
+        "Café com leite": "Espresso Coffee",
+        "Suco de fruta natural": "Orange juice",
+        "Batata frita": "Fries",
+        "Anéis de cebola": "Onion rings",
+        "Água 500mL": "Water 500mL",
+        "Água 750mL": "Water 750mL",
+        "Refrigerante 500mL": "Soda 500mL",
+        "Refrigerante 750mL": "Soda 750mL",
+        "Hambúrguer simples": "Smash burger",
+        "Hambúrguer duplo": "Double burger",
+        "carne": "Meat",
+        "frango": "Chicken",
+        "vegetariano": "Veggie",
+        "queijo": "Cheese",
+        "ovo": "Egg"
+    }
 
     const newBurger = {
         name: "",
@@ -14,6 +30,9 @@ const MenuItems = ({ option, addItem }) => {
         quantity: 1,
     }
 
+    const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+    const { data, request } = useFetch();
+
     const [burger, setBurger] = useState(newBurger);    
     const [items, setItems] = useState({});
     const [snacksList, setSnacksList] = useState([]);
@@ -21,6 +40,7 @@ const MenuItems = ({ option, addItem }) => {
     const [burgerList, setBurgerList] = useState([]);
     const [drinksList, setDrinksList] = useState([]);
     const [sidesList, setSidesList] = useState([]);
+    const [dataTranslated, setDataTranslated] = useState([]);
 
     useEffect(() => {
         async function fetchProducts() {
@@ -35,29 +55,21 @@ const MenuItems = ({ option, addItem }) => {
         if (!data) return
 
         const allProducts = data;
+        const productsTranslated = allProducts.map((item) => {
+            return ({...item, name: translatePTtoEN[item.name], 
+                        flavor: translatePTtoEN[item.flavor], 
+                        complement: translatePTtoEN[item.complement]})
+        })
 
-        setSnacksList(allProducts.filter((item) => item.name.includes("Misto")));
-        setCoffeeList(allProducts.filter((item) => item.name.includes("Café") || item.name.includes("Suco")));
-        setBurgerList(allProducts.filter((item) => item.sub_type.includes("hamburguer")));
-        setDrinksList(allProducts.filter((item) => item.name.includes("Água") || item.name.includes("Refrigerante")));
-        setSidesList(allProducts.filter((item) => item.name.includes("Batata") || item.name.includes("Anéis")));
+        setDataTranslated(productsTranslated);
+
+        setSnacksList(productsTranslated.filter((item) => item.name.includes("Sandwich")));
+        setCoffeeList(productsTranslated.filter((item) => item.name.includes("Coffee") || item.name.includes("Juice")));
+        setBurgerList(productsTranslated.filter((item) => item.sub_type.includes("hamburguer")));
+        setDrinksList(productsTranslated.filter((item) => item.sub_type.includes("drinks")));
+        setSidesList(productsTranslated.filter((item) => item.sub_type.includes("side")));
 
     }, [data])
-
-    const translatePTtoEN = {
-        "Misto quente": "Grilled Cheese",
-        "Café americano": "Americano",
-        "Café com leite": "Espresso",
-        "Suco de fruta natural": "Orange juice",
-        "Batata frita": "Fries",
-        "Anéis de cebola": "Onion rings",
-        "Água 500mL": "Water 500mL",
-        "Água 750mL": "Water 750mL",
-        "Refrigerante 500mL": "Soda 500mL",
-        "Refrigerante 750mL": "Soda 750mL",
-    }
-
-    console.log(translatePTtoEN)
 
     const handleClick = (items) => {
         for (const property in items) {
@@ -69,7 +81,6 @@ const MenuItems = ({ option, addItem }) => {
 
     const getBurgerId = (burger) => {
         const chosenBurger = burger;
-
         const burgerById = burgerList.find((item) => {
             if (!chosenBurger.complement) return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === null
             return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
@@ -79,8 +90,7 @@ const MenuItems = ({ option, addItem }) => {
     }
 
     const createItemObject = (code, count) => {
-        if (!data) return
-        const updatedItem = data.find(i => i.id == code)
+        const updatedItem = dataTranslated.find(i => i.id == code)
         const newProduct = {quantity: count, ...updatedItem}
         addItem(newProduct);
     }
@@ -145,41 +155,41 @@ const MenuItems = ({ option, addItem }) => {
                 <section className="burger-items">
                     <label>
                         Smash burger $10
-                        <input type="radio" name="size" value={"Hambúrguer simples"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                        <input type="radio" name="size" value={"Smash burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                     </label>
 
                     <label>
                         Double burger $10
-                        <input type="radio" name="size" value={"Hambúrguer duplo"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                        <input type="radio" name="size" value={"Double burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                     </label>
                 </section>
 
                 <section className="burger-items">
                     <label>
                         Meet
-                    <input type="radio" name="burger" value={"carne"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                    <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
 
                     <label>
                         Chicken
-                    <input type="radio" name="burger" value={"frango"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                    <input type="radio" name="burger" value={"Chicken"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
 
                     <label>
                         Veggie
-                    <input type="radio" name="burger" value={"vegetariano"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                    <input type="radio" name="burger" value={"Veggie"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
                 </section>
 
                 <section className="burger-items">
                     <label>
                         Cheese $1
-                        <input type="radio" name="extra" value={"queijo"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                        <input type="radio" name="extra" value={"Cheese"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
                     </label>
 
                     <label>
                         Egg $1
-                    <input type="radio" name="extra" value={"ovo"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                    <input type="radio" name="extra" value={"Egg"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
                     </label>
                 </section>
 
