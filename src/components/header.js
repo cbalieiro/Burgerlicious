@@ -8,8 +8,8 @@ const Header = ({ role, name }) => {
   const history = useHistory();
   const [checkStatus, setCheckStatus] = React.useState(false);
 
-  function handleCheckbox(event) {
-    setCheckStatus(event.target.checked);
+  function handleClick() {
+    setCheckStatus(!checkStatus);
   }
   console.log(checkStatus);
 
@@ -37,7 +37,7 @@ const Header = ({ role, name }) => {
       <img src={logo} alt="logo" height="165px" width="164px" />
 
       <section className="buttons">
-        <div className="orders-button">
+        {/* <div className="orders-button">
         <label htmlFor="notifications">
           <Checkbox
             id="notifications"
@@ -62,15 +62,15 @@ const Header = ({ role, name }) => {
           <span className="material-icons">history</span>
           FINISHED ORDERS
         </label>
-        </div>
+        </div> */}
 
-        {/* <button className="orders-button" onClick={() => {console.log('fazer mudar os componentes da tela')}}>
+        <button className="orders-button" onClick={handleClick}>
         <span className="material-icons">
             notifications
           </span>
           ORDERS IN PROGRESS
-        </button> */}
-        {/* <button
+        </button>
+        <button
           className="orders-button"
           onClick={() => {
             console.log('fazer mudar os componentes da tela');
@@ -78,7 +78,7 @@ const Header = ({ role, name }) => {
         >
           <span className="material-icons">history</span>
           FINISHED ORDERS
-        </button> */}
+        </button>
 
       </section>
     </header>
