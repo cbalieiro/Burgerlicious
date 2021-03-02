@@ -25,7 +25,6 @@ const Menu = () => {
             const newTotal = products.reduce((accumulator, current) => {
                 const { quantity, price } = current;
                 accumulator = Number(quantity * price + accumulator)
-                console.log(accumulator)
                 return accumulator
             }, 0)
 
@@ -71,22 +70,27 @@ const Menu = () => {
         setProducts(productsList)
     }
 
-    const handleSendOrder = () => {
+    const handleSendOrder = (event) => {
+        event.preventDefault();
         const productsList = [...products];
         setOrder({ ...order, products: productsList })
         createOrder(order)
     }
 
-    const createOrder = ({ client, table, products }) => {
+    const createOrder = ({ client, table }) => {
+        const getProductsState = [...products]
+
+        const listItemsOrder =  getProductsState.map((item) => (
+            {
+                "id": item.id,
+                "qtd": item.quantity
+            }
+        ))
+
         const body = JSON.stringify({
             "client": client,
             "table": table,
-            "products": products.map((item) => (
-                {
-                    "id": item.id,
-                    "qtd": item.quantity
-                }
-            ))
+            "products": listItemsOrder
         })
 
         fetch('https://lab-api-bq.herokuapp.com/orders', {
@@ -174,16 +178,16 @@ const Menu = () => {
                 </section>
             </section>
 
-            <section className="order-summary">
+            <form className="order-summary" onSubmit={(event) => handleSendOrder(event)}>
                 <section className="client-info">
                     <label>
                         Client:
-                        <input type="text" placeholder="Client name" value={order.client} onChange={(event) => { setOrder({ ...order, client: event.target.value }) }} />
+                        <input type="text" placeholder="Client name" className="form-input" value={order.client} onChange={(event) => { setOrder({ ...order, client: event.target.value }) }} required />
                     </label>
 
                     <label>
                         Table:
-                    <input type="number" placeholder="Table number" value={order.table} onChange={(event) => { setOrder({ ...order, table: event.target.value }) }} />
+                    <input type="number" placeholder="Table number" className="form-input" value={order.table} onChange={(event) => { setOrder({ ...order, table: event.target.value }) }} required />
                     </label>
                 </section>
 
@@ -191,18 +195,18 @@ const Menu = () => {
                     {products.length > 0 && products.map((item, index) => {
                         if (item.quantity > 0) {
                             return (
-                                <section className="item-description" key={item.id}>
-                                    <p className="product">{item.name}</p>
-                                    <section className="input-group">
-                                        <button onClick={() => handlePlusClick(index)}> + </button>
-                                        <p className="quantity-field">{item.quantity}</p>
-                                        <button onClick={() => item.quantity > 0 && handleMinusClick(index)}> - </button>
-                                    </section>
-                                    <button onClick={() => deleteProduct(index)}>
+                                <section className="item-description list-items" key={item.id}>
+                                    <button className="delete-item" onClick={() => deleteProduct(index)}>
                                         <span className="material-icons">
                                             delete
                                         </span>
                                     </button>
+                                    <p className="product">{item.name}</p>
+                                    <section className="input-group">
+                                        <button className="count-button" onClick={() => handlePlusClick(index)}> + </button>
+                                        <p className="quantity-field">{item.quantity}</p>
+                                        <button className="count-button" onClick={() => item.quantity > 0 && handleMinusClick(index)}> - </button>
+                                    </section>
                                 </section>
                             )
                         }
@@ -210,11 +214,13 @@ const Menu = () => {
                 </section>
 
                 <section className="bottom-section">
-                    <p>TOTAL: ${totalToPay}</p>
-                    <button onClick={() => setOrder({})}>DELETE ITEMS</button>
-                    <button onClick={() => handleSendOrder()}>SEND</button>
+                    <p className="total-price">TOTAL PRICE: <span className="total-value">${totalToPay}</span></p>
+                    <section className="order-button-section">
+                        <button className="cancel-button" onClick={() => setOrder({})}>CANCEL</button>
+                        <button type="submit" className="send-button">SEND</button>
+                    </section>
                 </section>
-            </section>
+            </form>
         </>
     )
 };
