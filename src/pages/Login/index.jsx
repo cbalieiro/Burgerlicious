@@ -49,17 +49,17 @@ const Login = () => {
           <Logo />
           <form onSubmit={(event) => { handleSubmit(event) }}>
             <label>Login:
-              <input type="text" value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }); }}
+              <input type="text" className="form-input" value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }); }}
                 placeholder="email@email.com" required
               />
             </label>
             <label>Password:
-              <input type="password" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }); }}
+              <input type="password" className="form-input" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }); }}
                 placeholder="Password" required
               />
             </label>
             {statusCode && <ErrorAuth />}
-            <button type="submit"> SIGN IN </button>
+            <button className="form-button" type="submit"> SIGN IN </button>
             <p> Do not have an account? <span> <Link to="/Register">Register</Link> </span></p>
           </form>
         </div>

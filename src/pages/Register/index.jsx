@@ -57,23 +57,23 @@ const Register = () => {
         <form onSubmit={(event) => { handleSubmit(event) }}>
           <label>
             Name:
-          <input type='text' value={user.name} onChange={(event) => { setUser({ ...user, name: event.target.value }) }} placeholder="Name" required />
+          <input type='text' className="form-input" value={user.name} onChange={(event) => { setUser({ ...user, name: event.target.value }) }} placeholder="Name" required />
           </label>
           <label>
             Last name:
-          <input type='text' value={user.lastName} onChange={(event) => { setUser({ ...user, lastName: event.target.value }) }} placeholder="Last name" required />
+          <input type='text' className="form-input" value={user.lastName} onChange={(event) => { setUser({ ...user, lastName: event.target.value }) }} placeholder="Last name" required />
           </label>
           <label>
             Email:
-          <input type='email' value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }) }} placeholder="email@email.com" required />
+          <input type='email' className="form-input" value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }) }} placeholder="email@email.com" required />
           </label>
           <label>
             Password:
-          <input type='password' minLength="8" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }) }} placeholder="Password" required />
+          <input type='password' className="form-input" minLength="8" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }) }} placeholder="Password" required />
           </label>
           <label>
             Confirm password:
-          <input type="password" value={user.confirmPassword} onChange={(event) => { setUser({ ...user, confirmPassword: event.target.value }) }} placeholder="Password" required />
+          <input type="password" className="form-input" value={user.confirmPassword} onChange={(event) => { setUser({ ...user, confirmPassword: event.target.value }) }} placeholder="Password" required />
           </label>
 
           <label>
@@ -87,7 +87,7 @@ const Register = () => {
 
             {statusCode && <ErrorAuth/>}
 
-          <button type="submit"> SIGN UP </button>
+          <button className="form-button" type="submit"> SIGN UP </button>
         </form>
       </div>
       

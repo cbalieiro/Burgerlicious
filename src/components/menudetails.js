@@ -44,6 +44,21 @@ const MenuItems = ({ option, addItem }) => {
 
     }, [data])
 
+    const translatePTtoEN = {
+        "Misto quente": "Grilled Cheese",
+        "Café americano": "Americano",
+        "Café com leite": "Espresso",
+        "Suco de fruta natural": "Orange juice",
+        "Batata frita": "Fries",
+        "Anéis de cebola": "Onion rings",
+        "Água 500mL": "Water 500mL",
+        "Água 750mL": "Water 750mL",
+        "Refrigerante 500mL": "Soda 500mL",
+        "Refrigerante 750mL": "Soda 750mL",
+    }
+
+    console.log(translatePTtoEN)
+
     const handleClick = (items) => {
         for (const property in items) {
             createItemObject(property, items[property]);
@@ -86,9 +101,9 @@ const MenuItems = ({ option, addItem }) => {
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
-                                <button onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
                                 <p className="quantity-field">{count}</p>
-                                <button onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
                             </section>
                         </section>)
                 })}
@@ -113,9 +128,9 @@ const MenuItems = ({ option, addItem }) => {
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
-                                <button onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
                                 <p className="quantity-field">{count}</p>
-                                <button onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
                             </section>
                         </section>)
                 })}
@@ -189,9 +204,9 @@ const MenuItems = ({ option, addItem }) => {
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
-                                <button onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
                                 <p className="quantity-field">{count}</p>
-                                <button onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
                             </section>
                         </section>)
                 })}
@@ -216,9 +231,9 @@ const MenuItems = ({ option, addItem }) => {
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
-                                <button onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
                                 <p className="quantity-field">{count}</p>
-                                <button onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
                             </section>
                         </section>)
                 })}
