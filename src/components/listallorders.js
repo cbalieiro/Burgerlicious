@@ -2,16 +2,24 @@ import React from 'react';
 import RequestOptions from './object/requestOptions';
 import useFetch from '../services/Hooks/useFetch';
 import CardsKitchen from './cardsKitchen';
+import Button from './buttonorderstatus';
 
 function ListOrders() {
-  const { data, request } = useFetch();
-  const [pending, setPending] = React.useState(null);
-  const [done, setDone] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token, role, id } = nameLS;
 
-  const fetchOrders = React.useCallback ( async () => {
+  const { data, request } = useFetch();
+  const [pending, setPending] = React.useState(null);
+  const [done, setDone] = React.useState(null);
+  const [orderlist, setOrderlist] = React.useState(null);
+  const [loading, setLoading] = React.useState(null);
+
+  React.useEffect(() => {
+    setLoading(true);
+  }, []);
+
+  React.useEffect(() => {
+    async function fetchOrders() {
       const method = RequestOptions.getAndDelete('GET', token);
       const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
       const { json } = await request(URL, method);
@@ -24,29 +32,28 @@ function ListOrders() {
           ({ status, uid }) => status === 'done' && uid === id,
         );
         setDone(orderDone);
-      } 
-      fetchOrders();
-    },[id, request, role, token])
-
-  React.useEffect(() => {
-    setLoading(true);
-  }, []);
-
-  React.useEffect(() => {
-    setLoading(false);
+      }
+    }
     fetchOrders();
-  }, [request, token, role, id, fetchOrders]);
+    setLoading(false);
+  }, [request, token, role, id]);
 
-  function result() {
-    let orderlist = null;
+  React.useEffect(() => {
+    if (!data) return;
     if (pending) {
-      orderlist = pending;
+      setOrderlist(pending);
     }
     if (done) {
-      orderlist = done;
+      setOrderlist(done);
     }
+  }, [data, done, pending]);
+
+  function handleClick(event, id) {
+    console.log(event, id);
+  }
+
+  function result() {
     if (orderlist) {
-      setTimeout(() => {}, 1000);
       return (
         <>
           {loading && <p>Carregando...</p>}
@@ -56,13 +63,36 @@ function ListOrders() {
               return (
                 <div key={item.id} className="card-template">
                   <CardsKitchen>{item}</CardsKitchen>
+                  {pending && (
+                    <Button
+                      key={Math.random()}
+                      onClick={(e) => handleClick(e, item.id)}
+                      className={
+                        item.status === 'pending' ? 'btn-doing' : 'btn-done'
+                      }
+                    >
+                      {' '}
+                      {item.status === 'pending' ? 'DOING' : 'DONE'}{' '}
+                    </Button>
+                  )}
+                  {done && (
+                    <Button
+                      key={item.id}
+                      onClick={(e) => handleClick(e, item.id)}
+                      className={
+                        item.status === 'done' ? 'btn-done' : 'btn-doing'
+                      }
+                    >
+                      {' '}
+                      {item.status === 'done' ? 'SEND' : 'DELIVERED'}{' '}
+                    </Button>
+                  )}
                 </div>
               );
             })}
         </>
       );
     } else {
-      orderlist = data;
       return null;
     }
   }

@@ -7,9 +7,9 @@ const CardsKitchen = ({ children, props }) => {
     return (
     <>
     <div className="card-container-text">
-      <CardsHeader>{children}</CardsHeader>
+      <CardsHeader key={Math.random()}>{children}</CardsHeader>
       <hr />
-      <CardsBody onClick={props}>{children}</CardsBody>
+      <CardsBody key={Math.random()} onClick={props}>{children}</CardsBody>
     </div>
     </>
   );
