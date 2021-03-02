@@ -529,10 +529,10 @@ input[type='number'] {
   max-width: 327px;
 }
 
-.sidebar,
-.side-space {
+.sidebar {
   width: 441px;
   margin: 0%;
+  padding: 2rem;
   height: 100%;
   position: fixed;
   top: 0;
@@ -540,4 +540,11 @@ input[type='number'] {
   background: #FFF8D8;
   z-index: 1;
   transition: all .25 linear;
+  overflow-y: scroll;
+}
+
+.sidebar-container{
+  margin: 2rem;
+  display: flex;
+  justify-content: space-around;
 }

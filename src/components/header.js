@@ -6,11 +6,11 @@ import { SidebarStorage } from './sidebarContext';
 
 const Header = ({ role, name }) => {
   const history = useHistory();
- 
+
   return (
-    <>    
+    <>
       <header>
-           <section>
+        <section>
           <div className="user-info">
             <span className="team-work">{role.toUpperCase()}:</span>{' '}
             {name.toUpperCase()}
@@ -32,6 +32,8 @@ const Header = ({ role, name }) => {
         <section className="buttons">
           <SidebarStorage>
             <ButtonSidebar
+              value={'ORDERS IN PROGRESS'}
+              id={'processing'}
               key={'button-orderInprocess'}
               className="orders-button"
             >
@@ -42,6 +44,8 @@ const Header = ({ role, name }) => {
 
           <SidebarStorage>
             <ButtonSidebar
+              value={'FINISHED ORDERS'}
+              id={'finished'}
               key={'button-orderFinished'}
               className="orders-button"
             >

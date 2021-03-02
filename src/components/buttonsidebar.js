@@ -3,18 +3,20 @@ import { SidebarContext } from './sidebarContext';
 
 const ButtonSidebar = ({ children, ...props }) => {
   const sidebar = React.useContext(SidebarContext);
-  
-  function handleClick(event) { 
+
+  function handleClick(event) {
     event.preventDefault();
-    sidebar.setSidebarstatus((sidebarstatus)=> !sidebarstatus);
+    sidebar.setSidebarstatus((sidebarstatus) => !sidebarstatus);
+    sidebar.setType(event.target.id);
+    sidebar.setTitle(event.target.value);
   }
 
   return (
     <>
-      <button onClick={handleClick} {...props}>
-      {' '}
-      {children}{' '}
-    </button>
+      <button onClick={(e) => handleClick(e)} {...props}>
+        {' '}
+        {children}{' '}
+      </button>
     </>
   );
 };

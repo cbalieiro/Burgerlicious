@@ -4,9 +4,10 @@ import useFetch from '../services/Hooks/useFetch';
 import CardsKitchen from './cardsKitchen';
 import Button from './buttonorderstatus';
 
-function ListOrders() {
+function ListOrders({ filterType }) {
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token, role, id } = nameLS;
+  const type = filterType;
 
   const { data, request } = useFetch();
   const [pending, setPending] = React.useState(null);
@@ -27,16 +28,14 @@ function ListOrders() {
         const orderPending = json.filter(({ status }) => status !== 'done');
         setPending(orderPending);
       }
-      if (role === 'Hall') {
-        const orderDone = json.filter(
-          ({ status, uid }) => status === 'done' && uid === id,
-        );
+      if (role === 'hall' && type === 'processing') {
+        const orderDone = json.filter(({ status }) => status !== 'finished');
         setDone(orderDone);
       }
     }
     fetchOrders();
     setLoading(false);
-  }, [request, token, role, id]);
+  }, [request, token, role, id, type]);
 
   React.useEffect(() => {
     if (!data) return;
@@ -75,16 +74,14 @@ function ListOrders() {
                       {item.status === 'pending' ? 'DOING' : 'DONE'}{' '}
                     </Button>
                   )}
-                  {done && (
+                  {done && item.status === 'done' && (
                     <Button
                       key={item.id}
                       onClick={(e) => handleClick(e, item.id)}
-                      className={
-                        item.status === 'done' ? 'btn-done' : 'btn-doing'
-                      }
+                      className={item.status === 'done' && 'btn-done'}
                     >
                       {' '}
-                      {item.status === 'done' ? 'SEND' : 'DELIVERED'}{' '}
+                      {'DELIVERED'}{' '}
                     </Button>
                   )}
                 </div>
