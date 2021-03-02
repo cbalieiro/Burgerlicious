@@ -23,6 +23,9 @@ a:hover {
   color: #fca730;
 }
 
+p {
+  margin-bottom: 0;
+}
 .body-default {
   justify-content: center;
 }
@@ -65,7 +68,7 @@ label {
   flex-direction: column;
 }
 
-form button {
+.form-button {
   width: 325px;
   height: 45px;
   left: 222px;
@@ -79,14 +82,14 @@ form button {
   color: #fff8d8;
 }
 
-form button:active,
-form button:hover {
+.form-button:active,
+.form-button:hover {
   background-color: #ffe1ac;
   color: #584944;
 }
 
-form input {
-  width: 325px;
+.form-input {
+  width: 310px;
   border: none;
   border-bottom: 2px solid #ffbb5a;
   background-color: transparent;
@@ -96,7 +99,7 @@ form input {
   color: #584944;
 }
 
-form input:focus {
+.form-input:focus {
   background-color: #ffe1ac;
 }
 
@@ -350,24 +353,13 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-.input-group .button-minus,
-.input-group .button-plus {
-  font-weight: bold;
-  background-color: transparent;
-}
-
-.input-group .quantity-field {
-  text-align: center;
-  font-size: 13px;
-  background-color: transparent;
-}
-
 input[type='number'] {
   -moz-appearance: textfield;
   -webkit-appearance: none;
 }
 
 .send-button {
+  min-width: 150px;
   width: 325px;
   height: 45px;
   background: #f0504a;
@@ -380,10 +372,38 @@ input[type='number'] {
   color: #fff8d8;
 }
 
+.cancel-button {
+  min-width: 150px;
+  height: 45px;
+  margin-right: 10px;
+  outline: none;
+  border: solid 4px #f0504a;
+  border-radius: 10px;
+  background-color: transparent;
+  font-weight: 500;
+  align-items: center;
+  text-align: center;
+  color: #f0504a;
+
+}
+
+.cancel-button:active, .cancel-button:hover {
+  background: #f0504a;
+  color: #fff8d8;
+}
+
+.send-button:active, .send-button:hover {
+  border: solid 4px #f0504a;
+  background-color: transparent;
+  color: #f0504a;
+}
+
 .order-summary {
-  display: flex;
-  flex-direction: column;
-  padding-top: 30px;
+  min-height: 375px;
+  margin: 30px 0px;
+  padding: 15px;
+  background: #FEF4C6;
+  border-radius: 10px;
 }
 
 .section-order-summary {
@@ -472,8 +492,6 @@ font-size: 24px;
   border-radius: 0px 0px 10px 10px;
 }
 
-
-
 .menu-info {
   display: flex;
   justify-content: space-between;
@@ -482,11 +500,22 @@ font-size: 24px;
 .order-summary {
   display: flex;
   flex-direction: column;
+  box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 10%);
 }
 
 .client-info, .bottom-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.products-info {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: start;
 }
 
 .item-description {
