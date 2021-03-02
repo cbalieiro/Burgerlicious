@@ -26,6 +26,7 @@ a:hover {
 p {
   margin-bottom: 0;
 }
+
 .body-default {
   justify-content: center;
 }
@@ -387,12 +388,14 @@ input[type='number'] {
 
 }
 
-.cancel-button:active, .cancel-button:hover {
+.cancel-button:active,
+.cancel-button:hover {
   background: #f0504a;
   color: #fff8d8;
 }
 
-.send-button:active, .send-button:hover {
+.send-button:active,
+.send-button:hover {
   border: solid 4px #f0504a;
   background-color: transparent;
   color: #f0504a;
@@ -410,6 +413,7 @@ input[type='number'] {
   display: flex;
   justify-content: space-between;
 }
+
 .container-cards {
   display: flex;
   flex-direction: row;
@@ -437,26 +441,26 @@ input[type='number'] {
   justify-content: space-between;
 }
 
-.title-card{
+.title-card {
   margin: 0%;
   font-weight: 500;
   font-size: 16px;
   color: #584944;
 }
 
-.title-number-card{
-font-weight: 500;
-font-size: 24px;
+.title-number-card {
+  font-weight: 500;
+  font-size: 24px;
 }
 
-.text-card{
+.text-card {
   margin: 0;
   padding: 0;
   font-weight: 300;
   font-size: 16px;
 }
 
-.complement-text-card{
+.complement-text-card {
   margin: 0;
   padding: 0;
   font-weight: 300;
@@ -503,7 +507,8 @@ font-size: 24px;
   box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 10%);
 }
 
-.client-info, .bottom-section {
+.client-info,
+.bottom-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -524,17 +529,15 @@ font-size: 24px;
   max-width: 327px;
 }
 
-#history, #notifications {
-  display: none;
-  position: fixed;
-}
-
-.sidebar {
+.sidebar,
+.side-space {
   width: 441px;
-  height: 100vh;
+  margin: 0%;
+  height: 100%;
   position: fixed;
+  top: 0;
+  right: 0;
   background: #FFF8D8;
-  right: 0; 
   z-index: 1;
   transition: all .25 linear;
 }
