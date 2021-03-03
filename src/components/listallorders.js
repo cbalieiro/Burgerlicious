@@ -26,12 +26,13 @@ function ListOrders({ filterType }) {
       const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
       const { json } = await request(URL, method);
       if (role === 'kitchen') {
-        const orderPending = json.filter(({ status }) => status !== 'done');
+        const orderPending = json.filter(({ status }) => status !== 'done' && status !== 'finished' );
         setPending(orderPending);
       }
       if (role === 'hall' && type === 'processing') {
         const orderDone = json.filter(
-          ({ status, user_id }) => status !== 'finished' );
+          ({ status }) => status !== 'finished',
+        );
         setDone(orderDone);
       }
       if (type === 'finished') {
@@ -56,9 +57,22 @@ function ListOrders({ filterType }) {
     }
   }, [data, done, finish, pending]);
 
-  function handleClick(event, id) {
-    console.log(event, id);
-  }
+  const handleDoing = (event, id, status) => {
+
+    if (status === 'pending')
+    console.log(event, id, status);
+  };
+
+  const handleDone = (event, id, status) => {
+
+    if (status === 'doing')
+    console.log(event, id, status);
+  };
+
+  const handleFinish = (event, id, status) => {
+    if (status === 'done')
+    console.log(event, id, status);
+  };
 
   function result() {
     if (orderlist) {
@@ -71,26 +85,39 @@ function ListOrders({ filterType }) {
               return (
                 <div key={item.id} className="card-template">
                   <CardsKitchen>{item}</CardsKitchen>
-                  {pending && item.status !== 'finished' && (
-                    <Button
-                      key={Math.random()}
-                      onClick={(e) => handleClick(e, item.id)}
-                      className={
-                        item.status === 'pending' ? 'btn-doing' : 'btn-done'
-                      }
-                    >
-                      {' '}
-                      {item.status === 'pending' ? 'DOING' : 'DONE'}{' '}
-                    </Button>
-                  )}
+
+                  {pending &&
+                    item.status === 'pending' &&
+                    item.status !== 'finished' && (
+                      <Button
+                        key={Math.random()}
+                        onClick={(e) => handleDoing(e, item.id,item.status)}
+                        className={item.status === 'pending' && 'btn-doing'}
+                      >
+                        {item.status === 'pending' && 'DOING'}
+                      </Button>
+                    )}
+
+                  {pending &&
+                    item.status === 'doing' &&
+                    (item.status !== 'finished') &
+                    (
+                      <Button
+                        key={Math.random()}
+                        onClick={(e) => handleDone(e, item.id,item.status)}
+                        className={item.status === 'doing' && 'btn-done'}
+                      >
+                        {item.status === 'doing' && 'DONE'}
+                      </Button>
+                    )}
+
                   {done && item.status === 'done' && (
                     <Button
                       key={item.id}
-                      onClick={(e) => handleClick(e, item.id)}
+                      onClick={(e) => handleFinish(e, item.id,item.status)}
                       className={item.status === 'done' && 'btn-done'}
                     >
-                      {' '}
-                      {'DELIVERED'}{' '}
+                      {'DELIVERY'}
                     </Button>
                   )}
                 </div>
