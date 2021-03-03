@@ -72,7 +72,7 @@ function ListOrders({ filterType }) {
               return (
                 <div key={item.id} className="card-template">
                   <CardsKitchen>{item}</CardsKitchen>
-                  {pending && (
+                  {pending && item.status !== 'finished' && (
                     <Button
                       key={Math.random()}
                       onClick={(e) => handleClick(e, item.id)}

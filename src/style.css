@@ -26,7 +26,6 @@ a:hover {
 p {
   margin-bottom: 0;
 }
-
 .body-default {
   justify-content: center;
 }
@@ -388,14 +387,12 @@ input[type='number'] {
 
 }
 
-.cancel-button:active,
-.cancel-button:hover {
+.cancel-button:active, .cancel-button:hover {
   background: #f0504a;
   color: #fff8d8;
 }
 
-.send-button:active,
-.send-button:hover {
+.send-button:active, .send-button:hover {
   border: solid 4px #f0504a;
   background-color: transparent;
   color: #f0504a;
@@ -413,7 +410,6 @@ input[type='number'] {
   display: flex;
   justify-content: space-between;
 }
-
 .container-cards {
   display: flex;
   flex-direction: row;
@@ -441,26 +437,26 @@ input[type='number'] {
   justify-content: space-between;
 }
 
-.title-card {
+.title-card{
   margin: 0%;
   font-weight: 500;
   font-size: 16px;
   color: #584944;
 }
 
-.title-number-card {
-  font-weight: 500;
-  font-size: 24px;
+.title-number-card{
+font-weight: 500;
+font-size: 24px;
 }
 
-.text-card {
+.text-card{
   margin: 0;
   padding: 0;
   font-weight: 300;
   font-size: 16px;
 }
 
-.complement-text-card {
+.complement-text-card{
   margin: 0;
   padding: 0;
   font-weight: 300;
@@ -507,8 +503,7 @@ input[type='number'] {
   box-shadow: 2px 2px 4px hsl(0deg 0% 0% / 10%);
 }
 
-.client-info,
-.bottom-section {
+.client-info, .bottom-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -521,12 +516,93 @@ input[type='number'] {
   justify-content: space-between;
   align-items: flex-start;
   align-content: start;
+  flex-wrap: wrap;
+  max-width: 325px;
 }
 
 .item-description {
   display: flex;
   justify-content: space-between;
-  max-width: 327px;
+  align-items: center;
+  max-width: 325px;
+  margin: 0px 0px 20px;
+}
+
+.order-button-section {
+  display: flex;
+  flex-direction: space-between;
+  max-width: 310px;
+}
+
+.input-group {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 75px;
+  margin-left: 15px;
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  color: #f0504a;
+}
+
+.count-button {
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  align-items: center;
+  color: #584944;
+  background-color: #ffe1ac00;
+  width:25px;
+  height: 25px;
+  border-radius: 25px;
+}
+
+.count-button:active, .count-button:focus {
+  background-color: #ffe1ac;
+  width:25px;
+  height: 25px;
+  border-radius: 25px;
+}
+
+.product {
+  flex: 1;
+  max-width: 175px;
+  margin: 0px 10px;
+  font-size: 16px;
+  color: #584944;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  width: 310px;
+}
+
+.total-value {
+  font-weight: 700;
+}
+
+.delete-item {
+  background-color: transparent;
+  border: none;
+  color: #f19390;
+}
+
+.delete-item:active, .delete-item:hover {
+  color: #f0504a;
+}
+
+.list-items {
+  margin-bottom: 5px;
+  min-width: 310px;
+}
+
+.burger-info {
+  margin-left: 35px;
+  font-size: 14px;
+  font-weight: normal;
 }
 
 .sidebar {
