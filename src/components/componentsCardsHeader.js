@@ -14,7 +14,7 @@ const CardsHeader = ({ children }) => {
   const timeNow = new Date();
   const time = `${timeNow.toLocaleDateString()} - ${timeNow.getHours()}:${timeNow.getMinutes()}`;
   const preparationSecond = Math.abs(dtprocessedAt) - dtcreatedAt
-
+  const preparationMinutes = Math.floor((preparationSecond /1000)/60)
 
 
   return (
@@ -41,6 +41,10 @@ const CardsHeader = ({ children }) => {
           {' '}
           Status: <span className="title-card">{status}</span>
         </p>
+        {status === "done" && (<p className="title-card">
+          {' '}
+          Status: <span className="title-card">{preparationMinutes}</span>
+        </p>)}
       </div>
     </div>
   );
