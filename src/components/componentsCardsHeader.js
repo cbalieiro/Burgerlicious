@@ -36,12 +36,12 @@ const CardsHeader = ({ children }) => {
           )}
 
           <p className="title-card">
-            Status: <span className="title-card">{status}</span>
+            Status: <span className="text-card">{status}</span>
           </p>
 
-          {status === 'done' && status !== 'finished' (
+          {status === 'done' && status !== 'finished' && (
             <p className="title-card">
-              Preparation time: <span className="title-card">{`${preparationMinutes} Min`}</span>
+              Preparation time: <span className="text-card">{`${preparationMinutes} Min`}</span>
             </p>
           )}
         </div>
