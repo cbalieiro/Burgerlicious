@@ -12,6 +12,7 @@ function ListOrders({ filterType }) {
   const { data, request } = useFetch();
   const [pending, setPending] = React.useState(null);
   const [done, setDone] = React.useState(null);
+  const [finish, setFinish] = React.useState(null);
   const [orderlist, setOrderlist] = React.useState(null);
   const [loading, setLoading] = React.useState(null);
 
@@ -29,8 +30,14 @@ function ListOrders({ filterType }) {
         setPending(orderPending);
       }
       if (role === 'hall' && type === 'processing') {
-        const orderDone = json.filter(({ status }) => status !== 'finished');
+        const orderDone = json.filter(
+          ({ status, user_id }) => status !== 'finished' && user_id === id,
+        );
         setDone(orderDone);
+      }
+      if (type === 'finished') {
+        const orderDone = json.filter(({ status }) => status === 'finished');
+        setFinish(orderDone);
       }
     }
     fetchOrders();
@@ -45,7 +52,10 @@ function ListOrders({ filterType }) {
     if (done) {
       setOrderlist(done);
     }
-  }, [data, done, pending]);
+    if (finish) {
+      setOrderlist(finish);
+    }
+  }, [data, done, finish, pending]);
 
   function handleClick(event, id) {
     console.log(event, id);
