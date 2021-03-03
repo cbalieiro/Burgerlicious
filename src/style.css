@@ -604,3 +604,23 @@ font-size: 24px;
   font-size: 14px;
   font-weight: normal;
 }
+
+.sidebar {
+  width: 441px;
+  margin: 0%;
+  padding: 2rem;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #FFF8D8;
+  z-index: 1;
+  transition: all .25 linear;
+  overflow-y: scroll;
+}
+
+.sidebar-container{
+  margin: 2rem;
+  display: flex;
+  justify-content: space-around;
+}
