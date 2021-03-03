@@ -31,8 +31,7 @@ function ListOrders({ filterType }) {
       }
       if (role === 'hall' && type === 'processing') {
         const orderDone = json.filter(
-          ({ status, user_id }) => status !== 'finished' && user_id === id,
-        );
+          ({ status, user_id }) => status !== 'finished' );
         setDone(orderDone);
       }
       if (type === 'finished') {
