@@ -22,7 +22,7 @@ function useFetch() {
     }
   }, []);
 
-  return { data, error, request };
+  return { data, error, request , setData};
 }
 
 export default useFetch;

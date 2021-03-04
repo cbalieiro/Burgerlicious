@@ -1,5 +1,6 @@
 import React from 'react';
 import RequestOptions from './object/requestOptions';
+import CallAPI from '../services/api';
 import useFetch from '../services/Hooks/useFetch';
 import CardsKitchen from './cardsKitchen';
 import Button from './buttonorderstatus';
@@ -14,11 +15,27 @@ function ListOrders({ filterType }) {
   const [done, setDone] = React.useState(null);
   const [finish, setFinish] = React.useState(null);
   const [orderlist, setOrderlist] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
 
-  React.useEffect(() => {
-    setLoading(true);
-  }, []);
+  const listOrdersAPI = () => {
+    const method = RequestOptions.getAndDelete('GET', token);
+    const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
+    CallAPI(URL, method).then((json) => {
+      if (role === 'kitchen') {
+        const orderPending = json.filter(
+          ({ status }) => status !== 'done' && status !== 'finished',
+        );
+        setPending(orderPending);
+      }
+      if (role === 'hall' && type === 'processing') {
+        const orderDone = json.filter(({ status }) => status !== 'finished');
+        setDone(orderDone);
+      }
+      if (type === 'finished') {
+        const orderDone = json.filter(({ status }) => status === 'finished');
+        setFinish(orderDone);
+      }
+    });
+  };
 
   React.useEffect(() => {
     async function fetchOrders() {
@@ -26,13 +43,13 @@ function ListOrders({ filterType }) {
       const URL = 'https://lab-api-bq.herokuapp.com/orders  ';
       const { json } = await request(URL, method);
       if (role === 'kitchen') {
-        const orderPending = json.filter(({ status }) => status !== 'done' && status !== 'finished' );
+        const orderPending = json.filter(
+          ({ status }) => status !== 'done' && status !== 'finished',
+        );
         setPending(orderPending);
       }
       if (role === 'hall' && type === 'processing') {
-        const orderDone = json.filter(
-          ({ status }) => status !== 'finished',
-        );
+        const orderDone = json.filter(({ status }) => status !== 'finished');
         setDone(orderDone);
       }
       if (type === 'finished') {
@@ -41,7 +58,6 @@ function ListOrders({ filterType }) {
       }
     }
     fetchOrders();
-    setLoading(false);
   }, [request, token, role, id, type]);
 
   React.useEffect(() => {
@@ -57,33 +73,39 @@ function ListOrders({ filterType }) {
     }
   }, [data, done, finish, pending]);
 
-  const handleDoing = (event, id, status) => {
-    
-    if (status === 'pending')
-    console.log(event, id, status);
-  };
+  const handleStatus = (event, id, status) => {
+    const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `;
 
-  const handleDone = (event, id, status) => {
-
-    if (status === 'doing')
-    console.log(event, id, status);
-  };
-
-  const handleFinish = (event, id, status) => {
-    if (status === 'done')
-    console.log(event, id, status);
+    if (status === 'pending') {
+      const body = 'doing';
+      const method = RequestOptions.put(token, body);
+      CallAPI(URL, method).then(() => listOrdersAPI());
+    }
+    if (status === 'doing') {
+      const body = 'done';
+      const method = RequestOptions.put(token, body);
+      CallAPI(URL, method).then(() => listOrdersAPI());
+    }
+    if (status === 'done') {
+      const body = 'finished';
+      const method = RequestOptions.put(token, body);
+      CallAPI(URL, method).then(() => listOrdersAPI());
+    }
   };
 
   const handleDelete = (event, id, status) => {
-    if (status === 'done')
-    console.log(event, id, status);
+    console.log(event);
+    if (status === 'pending') {
+      const method = RequestOptions.getAndDelete('DELETE', token);
+      const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `;
+      CallAPI(URL, method).then(() => listOrdersAPI());
+    }
   };
 
   function result() {
     if (orderlist) {
       return (
         <>
-          {loading && <p>Carregando...</p>}
           {orderlist
             .sort((a, b) => (a.id > b.id ? 1 : -1))
             .map((item) => {
@@ -96,7 +118,7 @@ function ListOrders({ filterType }) {
                     item.status !== 'finished' && (
                       <Button
                         key={Math.random()}
-                        onClick={(e) => handleDoing(e, item.id,item.status)}
+                        onClick={(e) => handleStatus(e, item.id, item.status)}
                         className={item.status === 'pending' && 'btn-doing'}
                       >
                         {item.status === 'pending' && 'DOING'}
@@ -105,11 +127,11 @@ function ListOrders({ filterType }) {
 
                   {pending &&
                     item.status === 'doing' &&
-                    (item.status !== 'finished') &
+                    item.status !== 'finished' &&
                     (
                       <Button
                         key={Math.random()}
-                        onClick={(e) => handleDone(e, item.id,item.status)}
+                        onClick={(e) => handleStatus(e, item.id, item.status)}
                         className={item.status === 'doing' && 'btn-done'}
                       >
                         {item.status === 'doing' && 'DONE'}
@@ -119,7 +141,7 @@ function ListOrders({ filterType }) {
                   {done && item.status === 'done' && (
                     <Button
                       key={item.id}
-                      onClick={(e) => handleFinish(e, item.id,item.status)}
+                      onClick={(e) => handleStatus(e, item.id, item.status)}
                       className={item.status === 'done' && 'btn-done'}
                     >
                       {'DELIVERY'}
@@ -128,7 +150,7 @@ function ListOrders({ filterType }) {
                   {done && item.status === 'pending' && role === 'hall' && (
                     <Button
                       key={item.id}
-                      onClick={(e) => handleDelete(e, item.id,item.status)}
+                      onClick={(e) => handleDelete(e, item.id, item.status)}
                       className={item.status === 'pending' && 'btn-done'}
                     >
                       {'DELETE'}
