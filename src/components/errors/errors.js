@@ -10,7 +10,7 @@ const ErrorAuth = (props) => {
     '405': 'Passwords do not match. Please try again.',
   };
 
-  let errorMessage = verifyErrorCode[props.err];
+  let errorMessage = verifyErrorCode[props.code];
 
   if (!errorMessage) {
     errorMessage = 'Ops! Something went wrong. Please, try again.';
@@ -24,12 +24,3 @@ const ErrorAuth = (props) => {
 }
 
 export default ErrorAuth;
-
-
-// export const printMessageError = (message) => {
-//   const elementError = document.createElement('p');
-//   const errorMessage = document.createTextNode(message);
-//   elementError.appendChild(errorMessage);
-//   document.getElementById('error-login').innerHTML = '';
-//   document.getElementById('error-login').appendChild(elementError);
-// };

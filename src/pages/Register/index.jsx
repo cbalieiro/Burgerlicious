@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import CallAPI from "../../services/api";
 import RequestOptions from "../../components/object/requestOptions";
 import AllModelsObject from "../../components/object/models";
 import Footer from "../../components/footer";
 import Logo from "../../components/logo";
-import CallAPI from "../../services/api";
 import ErrorAuth from "../../components/errors/errors";
-import ModalMessage from "../../components/modal"
-
-const userData = AllModelsObject.authAndUsers;
 
 const Register = () => {
+  const userData = AllModelsObject.authAndUsers;
+  const history = useHistory();
+
   const [user, setUser] = useState(userData);
-  const [modalShow, setModalShow] = useState(false);
   const [statusCode, setStatusCode] = useState('');
 
   useEffect(() => {
-    setUser({ ...user, completeName: user.name + '' + user.lastName })
+    setUser({ ...user, completeName: user.name + ' ' + user.lastName })
   }, [user.name, user.lastName])
 
   const handleSubmit = (event) => {
@@ -28,20 +27,28 @@ const Register = () => {
       setStatusCode('405');
     }
   }
-
+ 
   const createUser = (props) => {
-    const { email, password, role, name, users } = props;
-    const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${name}`;
+    const { email, password, role, completeName, users } = props;
+    const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${completeName}`;
     const method = RequestOptions.post(body);
 
     CallAPI(users, method)
       .then((json) => {
+        localStorage.setItem(`currentUser`, JSON.stringify(json))
+        localStorage.setItem(`token`, `${json.token}`)
+        
         if (json.code) {
+          setStatusCode('');
           setStatusCode(json.code);
         }
-        else {
-          setModalShow(true); //linha para mudar a rota
-          setStatusCode('');
+
+        if (json.role === "hall") {
+          history.push("/Hall")
+        }
+        
+        if (json.role === "kitchen") {
+          history.push("/Kitchen")
         }
       })
   }
@@ -69,7 +76,7 @@ const Register = () => {
           </label>
           <label>
             Password:
-          <input type='password' className="form-input" minLength="8" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }) }} placeholder="Password" required />
+          <input type='password' className="form-input" minLength="8" maxLength="12" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }) }} placeholder="Password" required />
           </label>
           <label>
             Confirm password:
@@ -85,16 +92,12 @@ const Register = () => {
             </select>
           </label>
 
-            {statusCode && <ErrorAuth/>}
+          {statusCode && <ErrorAuth />}
 
           <button className="form-button" type="submit"> SIGN UP </button>
         </form>
       </div>
-      
-      <ModalMessage
-        onHide={() => setModalShow(false)}
-        show={modalShow} 
-      />
+
       <Footer />
     </>
   );

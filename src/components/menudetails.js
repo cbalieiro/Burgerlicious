@@ -107,7 +107,7 @@ const MenuItems = ({ option, addItem }) => {
                         count = 0
 
                     return (
-                        <section className="item-description" key={item.id}>
+                        <section className="item-description" key={item.name}>
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
@@ -134,7 +134,7 @@ const MenuItems = ({ option, addItem }) => {
                         count = 0
 
                     return (
-                        <section className="item-description" key={item.id}>
+                        <section className="item-description" key={item.name}>
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
@@ -166,7 +166,7 @@ const MenuItems = ({ option, addItem }) => {
 
                 <section className="burger-items">
                     <label>
-                        Meet
+                        Meat
                     <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                     </label>
 
@@ -210,7 +210,7 @@ const MenuItems = ({ option, addItem }) => {
                         count = 0
 
                     return (
-                        <section className="item-description" key={item.id}>
+                        <section className="item-description" key={item.name}>
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
@@ -237,7 +237,7 @@ const MenuItems = ({ option, addItem }) => {
                         count = 0
 
                     return (
-                        <section className="item-description" key={item.id}>
+                        <section className="item-description" key={item.name}>
                             <p className="product">{item.name}</p>
                             <p className="price">${item.price}</p>
                             <section className="input-group">
