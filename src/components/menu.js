@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import MenuItems from '../components/menudetails'
+import ToastGroup from "../components/toast"
 
 const Menu = () => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
@@ -16,8 +17,10 @@ const Menu = () => {
 
     const [menuSection, setMenuSection] = useState('');
     const [products, setProducts] = useState([]);
-    const [totalToPay, setTotal] = useState(0)
-    const [order, setOrder] = useState(newOrder)
+    const [totalToPay, setTotal] = useState(0);
+    const [order, setOrder] = useState(newOrder);
+    const [show, setShow] = useState(false);
+    const [errCode, setCode] = useState('');
 
     useEffect(() => {
         setTotal(() => {
@@ -73,14 +76,13 @@ const Menu = () => {
     const handleSendOrder = (event) => {
         event.preventDefault();
         const productsList = [...products];
-        setOrder({ ...order, products: productsList })
-        createOrder(order)
+        const newOrder = { ...order, products: productsList }
+        setOrder(newOrder)
+        createOrder(newOrder)
     }
 
-    const createOrder = ({ client, table }) => {
-        const getProductsState = [...products]
-
-        const listItemsOrder = getProductsState.map((item) => (
+    const createOrder = ({ client, table, products}) => {
+        const listItemsOrder = products.map((item) => (
             {
                 "id": item.id,
                 "qtd": item.quantity
@@ -102,12 +104,21 @@ const Menu = () => {
             },
             body
         })
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json)
-                alert('Pedido enviado para cozinha!') //sumir com o alert
-                setOrder({});
+            .then(({status}) => { 
+                if (status === '200') {
+                    setOrder({});
+                }
+                setCode(status);
+                setShow(true);
             })
+    }
+
+    const cancelOrder = (event) => {
+        event.preventDefault();
+        setCode('02');
+        setShow(true);
+        setOrder(newOrder);
+        setProducts([]);
     }
 
     return (
@@ -195,8 +206,8 @@ const Menu = () => {
                     {products.length > 0 && products.map((item, index) => {
                         if (item.quantity > 0) {
                             return (
-                                <>
-                                    <section className="item-description list-items" key={item.id}>
+                                <section key={item.id}>
+                                    <section className="item-description list-items">
                                         <button className="delete-item" onClick={() => deleteProduct(index)}>
                                             <span className="material-icons">
                                                 delete
@@ -204,13 +215,13 @@ const Menu = () => {
                                         </button>
                                         <p className="product">{item.name}</p>
                                         <section className="input-group">
-                                            <button className="count-button" onClick={() => handlePlusClick(index)}> + </button>
+                                            <button type="button" className="count-button" onClick={() => handlePlusClick(index)}> + </button>
                                             <p className="quantity-field">{item.quantity}</p>
-                                            <button className="count-button" onClick={() => item.quantity > 0 && handleMinusClick(index)}> - </button>
+                                            <button type="button" className="count-button" onClick={() => item.quantity > 0 && handleMinusClick(index)}> - </button>
                                         </section>
                                     </section>
                                     <p className="product burger-info">{item.flavor} {item.complement}</p>
-                                </>
+                                </section>
                             )
                         }
                     })}
@@ -219,11 +230,17 @@ const Menu = () => {
                 <section className="bottom-section">
                     <p className="total-price">TOTAL PRICE: <span className="total-value">${totalToPay}</span></p>
                     <section className="order-button-section">
-                        <button className="cancel-button" onClick={() => setOrder({})}>CANCEL</button>
+                        <button type="button" className="cancel-button" onClick={(event) => cancelOrder(event)}>CANCEL</button>
                         <button type="submit" className="send-button">SEND</button>
                     </section>
                 </section>
             </form>
+
+            <ToastGroup
+                code={errCode}
+                onClose={() => setShow(false)}
+                show={show}
+            />
         </>
     )
 };

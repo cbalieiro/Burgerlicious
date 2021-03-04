@@ -31,6 +31,7 @@ const Login = () => {
         if (json.role === "hall") {
           history.push("/Hall")
         }
+        
         if (json.role === "kitchen") {
           history.push("/Kitchen")
         }
@@ -49,12 +50,12 @@ const Login = () => {
           <Logo />
           <form onSubmit={(event) => { handleSubmit(event) }}>
             <label>Login:
-              <input type="text" className="form-input" value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }); }}
+              <input type="email" className="form-input" value={user.email} onChange={(event) => { setUser({ ...user, email: event.target.value }); }}
                 placeholder="email@email.com" required
               />
             </label>
             <label>Password:
-              <input type="password" className="form-input" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }); }}
+              <input type="password" className="form-input" minLength="8" maxLength="12" value={user.password} onChange={(event) => { setUser({ ...user, password: event.target.value }); }}
                 placeholder="Password" required
               />
             </label>

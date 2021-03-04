@@ -11,15 +11,9 @@ const ModalMessage = (props) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter" className="modal-title">
-            <p></p>
-          </Modal.Title>
-        </Modal.Header>
-
         <Modal.Body>
           <p className="modal-text">
-            User successfully registered!
+            {props.message}
           </p>
         </Modal.Body>
       </Modal>
