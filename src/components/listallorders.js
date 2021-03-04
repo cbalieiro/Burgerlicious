@@ -58,7 +58,7 @@ function ListOrders({ filterType }) {
   }, [data, done, finish, pending]);
 
   const handleDoing = (event, id, status) => {
-
+    
     if (status === 'pending')
     console.log(event, id, status);
   };
@@ -70,6 +70,11 @@ function ListOrders({ filterType }) {
   };
 
   const handleFinish = (event, id, status) => {
+    if (status === 'done')
+    console.log(event, id, status);
+  };
+
+  const handleDelete = (event, id, status) => {
     if (status === 'done')
     console.log(event, id, status);
   };
@@ -118,6 +123,15 @@ function ListOrders({ filterType }) {
                       className={item.status === 'done' && 'btn-done'}
                     >
                       {'DELIVERY'}
+                    </Button>
+                  )}
+                  {done && item.status === 'pending' && role === 'hall' && (
+                    <Button
+                      key={item.id}
+                      onClick={(e) => handleDelete(e, item.id,item.status)}
+                      className={item.status === 'pending' && 'btn-done'}
+                    >
+                      {'DELETE'}
                     </Button>
                   )}
                 </div>
