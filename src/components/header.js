@@ -2,10 +2,15 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import logo from '../img/logo.gif';
 import ButtonSidebar from './buttonsidebar';
+import Button from './buttonorderstatus';
 import { SidebarStorage } from './sidebarContext';
 
 const Header = ({ role, name }) => {
   const history = useHistory();
+
+  function reloadPage(){ 
+    window.location.reload(); 
+}
 
   return (
     <>
@@ -30,17 +35,34 @@ const Header = ({ role, name }) => {
         <img src={logo} alt="logo" height="165px" width="164px" />
 
         <section className="buttons">
-          <SidebarStorage>
-            <ButtonSidebar
-              value={'ORDERS IN PROGRESS'}
-              id={'processing'}
-              key={'button-orderInprocess'}
+          {role === 'kitchen' && (
+            <Button
+              value={'refresh'}
+              id={'refresh'}
+              key={'button-order-refresh'}
               className="orders-button"
+              onClick={() => {
+                reloadPage()
+              }}
             >
-              <span className="material-icons">notifications</span>
-              ORDERS IN PROGRESS
-            </ButtonSidebar>
-          </SidebarStorage>
+              <span className="material-icons">history</span>
+              REFRESH
+            </Button>
+          )}
+
+          {role === 'hall' && (
+            <SidebarStorage>
+              <ButtonSidebar
+                value={'ORDERS IN PROGRESS'}
+                id={'processing'}
+                key={'button-orderInprocess'}
+                className="orders-button"
+              >
+                <span className="material-icons">notifications</span>
+                ORDERS IN PROGRESS
+              </ButtonSidebar>
+            </SidebarStorage>
+          )}
 
           <SidebarStorage>
             <ButtonSidebar
