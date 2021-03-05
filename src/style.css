@@ -421,6 +421,7 @@ input[type='number'] {
 
 .card-container-text {
   padding: 1.5rem;
+  line-height: 20px;
 }
 
 .card-table-info {
