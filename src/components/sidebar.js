@@ -10,7 +10,7 @@ const Sidebar = ({ filterType, title }) => (
           <ButtonSidebar
             id={'null'}
             key={'button-close'}
-            className="orders-button"
+            className="close-button"
           >
             <span className="material-icons">highlight_off</span>
           </ButtonSidebar>
@@ -18,7 +18,7 @@ const Sidebar = ({ filterType, title }) => (
       </div>
       <div className={'sidebar-container'}>
         <div>
-          <h2>{title}</h2>
+          <h2 className="title-sidebar">{title}</h2>
           <section>
             <ListOrders filterType={filterType} />
           </section>

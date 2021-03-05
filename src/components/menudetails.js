@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
+// import Loading from "../components/errors/loading"
 
 const MenuItems = ({ option, addItem }) => {
     const translatePTtoEN = {
@@ -33,7 +34,7 @@ const MenuItems = ({ option, addItem }) => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
     const { data, request } = useFetch();
 
-    const [burger, setBurger] = useState(newBurger);    
+    const [burger, setBurger] = useState(newBurger);
     const [items, setItems] = useState({});
     const [snacksList, setSnacksList] = useState([]);
     const [coffeeList, setCoffeeList] = useState([]);
@@ -41,6 +42,7 @@ const MenuItems = ({ option, addItem }) => {
     const [drinksList, setDrinksList] = useState([]);
     const [sidesList, setSidesList] = useState([]);
     const [dataTranslated, setDataTranslated] = useState([]);
+    // const [loading, setLoading] = useState(true); //passar todas as chamadas para o elemento pai
 
     useEffect(() => {
         async function fetchProducts() {
@@ -56,9 +58,11 @@ const MenuItems = ({ option, addItem }) => {
 
         const allProducts = data;
         const productsTranslated = allProducts.map((item) => {
-            return ({...item, name: translatePTtoEN[item.name], 
-                        flavor: translatePTtoEN[item.flavor], 
-                        complement: translatePTtoEN[item.complement]})
+            return ({
+                ...item, name: translatePTtoEN[item.name],
+                flavor: translatePTtoEN[item.flavor],
+                complement: translatePTtoEN[item.complement]
+            })
         })
 
         setDataTranslated(productsTranslated);
@@ -68,6 +72,8 @@ const MenuItems = ({ option, addItem }) => {
         setBurgerList(productsTranslated.filter((item) => item.sub_type.includes("hamburguer")));
         setDrinksList(productsTranslated.filter((item) => item.sub_type.includes("drinks")));
         setSidesList(productsTranslated.filter((item) => item.sub_type.includes("side")));
+
+        // setLoading(false);
 
     }, [data])
 
@@ -86,169 +92,180 @@ const MenuItems = ({ option, addItem }) => {
             return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
         })
 
-        addItem({...chosenBurger, ...burgerById})
+        addItem({ ...chosenBurger, ...burgerById })
     }
 
     const createItemObject = (code, count) => {
         const updatedItem = dataTranslated.find(i => i.id == code)
-        const newProduct = {quantity: count, ...updatedItem}
+        const newProduct = { quantity: count, ...updatedItem }
         addItem(newProduct);
     }
 
     const Snacks = ({ list }) => {
         return (
-            <section className="menu-description">
-                {list.length && list.map((item) => {
-                    let count;
+            <>
+                <section className="menu-description">
+                    {list.length && list.map((item) => {
+                        let count;
 
-                    if (items[item.id])
-                        count = items[item.id]
-                    else
-                        count = 0
+                        if (items[item.id])
+                            count = items[item.id]
+                        else
+                            count = 0
 
-                    return (
-                        <section className="item-description" key={item.name}>
-                            <p className="product">{item.name}</p>
-                            <p className="price">${item.price}</p>
-                            <section className="input-group">
-                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
-                                <p className="quantity-field">{count}</p>
-                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
-                            </section>
-                        </section>)
-                })}
+                        return (
+                            <section className="item-description" key={item.name}>
+                                <p className="product">{item.name}</p>
+                                <p className="price">${item.price}</p>
+                                <section className="input-group">
+                                    <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                    <p className="quantity-field">{count}</p>
+                                    <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                </section>
+                            </section>)
+                    })}
+                </section>
                 <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
-            </section>
+            </>
         )
     }
 
     const Coffee = ({ list }) => {
         return (
-            <section className="menu-description">
-                {list.length && list.map((item) => {
-                    let count;
+            <>
+                <section className="menu-description">
+                    {list.length && list.map((item) => {
+                        let count;
 
-                    if (items[item.id])
-                        count = items[item.id]
-                    else
-                        count = 0
+                        if (items[item.id])
+                            count = items[item.id]
+                        else
+                            count = 0
 
-                    return (
-                        <section className="item-description" key={item.name}>
-                            <p className="product">{item.name}</p>
-                            <p className="price">${item.price}</p>
-                            <section className="input-group">
-                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
-                                <p className="quantity-field">{count}</p>
-                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
-                            </section>
-                        </section>)
-                })}
+                        return (
+                            <section className="item-description" key={item.name}>
+                                <p className="product">{item.name}</p>
+                                <p className="price">${item.price}</p>
+                                <section className="input-group">
+                                    <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                    <p className="quantity-field">{count}</p>
+                                    <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                </section>
+                            </section>)
+                    })}
+                </section>
                 <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
-            </section>
+            </>
         )
     }
 
     const Burger = () => {
         return (
-            <section className="burger-details">
-                <section className="burger-items">
-                    <label>
-                        Smash burger $10
+            <>
+                <section className="burger-details">
+                    <section>
+                        <section className="burger-items">
+                            <label>
+                                Smash burger $10
                         <input type="radio" name="size" value={"Smash burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
-                    </label>
+                            </label>
 
-                    <label>
-                        Double burger $10
+                            <label>
+                                Double burger $10
                         <input type="radio" name="size" value={"Double burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
-                    </label>
-                </section>
+                            </label>
+                        </section>
 
-                <section className="burger-items">
-                    <label>
-                        Meat
+                        <section className="burger-items">
+                            <label>
+                                Meat
                     <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
-                    </label>
+                            </label>
 
-                    <label>
-                        Chicken
+                            <label>
+                                Chicken
                     <input type="radio" name="burger" value={"Chicken"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
-                    </label>
+                            </label>
 
-                    <label>
-                        Veggie
+                            <label>
+                                Veggie
                     <input type="radio" name="burger" value={"Veggie"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
-                    </label>
-                </section>
+                            </label>
+                        </section>
 
-                <section className="burger-items">
-                    <label>
-                        Cheese $1
+                        <section className="burger-items">
+                            <label>
+                                Cheese $1
                         <input type="radio" name="extra" value={"Cheese"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
-                    </label>
+                            </label>
 
-                    <label>
-                        Egg $1
+                            <label>
+                                Egg $1
                     <input type="radio" name="extra" value={"Egg"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
-                    </label>
+                            </label>
+                        </section>
+                    </section>
                 </section>
-
                 <button className="send-button" onClick={() => { getBurgerId(burger) }} >ADD ITEM</button>
-            </section>
+            </>
         )
     }
 
     const Sides = ({ list }) => {
         return (
-            <section className="menu-description">
-                {list.length && list.map((item) => {
-                    let count;
+            <>
+                <section className="menu-description">
+                    {list.length && list.map((item) => {
+                        let count;
 
-                    if (items[item.id])
-                        count = items[item.id]
-                    else
-                        count = 0
+                        if (items[item.id])
+                            count = items[item.id]
+                        else
+                            count = 0
 
-                    return (
-                        <section className="item-description" key={item.name}>
-                            <p className="product">{item.name}</p>
-                            <p className="price">${item.price}</p>
-                            <section className="input-group">
-                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
-                                <p className="quantity-field">{count}</p>
-                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
-                            </section>
-                        </section>)
-                })}
+                        return (
+                            <section className="item-description" key={item.name}>
+                                <p className="product">{item.name}</p>
+                                <p className="price">${item.price}</p>
+                                <section className="input-group">
+                                    <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                    <p className="quantity-field">{count}</p>
+                                    <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                </section>
+                            </section>)
+                    })}
+                </section>
                 <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
-            </section>
+            </>
         )
     }
 
     const Drinks = ({ list }) => {
         return (
-            <section className="menu-description">
-                {list.length && list.map((item) => {
-                    let count;
+            <>
+                <section className="menu-description">
+                    {list.length && list.map((item) => {
+                        let count;
 
-                    if (items[item.id])
-                        count = items[item.id]
-                    else
-                        count = 0
+                        if (items[item.id])
+                            count = items[item.id]
+                        else
+                            count = 0
 
-                    return (
-                        <section className="item-description" key={item.name}>
-                            <p className="product">{item.name}</p>
-                            <p className="price">${item.price}</p>
-                            <section className="input-group">
-                                <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
-                                <p className="quantity-field">{count}</p>
-                                <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
-                            </section>
-                        </section>)
-                })}
+                        return (
+                            <section className="item-description" key={item.name}>
+                                <p className="product">{item.name}</p>
+                                <p className="price">${item.price}</p>
+                                <section className="input-group">
+                                    <button className="count-button" onClick={() => setItems({ ...items, [item.id]: count + 1 })}> + </button>
+                                    <p className="quantity-field">{count}</p>
+                                    <button className="count-button" onClick={() => count > 0 && setItems({ ...items, [item.id]: count - 1 })}> - </button>
+                                </section>
+                            </section>)
+                    })}
+                </section>
                 <button className="send-button" onClick={() => handleClick(items)}>ADD ITEM</button>
-            </section>
+            </>
         )
     }
 
@@ -271,6 +288,8 @@ const MenuItems = ({ option, addItem }) => {
             {option === 'Drinks' && (
                 <Drinks list={drinksList} />
             )}
+
+            {/* {loading && <Loading />} */}
         </>
     )
 }

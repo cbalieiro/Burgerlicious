@@ -45,8 +45,8 @@ const Header = ({ role, name }) => {
                 reloadPage()
               }}
             >
-              <span className="material-icons">history</span>
-              REFRESH
+              <span className="material-icons">notifications</span>
+              UPDATE ORDERS
             </Button>
           )}
 

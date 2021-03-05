@@ -2,6 +2,7 @@ const CallAPI = async (url, method) => {
   try {
     const response = await fetch(url, method);
     const data = await response.json();
+    console.log(data)
     return data;
   } 
   catch {

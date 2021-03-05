@@ -4,7 +4,6 @@ import Footer from "../../components/footer";
 import Menu from "../../components/menu";
 
 const Hall = () => {
-
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
 
   return (
@@ -19,7 +18,7 @@ const Hall = () => {
           <Menu />
         </section>
       </main>
-    
+
       <Footer />
     </>
   )

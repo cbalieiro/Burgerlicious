@@ -95,7 +95,7 @@ label {
   border-bottom: 2px solid #ffbb5a;
   background-color: transparent;
   outline: none;
-  margin: 5px 0px 20px;
+  margin: 12px 0px 20px;
   padding: 0px 0px 5px;
   color: #584944;
 }
@@ -132,9 +132,9 @@ footer a {
   border: none;
   border-bottom: 2px solid #ffbb5a;
   outline: transparent;
-
-  padding: 5px 0px;
-
+  line-height: 13px;
+  padding: 10px 0px;
+  color: gray;
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -144,6 +144,7 @@ footer a {
 }
 
 select.select-style {
+  margin-top: 6px;
   background-image: linear-gradient(45deg, transparent 50%, #ffbb5a 50%),
     linear-gradient(135deg, #ffbb5a 50%, transparent 50%),
     radial-gradient(#ffe1ac 70%, transparent 72%);
@@ -167,7 +168,6 @@ select.select-style:focus {
 
 select.select-style:focus-within {
   color: #fca730;
-  padding: 5px;
   border: 0;
   border-bottom: 2px solid #ffbb5a;
 }
@@ -220,23 +220,24 @@ header {
 .orders-button:hover {
   border: 0;
   outline: none;
-  background-color: transparent;
   background-color: #fff8d8;
   color: #584944;
 }
 
-.orders-button span:active,
-.orders-button span:hover {
+.orders-button:active span,
+.orders-button:hover span{
   color: #584944;
 }
 
 .user-info {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #584944;
 }
 
 .team-work {
   font-weight: bold;
+  color: #584944;
 }
 
 .home {
@@ -303,12 +304,19 @@ header {
 .burger-details {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .burger-items {
   display: flex;
   justify-content: space-between;
-  min-width: 325px;
+  padding: 12px;
+  color: #584944;
+}
+
+.burger-items label:active {
+  font-weight: 700;
+  color: #fca730;
 }
 
 .add-items {
@@ -407,6 +415,7 @@ input[type='number'] {
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 30px;
+  margin-bottom: 40px;
   align-items: baseline;
 }
 
@@ -420,7 +429,7 @@ input[type='number'] {
 }
 
 .card-container-text {
-  padding: 1.5rem;
+  padding: 20px;
   line-height: 20px;
 }
 
@@ -437,8 +446,9 @@ input[type='number'] {
 }
 
 .title-number-card {
-font-weight: 500;
-font-size: 24px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #584944;
 }
 
 .text-card {
@@ -446,6 +456,15 @@ font-size: 24px;
   padding: 0;
   font-weight: 300;
   font-size: 16px;
+}
+
+tr.title-card {
+  min-width: 250px;
+  max-height: 20px;
+}
+
+h4.title-card {
+  margin-bottom: 10px;
 }
 
 .complement-text-card{
@@ -471,6 +490,9 @@ font-size: 24px;
   border: 2px solid #f0504a;
   box-sizing: border-box;
   border-radius: 0px 0px 10px 10px;
+  font-weight: 700;
+  color: #ffe1ac;
+  letter-spacing: 3px;
 }
 
 .btn-doing {
@@ -482,6 +504,9 @@ font-size: 24px;
   border: 2px solid #bfc57b;
   box-sizing: border-box;
   border-radius: 0px 0px 10px 10px;
+  font-weight: 700;
+  color: #584944;
+  letter-spacing: 3px;
 }
 
 .menu-info {
@@ -502,7 +527,6 @@ font-size: 24px;
   align-items: flex-start;
   align-content: start;
   flex-wrap: wrap;
-  max-width: 325px;
 }
 
 .item-description {
@@ -517,6 +541,11 @@ font-size: 24px;
   display: flex;
   flex-direction: space-between;
   max-width: 300px;
+}
+
+.section-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .input-group {
@@ -585,7 +614,7 @@ font-size: 24px;
 }
 
 .burger-info {
-  margin-left: 35px;
+  margin: 0 0 15px 35px;
   font-size: 14px;
   font-weight: normal;
 }
@@ -611,7 +640,9 @@ font-size: 24px;
 }
 
 .menu-description {
-  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 /* TOAST  */
@@ -644,4 +675,37 @@ font-size: 24px;
 
 .toast-header {
   border-bottom: 0;
+}
+
+/* scroll */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: #ffbb5a;
+  -webkit-box-shadow: inset 0 0 6px #ffe1ac; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D9D2B0;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #c2a87c;
+  border-radius: 2px;
+}
+
+/* outro */
+
+.title-sidebar {
+  text-align: center;
+  color: #584944;
+}
+
+.close-button {
+  color: #584944;
+  background-color: transparent;
+  border: 0;
+  outline: none;
 }
