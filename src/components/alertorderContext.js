@@ -8,8 +8,9 @@ export const AlertStorage = ( {Children}) => {
   const [message, setMessage] = React.useState('You Have a New Order!!!');
 
   return (
-    <AlertContext.Provider value={{ alertstatus, setAlertstatus, message, setMessage }}>
+    <AlertContext.Provider value={{setAlertstatus, message, setMessage }}>
       {Children}
+      {alertstatus && (<ToastAlert message={message} show={alertstatus} close={setAlertstatus} />)}
     </AlertContext.Provider>
   );
 };
