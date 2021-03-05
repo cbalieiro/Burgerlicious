@@ -95,7 +95,7 @@ label {
   border-bottom: 2px solid #ffbb5a;
   background-color: transparent;
   outline: none;
-  margin: 5px 0px 20px;
+  margin: 12px 0px 20px;
   padding: 0px 0px 5px;
   color: #584944;
 }
@@ -132,9 +132,9 @@ footer a {
   border: none;
   border-bottom: 2px solid #ffbb5a;
   outline: transparent;
-
-  padding: 5px 0px;
-
+  line-height: 13px;
+  padding: 10px 0px;
+  color: gray;
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -144,6 +144,7 @@ footer a {
 }
 
 select.select-style {
+  margin-top: 6px;
   background-image: linear-gradient(45deg, transparent 50%, #ffbb5a 50%),
     linear-gradient(135deg, #ffbb5a 50%, transparent 50%),
     radial-gradient(#ffe1ac 70%, transparent 72%);
@@ -167,7 +168,6 @@ select.select-style:focus {
 
 select.select-style:focus-within {
   color: #fca730;
-  padding: 5px;
   border: 0;
   border-bottom: 2px solid #ffbb5a;
 }
@@ -220,13 +220,12 @@ header {
 .orders-button:hover {
   border: 0;
   outline: none;
-  background-color: transparent;
   background-color: #fff8d8;
   color: #584944;
 }
 
-.orders-button span:active,
-.orders-button span:hover {
+.orders-button:active span,
+.orders-button:hover span{
   color: #584944;
 }
 
@@ -303,12 +302,19 @@ header {
 .burger-details {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .burger-items {
   display: flex;
   justify-content: space-between;
-  min-width: 325px;
+  padding: 12px;
+  color: #584944;
+}
+
+.burger-items label:active {
+  font-weight: 700;
+  color: #fca730;
 }
 
 .add-items {
@@ -420,7 +426,8 @@ input[type='number'] {
 }
 
 .card-container-text {
-  padding: 1.5rem;
+  padding: 20px;
+  line-height: 20px;
 }
 
 .card-table-info {
@@ -501,7 +508,6 @@ font-size: 24px;
   align-items: flex-start;
   align-content: start;
   flex-wrap: wrap;
-  max-width: 325px;
 }
 
 .item-description {
@@ -516,6 +522,11 @@ font-size: 24px;
   display: flex;
   flex-direction: space-between;
   max-width: 300px;
+}
+
+.section-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .input-group {
@@ -584,7 +595,7 @@ font-size: 24px;
 }
 
 .burger-info {
-  margin-left: 35px;
+  margin: 0 0 15px 35px;
   font-size: 14px;
   font-weight: normal;
 }
@@ -610,7 +621,9 @@ font-size: 24px;
 }
 
 .menu-description {
-  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 /* TOAST  */
@@ -644,3 +657,5 @@ font-size: 24px;
 .toast-header {
   border-bottom: 0;
 }
+
+/* outro */

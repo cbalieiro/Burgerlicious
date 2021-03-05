@@ -4,6 +4,7 @@ import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 import MenuItems from '../components/menudetails'
 import ToastGroup from "../components/toast"
+import Loading from "../components/errors/loading"
 
 const Menu = () => {
     const nameLS = JSON.parse(localStorage.getItem('currentUser'));
@@ -21,6 +22,7 @@ const Menu = () => {
     const [order, setOrder] = useState(newOrder);
     const [show, setShow] = useState(false);
     const [errCode, setCode] = useState('');
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setTotal(() => {
@@ -241,6 +243,8 @@ const Menu = () => {
                 onClose={() => setShow(false)}
                 show={show}
             />
+
+            {/* <Loading /> */}
         </>
     )
 };
