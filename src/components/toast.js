@@ -41,4 +41,3 @@ const ToastGroup = (props) => {
 }
 
 export default ToastGroup;
-

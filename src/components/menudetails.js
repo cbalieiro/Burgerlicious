@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
-import Loading from "../components/errors/loading"
+// import Loading from "../components/errors/loading"
 
 const MenuItems = ({ option, addItem }) => {
     const translatePTtoEN = {
@@ -42,7 +42,7 @@ const MenuItems = ({ option, addItem }) => {
     const [drinksList, setDrinksList] = useState([]);
     const [sidesList, setSidesList] = useState([]);
     const [dataTranslated, setDataTranslated] = useState([]);
-    const [loading, setLoading] = useState(true); //passar todas as chamadas para o elemento pai
+    // const [loading, setLoading] = useState(true); //passar todas as chamadas para o elemento pai
 
     useEffect(() => {
         async function fetchProducts() {
@@ -73,7 +73,7 @@ const MenuItems = ({ option, addItem }) => {
         setDrinksList(productsTranslated.filter((item) => item.sub_type.includes("drinks")));
         setSidesList(productsTranslated.filter((item) => item.sub_type.includes("side")));
 
-        setLoading(false);
+        // setLoading(false);
 
     }, [data])
 
@@ -289,7 +289,7 @@ const MenuItems = ({ option, addItem }) => {
                 <Drinks list={drinksList} />
             )}
 
-            {loading && <Loading />}
+            {/* {loading && <Loading />} */}
         </>
     )
 }

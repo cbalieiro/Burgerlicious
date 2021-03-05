@@ -14,13 +14,13 @@ const CardsHeader = ({ children }) => {
     <>
       <div>
         <div className="card-table-info">
-          <p className="text-card">Table:</p>
+          <p className="title-card">Table</p>
           <p className="title-number-card">{table}</p>
         </div>
 
         <div>
           <p className="title-card">
-            Client: <span className="title-card">{client_name}</span>
+            Client: <span className="text-card">{client_name}</span>
           </p>
           <p className="title-card">
             Order Time: <span className="text-card">{orderTime}</span>

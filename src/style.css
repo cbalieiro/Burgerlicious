@@ -232,10 +232,12 @@ header {
 .user-info {
   font-size: 18px;
   margin-bottom: 20px;
+  color: #584944;
 }
 
 .team-work {
   font-weight: bold;
+  color: #584944;
 }
 
 .home {
@@ -413,6 +415,7 @@ input[type='number'] {
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 30px;
+  margin-bottom: 40px;
   align-items: baseline;
 }
 
@@ -443,8 +446,9 @@ input[type='number'] {
 }
 
 .title-number-card {
-font-weight: 500;
-font-size: 24px;
+  font-weight: 500;
+  font-size: 24px;
+  color: #584944;
 }
 
 .text-card {
@@ -452,6 +456,15 @@ font-size: 24px;
   padding: 0;
   font-weight: 300;
   font-size: 16px;
+}
+
+tr.title-card {
+  min-width: 250px;
+  max-height: 20px;
+}
+
+h4.title-card {
+  margin-bottom: 10px;
 }
 
 .complement-text-card{
@@ -477,6 +490,9 @@ font-size: 24px;
   border: 2px solid #f0504a;
   box-sizing: border-box;
   border-radius: 0px 0px 10px 10px;
+  font-weight: 700;
+  color: #ffe1ac;
+  letter-spacing: 3px;
 }
 
 .btn-doing {
@@ -488,6 +504,9 @@ font-size: 24px;
   border: 2px solid #bfc57b;
   box-sizing: border-box;
   border-radius: 0px 0px 10px 10px;
+  font-weight: 700;
+  color: #584944;
+  letter-spacing: 3px;
 }
 
 .menu-info {
@@ -658,4 +677,35 @@ font-size: 24px;
   border-bottom: 0;
 }
 
+/* scroll */
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background: #ffbb5a;
+  -webkit-box-shadow: inset 0 0 6px #ffe1ac; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D9D2B0;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #c2a87c;
+  border-radius: 2px;
+}
+
 /* outro */
+
+.title-sidebar {
+  text-align: center;
+  color: #584944;
+}
+
+.close-button {
+  color: #584944;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
