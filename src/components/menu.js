@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import CallAPI from '../services/api';
 import 'bootstrap/dist/css/bootstrap.css'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
@@ -95,7 +96,7 @@ const Menu = () => {
             "products": listItemsOrder
         })
 
-        fetch('https://lab-api-bq.herokuapp.com/orders', {
+        CallAPI('https://lab-api-bq.herokuapp.com/orders', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
