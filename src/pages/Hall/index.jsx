@@ -9,7 +9,7 @@ const Hall = () => {
   return (
     <>
       <Header
-        role={'Attendant'}
+        role={nameLS.role}
         name={nameLS.name}
       />
 
