@@ -1,7 +1,7 @@
 🌟 Uma aplicação Web para gerenciar pedidos em um restaurante. Para acessar [clique aqui!](https://burgerlicious-git-main-cbalieiro.vercel.app/) 🌟 
 
 ---
-> Login para teste
+Login para teste
 
 > **Salão**  
 > Login - camilaoliveira@burgerlicious.com
@@ -91,9 +91,11 @@ A paleta de cores foi desenvolvida em tons pastéis base com base nas cores dos 
 Os protótipos foram desenvolvidos priorizando o formato de tablet, conforme requerido no desafio. Além do desenvolvimento de wireframes, desenvolvemos um protótipo [interativo](https://www.figma.com/proto/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=27%3A3175&scaling=scale-down) da história 2, simulando a jornada dos funcionários do salão ao interagir com o app. Para ver os protótipos de baixa fidelidade e de alta fidelidade é só clicar [aqui](https://www.figma.com/file/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=28%3A1381).
 
 *Protótipo de baixa fidelidade* 
+
 ![prototype-low-fidelity](./src/img/prototype-low-fidelity.svg)
 
 *Protótipo de alta fidelidade*
+
 ![prototype-high-fidelity](./src/img/prototype-high-fidelity.svg)
 
 🔎 **Testes de usabilidade**
@@ -102,26 +104,31 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 &nbsp;
 ⚠️ O usário sentiu falta de uma declaração de campo obrigatório no preenchimento de formulário.
+
 &nbsp;
 ✔️ Inserimos mensagens em todos os campos obrigatórios e informamos o formato da informação requerida.
 
 &nbsp;
 ⚠️ O usário não entendeu o que o ícone de logout simbolizava.
+
 &nbsp;
 ✔️ Trocamos o ícone e inserimos uma informação em texto.
 
 &nbsp;
 ⚠️ O usuário gostaria de alterar a quantidade de produtos no resumo do pedido para evitar ter que voltar na seção do menu onde o item está listado. 
+
 &nbsp;
 ✔️ Incorporamos o botão de quantidade para cada produto no resumo do pedido. 
 
 &nbsp;
 ⚠️ O usuário gostaria de saber visualmente quais opções de hambúrguer foram selecionadas antes de adicionar ao pedido.
+
 &nbsp;
 ✔️ Trocamos a cor dos itens ao serem selecionados. 
 
 &nbsp;
 ⚠️ O usuário sentiu falta de uma mensagem confirmando que o pedido foi enviado com sucesso para a cozinha. 
+
 &nbsp;
 ✔️ Inserimos micro-interações que avisam ao usuário quando uma ação é cancelada, concluída com sucesso ou mal sucedida.
 
