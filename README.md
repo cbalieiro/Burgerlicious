@@ -1,15 +1,20 @@
 🌟 Uma aplicação Web para gerenciar pedidos em um restaurante. Para acessar [clique aqui!](https://burgerlicious-git-main-cbalieiro.vercel.app/) 🌟 
 
 ---
-Login para teste
+Login para teste:
 
 > **Salão**  
+>
 > Login - camilaoliveira@burgerlicious.com
+> 
 > Senha - burguinho
 
 > **Cozinha**  
+> 
 > Login - biapenalva@burgerlicious.com
+> 
 > Senha - burguinho
+
 ---
 
 ## Índice
