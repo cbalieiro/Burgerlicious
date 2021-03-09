@@ -3,7 +3,8 @@ import ButtonSidebar from './buttonsidebar';
 import ListOrders from './listallorders';
 
 const Sidebar = ({ filterType, title }) => (
-  <>
+  <section className="open">
+    <div className="overlay-dark"></div>
     <div className={'sidebar'}>
       <div>
         <section>
@@ -25,7 +26,7 @@ const Sidebar = ({ filterType, title }) => (
         </div>
       </div>
     </div>
-  </>
+  </section>
 );
 
 export default Sidebar;
