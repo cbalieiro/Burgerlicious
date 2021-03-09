@@ -20,8 +20,14 @@ Login para teste:
 ## Índice
 
 <p align="center">
-[Desafio](#-desafio) • [Introdução](#-introdução) • [Processo de criação](#-processo-de-criação) • [Ferramentas](#-ferramentas) • [Créditos](#-créditos) • [Como executar o projeto](#-como-executar-o-projeto) • [Desenvolvedoras](#-desenvolvedoras)
-</p>  
+ <a href="#-desafio">Desafio</a> •
+ <a href="#-introdução">Introdução</a> •
+ <a href="#-processo-de-criação">Processo de criação</a> • 
+ <a href="#-ferramentas">Ferramentas</a> • 
+ <a href="#-créditos">Créditos</a> • 
+ <a href="#-como-executar-o-projeto">Como executar o projeto</a> • 
+ <a href="#-desenvolvedoras">Desenvolvedoras</a> • 
+</p>
 
 ---
 
@@ -50,8 +56,8 @@ A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingre
 A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca. 🎨
 
 <p align="center">
-![logo](./src/img/logo.svg)
-![color-palette](./src/img/color-palette.svg)
+  <img alt="logo" title="#logo" src="./src/img/logo.svg" />
+  <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
  </p>
 
 ⚙️ **Funcionalidades**
@@ -131,6 +137,7 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 &nbsp;
 ✔️ Inserimos micro-interações que avisam ao usuário quando uma ação é cancelada, concluída com sucesso ou mal sucedida.
+
 
 🚧 **Futuras implementações:**
 
