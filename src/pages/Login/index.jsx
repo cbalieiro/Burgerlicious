@@ -61,7 +61,7 @@ const Login = () => {
             </label>
             {statusCode && <ErrorAuth />}
             <button className="form-button" type="submit"> SIGN IN </button>
-            <p> Do not have an account? <span> <Link to="/Register">Register</Link> </span></p>
+            <p className="message-text"> Do not have an account? <span> <Link to="/Register">Register</Link> </span></p>
           </form>
         </div>
       </Container>

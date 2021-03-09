@@ -1,5 +1,15 @@
-:star2: Uma aplicação Web para gerenciar pedidos em um restaurante. Para acessar [clique aqui!](https://curta-curtas.web.app/) :hamburger: :star2: 
+🌟 Uma aplicação Web para gerenciar pedidos em um restaurante. Para acessar [clique aqui!](https://burgerlicious-git-main-cbalieiro.vercel.app/) 🌟 
 
+---
+> Login para teste
+
+> **Salão**  
+> Login - camilaoliveira@burgerlicious.com
+> Senha - burguinho
+
+> **Cozinha**  
+> Login - biapenalva@burgerlicious.com
+> Senha - burguinho
 ---
 
 ## Índice
@@ -7,73 +17,215 @@
 
 [2. Introdução](#2-introdução)
 
-[3. Processo](#3-processo)
+[3. Processo de criação](#3-processo-de-criação)
 
-[4. Produto](#4-produto)
+[4. Ferramentas](#4-ferramentas)
 
-[5. Ferramentas](#5-ferramentas)
+[5. Créditos](#5-créditos)
 
-[6. Créditos](#6-créditos)
+[6. Como executar o projeto](#6-como-executar-o-projeto)
 
-[7. Desenvolvedoras](#7-desenvolvedoras)
+[7. Desenvolvedoras](#6-desenvolvedoras)
 
 ---
 
 ## 1. Desafio
-:wave: Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria que trouxe como proposta desenvolver com um app para gerenciamento de pedidos em uma hamburgueria com uma interface para tablets e utilizando o React.JS.
+👋 Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria que trouxe como [proposta]((https://github.com/Laboratoria/SAP005-burger-queen)) desenvolver com um app para gerenciamento de pedidos em uma hamburgueria com uma interface para tablets, utilizando o React.JS e consumindo uma [API](https://lab-api-bq.herokuapp.com/api-docs/). 💪
+
+---
 
 ## 2. Introdução
-A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha. 
+🍔 A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.
 
 O restaurante oferece dois menus, o do café da manhã e o do resto do dia. A interface deve mostrar os dois menus detalhando todos os produtos. O atendimento pode anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos. 
 
-## 3. Processo
+---
 
-:date: **Planejamento**
+## 3. Processo de criação
 
-Como as histórias de usuário já estavam definidas pelo Product Owner, desenvolvemos o [planejamento](https://trello.com/b/7wlIHXY5/midterm-hackton) para a implementação do produto utilizando o modelo de Kanban. Para o desenvolvimento do código trabalhamos com o code review. :muscle:
+📆 **Organização e planejamento**
 
-:mag_right: **Testes de usabilidade**
+Como as histórias de usuário já estavam definidas pelo Product Owner, desenvolvemos o [planejamento](https://trello.com/b/7wlIHXY5/midterm-hackton) para a implementação do produto utilizando o modelo de Kanban. Para o desenvolvimento do código trabalhamos com o code review. 📋
 
-## 4. Produto
+💡 **Identidade visual**
 
-:bulb: **Identidade visual**
+A paleta de cores foi desenvolvida em tons pastéis base com base nas cores dos ingredientes clássicos de um hambúrguer, pão, carne, alface, tomate e queijo. A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca. 🎨
 
-A paleta de cores foi desenvolvida com base nas cores dos ingredientes clássicos de um hambúrguer, pão, carne, alface, tomate e queijo, em tons pastéis para 
+![logo](./src/img/logo.svg)
+![color-palette](./src/img/color-palette.svg)
 
-:bulb: **Funcionalidades**
-:iphone:
-:construction: **Futuras implementações:**
-:pushpin:
+⚙️ **Funcionalidades**
 
-## 5. Ferramentas
+##### 1: Cadastro e login
+- [x] Funcionários do salão e da cozinha podem se cadastrar na plataforma web fornecendo:
+  - [x] nome e sobrenome
+  - [x] e-mail
+  - [x] senha
+  - [x] função
+    - salão
+    - cozinha  
+- [x] Ao concluir o registro com êxito o usuário é redirecionado à página de login
+- [x] O login é realizado com e-mail e senha e o funcionário é redirecionado para a página referente à sua função.
+
+##### 2: Criar novos pedidos
+- [x] O atendente pode criar novas comandas informando:
+  - [x] produtos e quantidade
+  - [x] nome do cliente
+  - [x] número da mesa
+- [x] O usuário pode filtrar o menu por café da manhã e cardápio de hambúrguer
+- [x] No resumo do pedido o usuário ainda pode:
+    - [x] Aumentar ou diminuir a quantidade de um produto
+    - [x] Deletar um produto
+    - [x] Visualizar o valor total do pedido à medida que os produtos são selecionados ou deletados
+- [x] O usuário só consegue enviar a comanda para a cozinha com todos os campos obrigatórios preenchidos
+
+##### 3: Gerenciar pedidos
+- [x] Os funcionários da cozinha conseguem:
+  - [x] receber as comandas do salão
+  - [x] informar quando os pedidos começarem a ser preparados
+  - [x] enviar os pedidos finalizados para o salão 
+  - [x] visualizar o histórico de pedidos
+
+✍️ **Prototipagem**
+
+Os protótipos foram desenvolvidos priorizando o formato de tablet, conforme requerido no desafio. Além do desenvolvimento de wireframes, desenvolvemos um protótipo [interativo](https://www.figma.com/proto/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=27%3A3175&scaling=scale-down) da história 2, simulando a jornada dos funcionários do salão ao interagir com o app. Para ver os protótipos de baixa fidelidade e de alta fidelidade é só clicar [aqui](https://www.figma.com/file/VE1qAvPVorjSDtMrSbGmBr/BurguerIicious?node-id=28%3A1381).
+
+*Protótipo de baixa fidelidade* 
+![prototype-low-fidelity](./src/img/prototype-low-fidelity.svg)
+
+*Protótipo de alta fidelidade*
+![prototype-high-fidelity](./src/img/prototype-high-fidelity.svg)
+
+🔎 **Testes de usabilidade**
+
+Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a aplicação à medida que cada história de usuário era concluída. Os pontos levantados foram:
 
 &nbsp;
-:wrench: [React.JS](https://reactjs.org/)
+⚠️ O usário sentiu falta de uma declaração de campo obrigatório no preenchimento de formulário.
+&nbsp;
+✔️ Inserimos mensagens em todos os campos obrigatórios e informamos o formato da informação requerida.
 
 &nbsp;
-:wrench: JavaScript
+⚠️ O usário não entendeu o que o ícone de logout simbolizava.
+&nbsp;
+✔️ Trocamos o ícone e inserimos uma informação em texto.
 
 &nbsp;
-:wrench: React-Bootstrap
+⚠️ O usuário gostaria de alterar a quantidade de produtos no resumo do pedido para evitar ter que voltar na seção do menu onde o item está listado. 
+&nbsp;
+✔️ Incorporamos o botão de quantidade para cada produto no resumo do pedido. 
 
 &nbsp;
-:wrench: CSS3
+⚠️ O usuário gostaria de saber visualmente quais opções de hambúrguer foram selecionadas antes de adicionar ao pedido.
+&nbsp;
+✔️ Trocamos a cor dos itens ao serem selecionados. 
 
-## 6. Créditos
+&nbsp;
+⚠️ O usuário sentiu falta de uma mensagem confirmando que o pedido foi enviado com sucesso para a cozinha. 
+&nbsp;
+✔️ Inserimos micro-interações que avisam ao usuário quando uma ação é cancelada, concluída com sucesso ou mal sucedida.
 
-[Laboratoria](https://www.laboratoria.la/) :yellow_heart:
+🚧 **Futuras implementações:**
 
-Logo por [Icons8](https://icons8.com/vector-creator/) :hamburger:
+&nbsp;
+📌 Implementar comunicação em tempo real entre as aplicações, front e back-end, para notificar a cozinha de novas comandas e o salão de pedidos prontos para entrega. 
+
+&nbsp;
+📌 Validação do e-mail dos usuários.
+
+&nbsp;
+📌 Implementar uma interface de autoatendimento. 
+
+&nbsp;
+📌 Criar uma seção de comentários nas comandas.
+
+&nbsp;
+📌 Bloquear o acesso ao menu que não estivesse disponível no turno, evitando transtornos.
+
+&nbsp;
+📌 Testes unitários e de interface.
+
+---
+
+## 4. Tecnologias
+
+&nbsp;
+🛠 [React.JS](https://reactjs.org/)
+
+&nbsp;
+🛠 JavaScript
+
+&nbsp;
+🛠 React-Bootstrap
+
+&nbsp;
+🛠 CSS3
+
+---
+
+## 5. Créditos
+
+&nbsp;
+💛 [Laboratoria](https://www.laboratoria.la/)
+
+&nbsp;
+🍔 Logo desenvolvida com [Icons8](https://icons8.com/vector-creator/)
+
+&nbsp;
+✏️ Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?)
+
+---
+
+## 6. Como executar o projeto
+
+🧭 Antes de rodar a aplicação, você precisa ter instalado em sua máquina as ferramentas: 
+
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/)
+
+```bash
+
+# Clone este repositório na sua máquina usando o seguinte comando no terminal
+$ git clone https://github.com/cbalieiro/Burgerlicious.git
+
+# Acesse a pasta da aplicação e instale as dependências pelo terminal
+$ npm install
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run start
+
+# A aplicação será aberta na porta:3000 - acesse http://localhost:3000
+
+```
+
+💪 Para contribuir com o projeto:
+
+```bash
+
+# Faça um fork e clone desse repositório
+
+# Crie uma nova branch com suas alterações
+$ git checkout -b my-feature
+
+# Salve suas alterações
+$ git add .
+
+# Crie uma mensagem de commit dizendo o que você fez
+$ git commit -m "feature: My new feature"
+
+# Envie suas alterações para esse repositório
+$ git push origin my-feature
+
+```
+
+---
 
 ## 7. Desenvolvedoras
 
-Projeto desenvolvido com :heart: por:
+Projeto desenvolvido com ❤️ por:
 
 &nbsp;
-:princess: [Beatriz Penalva](https://github.com/beatrizpenalva)
+🦸 [Beatriz Penalva](https://github.com/beatrizpenalva)
 
 &nbsp;
-:princess: [Camila Oliveira](https://github.com/cbalieiro)
-
-
+🦸 [Camila Oliveira](https://github.com/cbalieiro)

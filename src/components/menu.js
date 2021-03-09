@@ -210,6 +210,8 @@ const Menu = () => {
                             type="number"
                             placeholder="Table number"
                             className="form-input"
+                            min="1"
+                            max="30"
                             value={order.table}
                             onChange={(event) => {
                                 setOrder({ ...order, table: event.target.value });
