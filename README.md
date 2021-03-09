@@ -20,24 +20,24 @@ Login para teste:
 ## Índice
 
 <p align="center">
-[Desafio](#desafio) • [Introdução](#introdução) • [Processo de criação](#processo-de-criação) • [Ferramentas](#ferramentas) • [Créditos](#créditos) • [Como executar o projeto](#como-executar-o-projeto) • [Desenvolvedoras](#desenvolvedoras)
+[Desafio](#-desafio) • [Introdução](#-introdução) • [Processo de criação](#-processo-de-criação) • [Ferramentas](#-ferramentas) • [Créditos](#-créditos) • [Como executar o projeto](#-como-executar-o-projeto) • [Desenvolvedoras](#-desenvolvedoras)
 </p>  
 
 ---
 
-## 1. Desafio
+## Desafio
 Olá! 👋 Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria. A [proposta]((https://github.com/Laboratoria/SAP005-burger-queen)) foi desenvolver uma aplicação  gerenciamento de pedidos em uma hamburgueria, priorizando uma interface para tablets, utilizando o React.JS e consumindo uma [API](https://lab-api-bq.herokuapp.com/api-docs/). 💪
 
 ---
 
-## 2. Introdução
+## Introdução
 🍔 A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.  
 
 💁 👨‍🍳 A interface deve mostrar os dois menus servidos no restaurante, café da manhã e resto do dia, detalhando todos os produtos. O atendimento deve anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos.
 
 ---
 
-## 3. Processo de criação
+## Processo de criação
 
 📆 **Organização e planejamento**
 
@@ -154,7 +154,7 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 ---
 
-## 4. Tecnologias
+## Tecnologias
 
 &nbsp;
 🛠 [React.JS](https://reactjs.org/)
@@ -170,7 +170,7 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 ---
 
-## 5. Créditos
+## Créditos
 
 &nbsp;
 💛 [Laboratoria](https://www.laboratoria.la/)
@@ -183,7 +183,7 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 ---
 
-## 6. Como executar o projeto
+## Como executar o projeto
 
 🧭 Antes de rodar a aplicação, você precisa ter instalado em sua máquina as ferramentas: 
 
@@ -227,7 +227,7 @@ $ git push origin my-feature
 
 ---
 
-## 7. Desenvolvedoras
+## Desenvolvedoras
 
 Projeto desenvolvido com ❤️ por:
 
