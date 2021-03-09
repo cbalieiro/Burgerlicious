@@ -18,31 +18,22 @@ Login para teste:
 ---
 
 ## Índice
-[1. Desafio](#1-desafio)
 
-[2. Introdução](#2-introdução)
-
-[3. Processo de criação](#3-processo-de-criação)
-
-[4. Ferramentas](#4-ferramentas)
-
-[5. Créditos](#5-créditos)
-
-[6. Como executar o projeto](#6-como-executar-o-projeto)
-
-[7. Desenvolvedoras](#6-desenvolvedoras)
+<p align="center">
+[Desafio](#desafio) • [Introdução](#introdução) • [Processo de criação](#processo-de-criação) • [Ferramentas](#ferramentas) • [Créditos](#créditos) • [Como executar o projeto](#como-executar-o-projeto) • [Desenvolvedoras](#desenvolvedoras)
+</p>  
 
 ---
 
 ## 1. Desafio
-👋 Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria que trouxe como [proposta]((https://github.com/Laboratoria/SAP005-burger-queen)) desenvolver com um app para gerenciamento de pedidos em uma hamburgueria com uma interface para tablets, utilizando o React.JS e consumindo uma [API](https://lab-api-bq.herokuapp.com/api-docs/). 💪
+Olá! 👋 Esse projeto foi desenvolvido em dupla durante o bootcamp da Laboratoria. A [proposta]((https://github.com/Laboratoria/SAP005-burger-queen)) foi desenvolver uma aplicação  gerenciamento de pedidos em uma hamburgueria, priorizando uma interface para tablets, utilizando o React.JS e consumindo uma [API](https://lab-api-bq.herokuapp.com/api-docs/). 💪
 
 ---
 
 ## 2. Introdução
-🍔 A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.
+🍔 A Burgerlicious é uma rede de fast food 24 horas. Devido ao seu sucesso e expansão, a rede precisa de um sistema para ajudar a gerenciar os pedidos dos clientes, facilitando o trabalho e comunicação entre o atendimento no salão e a cozinha.  
 
-O restaurante oferece dois menus, o do café da manhã e o do resto do dia. A interface deve mostrar os dois menus detalhando todos os produtos. O atendimento pode anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos. 
+💁 👨‍🍳 A interface deve mostrar os dois menus servidos no restaurante, café da manhã e resto do dia, detalhando todos os produtos. O atendimento deve anotar o pedido dos clientes, visualizar em tempo real o resumo do pedido com o custo total e enviar para a cozinha. Essa por sua vez pode avisar ao salão os pedidos que estão prontos para serem servidos.
 
 ---
 
@@ -50,14 +41,18 @@ O restaurante oferece dois menus, o do café da manhã e o do resto do dia. A in
 
 📆 **Organização e planejamento**
 
-Como as histórias de usuário já estavam definidas pelo Product Owner, desenvolvemos o [planejamento](https://trello.com/b/7wlIHXY5/midterm-hackton) para a implementação do produto utilizando o modelo de Kanban. Para o desenvolvimento do código trabalhamos com o code review. 📋
+Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de histórias de usuário do Product Owner, a partir disso o [planejamento](https://trello.com/b/iATzyG7R/burgerlicious-%F0%9F%8D%94) foi organizado seguindo o modelo de Kanban e dividindo uma história de usuário por sprint. No total foram implementadas quatro histórias em quatro sprints de uma semanda cada. A estratégia adotada para escrever o código foi o code review, sendo um dos itens da definição de pronto de cada história. 📋
 
 💡 **Identidade visual**
 
-A paleta de cores foi desenvolvida em tons pastéis base com base nas cores dos ingredientes clássicos de um hambúrguer, pão, carne, alface, tomate e queijo. A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca. 🎨
+A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingredientes clássicos de um hambúrguer, pão 🍞, carne 🥩, alface 🥬, tomate 🍅 e queijo 🧀. 
 
+A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca. 🎨
+
+<p align="center">
 ![logo](./src/img/logo.svg)
 ![color-palette](./src/img/color-palette.svg)
+ </p>
 
 ⚙️ **Funcionalidades**
 
