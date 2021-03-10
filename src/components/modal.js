@@ -13,7 +13,7 @@ const ModalMessage = (props) => {
       >
         <Modal.Body>
           <p className="modal-text">
-            Do you really want to cancel ther order?
+            Do you really want to cancel?
           </p>
           <button onClick={() => props.cancelOrder(true)}>YES</button>
           <button onClick={() => props.cancelOrder(false)}>NO</button>

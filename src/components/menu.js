@@ -300,12 +300,7 @@ const Menu = () => {
 
             <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />
 
-            <ModalMessage
-                // onHide={() => setModalShow(false)}
-                show={modalShow}
-                cancelOrder={cancelOrder}
-            />
-
+            <ModalMessage show={modalShow} cancelOrder={cancelOrder} />
         </>
     );
 };
