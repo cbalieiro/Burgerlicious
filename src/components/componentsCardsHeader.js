@@ -1,7 +1,7 @@
 import React from 'react';
 
 const CardsHeader = ({ children }) => {
-  const { client_name, table, createdAt, processedAt, status } = children;
+  const { client_name, table, createdAt, processedAt, status, id } = children;
   const dtcreatedAt = new Date(createdAt);
   const dtprocessedAt = new Date(processedAt);
   const orderTime = `${dtcreatedAt.toLocaleDateString()} - ${dtcreatedAt.getHours()}:${dtcreatedAt.getMinutes()}`;
@@ -18,6 +18,9 @@ const CardsHeader = ({ children }) => {
         </div>
 
         <div>
+         <p className="title-card">
+            Order Number: <span className="text-card">{id}</span>
+          </p>
           <p className="title-card">
             Client: <span className="text-card">{client_name}</span>
           </p>
