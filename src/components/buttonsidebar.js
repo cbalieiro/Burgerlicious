@@ -6,14 +6,14 @@ const ButtonSidebar = ({ children, ...props }) => {
 
   function handleClick(event) {
     event.preventDefault();
-    sidebar.setSidebarstatus((sidebarstatus) => !sidebarstatus);
     sidebar.setType(event.target.id);
     sidebar.setTitle(event.target.value);
+    sidebar.setSidebarstatus((sidebarstatus) => !sidebarstatus);
   }
 
   return (
     <>
-      <button onClick={(e) => handleClick(e)} {...props}>
+      <button {...props} onClick={(e) => handleClick(e)}>
         {' '}
         {children}{' '}
       </button>

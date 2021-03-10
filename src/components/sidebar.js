@@ -13,8 +13,8 @@ const Sidebar = ({ filterType, title }) => {
         <div>
           <section>
             <ButtonSidebar
-              id={'null'}
-              key={'button-close'}
+              id={null}
+              key={null}
               className="close-button"
             >
               <span className="material-icons">close</span>

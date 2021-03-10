@@ -11,7 +11,7 @@ export const SidebarStorage = ({ children }) => {
 
   return (
     <SidebarContext.Provider value={{ sidebarstatus, setSidebarstatus, setType, setTitle }}>
-      { sidebarstatus && <Sidebar filterType={type} title={title}/>}
+      { sidebarstatus && type !== null && <Sidebar filterType={type} title={title}/>}
       {children}
     </SidebarContext.Provider>
   );
