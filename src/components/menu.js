@@ -265,7 +265,7 @@ const Menu = () => {
                             className="cancel-button"
                             onClick={(event) => cancelOrder(event)}>
                             CANCEL </button>
-                        <button type="submit" className="send-button"> SEND </button>
+                        <button type="submit" className="form-order"> SEND </button>
                     </section>
                 </section>
             </form>
