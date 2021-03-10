@@ -23,9 +23,9 @@ Login para teste:
  <a href="#-desafio">Desafio</a> •
  <a href="#-introdução">Introdução</a> •
  <a href="#-processo-de-criação">Processo de criação</a> • 
- <a href="#-ferramentas">Ferramentas</a> • 
- <a href="#-créditos">Créditos</a> • 
  <a href="#-como-executar-o-projeto">Como executar o projeto</a> • 
+ <a href="#-tecnologias">Tecnologias</a> • 
+ <a href="#-créditos">Créditos</a> • 
  <a href="#-desenvolvedoras">Desenvolvedoras</a> • 
 </p>
 
@@ -170,35 +170,6 @@ Realizamos teste de usabilidade com o protótipo de baixa fidelidade e com a apl
 
 ---
 
-## Tecnologias
-
-&nbsp;
-🛠 [React.JS](https://reactjs.org/)
-
-&nbsp;
-🛠 JavaScript
-
-&nbsp;
-🛠 React-Bootstrap
-
-&nbsp;
-🛠 CSS3
-
----
-
-## Créditos
-
-&nbsp;
-💛 [Laboratoria](https://www.laboratoria.la/)
-
-&nbsp;
-🍔 Logo desenvolvida com [Icons8](https://icons8.com/vector-creator/)
-
-&nbsp;
-✏️ Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?)
-
----
-
 ## Como executar o projeto
 
 🧭 Antes de rodar a aplicação, você precisa ter instalado em sua máquina as ferramentas: 
@@ -240,6 +211,35 @@ $ git commit -m "feature: My new feature"
 $ git push origin my-feature
 
 ```
+
+---
+
+## Tecnologias
+
+&nbsp;
+🛠 [React.JS](https://reactjs.org/)
+
+&nbsp;
+🛠 JavaScript
+
+&nbsp;
+🛠 React-Bootstrap
+
+&nbsp;
+🛠 CSS3
+
+---
+
+## Créditos
+
+&nbsp;
+💛 [Laboratoria](https://www.laboratoria.la/)
+
+&nbsp;
+🍔 Logo desenvolvida com [Icons8](https://icons8.com/vector-creator/)
+
+&nbsp;
+✏️ Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?)
 
 ---
 
