@@ -3,7 +3,7 @@ import useFetch from "../services/Hooks/useFetch";
 import requestOptions from "../components/object/requestOptions"
 // import Loading from "../components/errors/loading"
 
-const MenuItems = ({ option, addItem }) => {
+const MenuItems = ({ option, addItem, handleError }) => {
     const translatePTtoEN = {
         "Misto quente": "Cheese Sandwich",
         "Café americano": "Americano Coffee",
@@ -86,13 +86,18 @@ const MenuItems = ({ option, addItem }) => {
     }
 
     const getBurgerId = (burger) => {
-        const chosenBurger = burger;
-        const burgerById = burgerList.find((item) => {
+        if (burger.name === "") {
+            handleError('001')
+        }
+        else {
+            const chosenBurger = burger;
+            const burgerById = burgerList.find((item) => {
             if (!chosenBurger.complement) return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === null
             return item.name === chosenBurger.name && item.flavor === chosenBurger.flavor && item.complement === chosenBurger.complement
         })
 
         addItem({ ...chosenBurger, ...burgerById })
+        }
     }
 
     const createItemObject = (code, count) => {
@@ -167,29 +172,29 @@ const MenuItems = ({ option, addItem }) => {
                         <section className="burger-items">
                             <label>
                                 Smash burger $10
-                        <input type="radio" name="size" value={"Smash burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                                <input type="radio" name="size" value={"Smash burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Double burger $10
-                        <input type="radio" name="size" value={"Double burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                                 <input type="radio" name="size" value={"Double burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                             </label>
                         </section>
 
                         <section className="burger-items">
                             <label>
                                 Meat
-                    <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                                <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Chicken
-                    <input type="radio" name="burger" value={"Chicken"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                             <input type="radio" name="burger" value={"Chicken"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Veggie
-                    <input type="radio" name="burger" value={"Veggie"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                                <input type="radio" name="burger" value={"Veggie"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
                         </section>
 

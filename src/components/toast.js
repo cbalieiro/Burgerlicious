@@ -7,7 +7,9 @@ import Col from 'react-bootstrap/Col'
 const ToastGroup = (props) => {
     
     const verifyErrorCode = {
-        '02': 'Order canceled!',
+        '001': 'You have to chose a burger option. Please, try again.',
+        '002': 'Order canceled!',
+        '003': 'There is nothing to order. Please, chose the products.',
         '200': 'Order sent to the kitchen succesfully!',
         '400': 'Missing required data or no changes applied. Please, try again.',
         '401': 'User not authenticated. Please, sign in and try again.',

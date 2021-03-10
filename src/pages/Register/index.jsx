@@ -30,6 +30,11 @@ const Register = () => {
  
   const createUser = (props) => {
     const { email, password, role, completeName, users } = props;
+    if (role === "") {
+      setStatusCode('');
+      setStatusCode('000');
+    }  
+    else {
     const body = `email=${email}&password=${password}&role=${role}&restaurant=Burgerlicious&name=${completeName}`;
     const method = RequestOptions.post(body);
 
@@ -40,7 +45,7 @@ const Register = () => {
         
         if (json.code) {
           setStatusCode('');
-          setStatusCode(json.code);
+          setStatusCode(String(json.code));
         }
 
         if (json.role === "hall") {
@@ -51,6 +56,7 @@ const Register = () => {
           history.push("/Kitchen")
         }
       })
+    }
   }
 
   return (
@@ -85,14 +91,14 @@ const Register = () => {
 
           <label>
             Team:
-          <select className="select-style" onChange={(event) => { setUser({ ...user, role: event.target.value }) }} defaultValue='Team work'>
+          <select className="select-style" onChange={(event) => { setUser({ ...user, role: event.target.value }) }} defaultValue='Team work' required >
               <option disabled>Team work</option>
               <option value='Hall'>Hall</option>
               <option value='Kitchen'>Kitchen</option>
             </select>
           </label>
 
-          {statusCode && <ErrorAuth />}
+          {statusCode && <ErrorAuth code={statusCode} />}
 
           <button className="form-button" type="submit"> SIGN UP </button>
         </form>

@@ -25,13 +25,14 @@ const Login = () => {
         localStorage.setItem(`currentUser`, JSON.stringify(json))
         localStorage.setItem(`token`, `${json.token}`)
         if (json.code) {
-          setStatusCode(json.code);
+          setStatusCode('');
+          setStatusCode(String(json.code));
         }
 
         if (json.role === "hall") {
           history.push("/Hall")
         }
-        
+
         if (json.role === "kitchen") {
           history.push("/Kitchen")
         }
@@ -59,7 +60,7 @@ const Login = () => {
                 placeholder="Password" required
               />
             </label>
-            {statusCode && <ErrorAuth />}
+            {statusCode && <ErrorAuth code={statusCode} />}
             <button className="form-button" type="submit"> SIGN IN </button>
             <p className="message-text"> Do not have an account? <span> <Link to="/Register">Register</Link> </span></p>
           </form>
