@@ -227,6 +227,7 @@ header {
 }
 
 .orders-button span {
+  pointer-events: none;
   color: #ffe1ac;
   padding-right: 5px;
 }
