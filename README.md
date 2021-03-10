@@ -58,7 +58,7 @@ Esse trabalho foi desenvolvido sob demanda e já recebemos as definições de hi
 A paleta de cores foi desenvolvida em tons pastéis com base nas cores dos ingredientes clássicos de um hambúrguer, pão 🍞, carne 🥩, alface 🥬, tomate 🍅 e queijo 🧀. A logo escolhida compõe com a estética divertida que os tons pastéis trazem para a marca. 🎨
 
 <p align="center">
-  <img alt="logo" title="#logo" src="./src/img/logo.svg" width="140px" />
+  <img alt="logo" title="#logo" src="./src/img/logo.svg" width="280px" />
   <img alt="color-palette" title="#color-palette" src="./src/img/color-palette.svg" />
  </p>
  
