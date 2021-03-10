@@ -5,6 +5,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
 import MenuItems from '../components/menudetails';
 import ToastGroup from '../components/toast';
+import ModalMessage from '../components/modal';
 
 
 const Menu = () => {
@@ -23,6 +24,7 @@ const Menu = () => {
     const [order, setOrder] = useState(newOrder);
     const [show, setShow] = useState(false);
     const [errCode, setCode] = useState('');
+    const [modalShow, setModalShow] = useState(false);
 
     useEffect(() => {
         setTotal(() => {
@@ -68,8 +70,13 @@ const Menu = () => {
 
     const handleMinusClick = (index) => {
         const productsList = [...products];
-        productsList[index].quantity--;
-        setProducts(productsList);
+        if (productsList[index] > 0) {
+            productsList[index].quantity--;
+            setProducts(productsList);
+        }
+        else {
+            deleteProduct(index)
+        }
     };
 
     const handleSendOrder = (event) => {
@@ -81,45 +88,66 @@ const Menu = () => {
     };
 
     const createOrder = ({ client, table, products }) => {
-        const listItemsOrder = products.map((item) => ({
-            "id": item.id,
-            "qtd": item.quantity,
-        }));
+        console.log(products)
+        if (products.length === 0) {
+            handleError('003');
+        }
+        else {
+            const listItemsOrder = products.map((item) => ({
+                "id": item.id,
+                "qtd": item.quantity,
+            }));
 
-        const body = JSON.stringify({
-            "client": client,
-            "table": table,
-            "products": listItemsOrder,
-        });
+            const body = JSON.stringify({
+                "client": client,
+                "table": table,
+                "products": listItemsOrder,
+            });
 
-        CallAPI('https://lab-api-bq.herokuapp.com/orders', {
-            method: 'POST',
-            headers: {
-                "Content-Type": 'application/json',
-                "accept": 'application/json',
-                "Authorization": token,
-            },
-            body,
-        }).then((json) => {
-            if (!json.code) {
-                setCode('200');
-                setShow(true);
-                setOrder({});
-            } 
-            else {
-                setCode(String(json.code));
+            CallAPI('https://lab-api-bq.herokuapp.com/orders', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": 'application/json',
+                    "accept": 'application/json',
+                    "Authorization": token,
+                },
+                body,
+            }).then((json) => {
+                if (!json.code) {
+                    setCode('200');
+                    setShow(true);
+                    setOrder(newOrder);
+                    setProducts([]);
+                }
+                else {
+                    setCode(String(json.code));
+                    setShow(true);
+                }
+            });
+        }
+    };
+
+    const handleCancel = (event) => {
+        event.preventDefault();
+        setModalShow(true);
+    }
+    
+    const cancelOrder = (answer) => {
+        setModalShow(false);
+        if (answer === true) {
+            setOrder(newOrder);
+            setProducts([]);
+            if (products.length !== 0) {
+                setCode('002');
                 setShow(true);
             }
-        });
+        }
     };
 
-    const cancelOrder = (event) => {
-        event.preventDefault();
-        setCode('02');
+    const handleError = (message) => {
+        setCode(message);
         setShow(true);
-        setOrder(newOrder);
-        setProducts([]);
-    };
+    }
 
     return (
         <>
@@ -184,7 +212,7 @@ const Menu = () => {
                 </section>
 
                 <section className="section-details">
-                    <MenuItems option={menuSection} addItem={addItem} />
+                    <MenuItems option={menuSection} addItem={addItem} handleError={handleError} />
                 </section>
             </section>
 
@@ -263,7 +291,7 @@ const Menu = () => {
                         <button
                             type="button"
                             className="cancel-button"
-                            onClick={(event) => cancelOrder(event)}>
+                            onClick={(event) => handleCancel(event)}>
                             CANCEL </button>
                         <button type="submit" className="send-button"> SEND </button>
                     </section>
@@ -271,6 +299,12 @@ const Menu = () => {
             </form>
 
             <ToastGroup code={errCode} onClose={() => setShow(false)} show={show} />
+
+            <ModalMessage
+                // onHide={() => setModalShow(false)}
+                show={modalShow}
+                cancelOrder={cancelOrder}
+            />
 
         </>
     );

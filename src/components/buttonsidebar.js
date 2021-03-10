@@ -8,6 +8,7 @@ const ButtonSidebar = ({ children, ...props }) => {
     event.preventDefault();
     sidebar.setSidebarstatus((sidebarstatus) => !sidebarstatus);
     sidebar.setType(event.target.id);
+    console.log(event.target.id)
     sidebar.setTitle(event.target.value);
   }
 
