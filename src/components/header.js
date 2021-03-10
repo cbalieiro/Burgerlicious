@@ -6,6 +6,12 @@ import Button from './buttonorderstatus';
 import { SidebarStorage } from './sidebarContext';
 
 const Header = ({ role, name }) => {
+  const nameFunction = () => {
+    if (role === "hall") {
+      return 'Attendant'
+    } else { return "Chef"}
+  }
+
   const history = useHistory();
 
   function reloadPage(){ 
@@ -17,7 +23,7 @@ const Header = ({ role, name }) => {
       <header>
         <section>
           <div className="user-info">
-            <span className="team-work">{role.toUpperCase()}:</span>{' '}
+            <span className="team-work">{nameFunction()}:</span>{' '}
             {name.toUpperCase()}
           </div>
           <button
