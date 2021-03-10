@@ -79,18 +79,21 @@ function ListOrders({ filterType }) {
       );
       setPending(orderPending);
     }
+
     if (role === 'hall' && type === 'processing') {
       const orderDone = dataTranslated.filter(
         ({ status }) => status !== 'finished',
       );
       setDone(orderDone);
     }
+
     if (type === 'finished') {
       const orderDone = dataTranslated.filter(
         ({ status }) => status === 'finished',
       );
       setFinish(orderDone);
     }
+    
   }, [data, dataTranslated, role, type]);
 
   React.useEffect(() => {
