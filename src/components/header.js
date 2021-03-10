@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import logo from '../img/logo.gif';
+import logo from '../img/logo.png';
 import ButtonSidebar from './buttonsidebar';
 import Button from './buttonorderstatus';
 import { SidebarStorage } from './sidebarContext';
@@ -28,11 +28,11 @@ const Header = ({ role, name }) => {
             }}
           >
             <span className="material-icons">logout</span>
-            LOGOUT
+            <span className="button-text">LOGOUT</span>
           </button>
         </section>
 
-        <img src={logo} alt="logo" height="165px" width="164px" />
+        <img className="logo" src={logo} alt="logo" height="116px" width="141,6px" />
 
         <section className="buttons">
           {role === 'kitchen' && (
@@ -46,7 +46,7 @@ const Header = ({ role, name }) => {
               }}
             >
               <span className="material-icons">notifications</span>
-              UPDATE ORDERS
+              <span className="button-text">UPDATE ORDERS</span>
             </Button>
           )}
 
@@ -59,7 +59,7 @@ const Header = ({ role, name }) => {
                 className="orders-button"
               >
                 <span className="material-icons">notifications</span>
-                ORDERS IN PROGRESS
+                <span className="button-text">ORDERS IN PROGRESS</span>
               </ButtonSidebar>
             </SidebarStorage>
           )}
@@ -72,7 +72,7 @@ const Header = ({ role, name }) => {
               className="orders-button"
             >
               <span className="material-icons">history</span>
-              FINISHED ORDERS
+              <span className="button-text">FINISHED ORDERS</span>
             </ButtonSidebar>
           </SidebarStorage>
         </section>
