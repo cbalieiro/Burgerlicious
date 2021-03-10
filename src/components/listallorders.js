@@ -108,8 +108,6 @@ function ListOrders({ filterType }) {
   }, [dataTranslated, done, finish, pending]);
 
   const handleStatus = (index, id, status) => {
-    console.log(index)
-    console.log(orderlist)
     const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `;
 
     if (status === 'pending') {
