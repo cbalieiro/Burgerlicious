@@ -27,7 +27,7 @@ function ListOrders({ filterType }) {
 }
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
-  const { token, role, id } = nameLS;
+  const { token, role} = nameLS;
   const type = filterType;
 
   const { data, request } = useFetch();
@@ -68,7 +68,6 @@ function ListOrders({ filterType }) {
     });
 
     setDataTranslated(ordersTranslated);
-    console.log(ordersTranslated);
   }, [data]);
 
   React.useEffect(() => {
@@ -95,8 +94,6 @@ function ListOrders({ filterType }) {
   }, [data, dataTranslated, role, type]);
 
   React.useEffect(() => {
-    console.log(dataTranslated);
-
     if (!dataTranslated) return;
 
     if (pending) {
@@ -111,6 +108,8 @@ function ListOrders({ filterType }) {
   }, [dataTranslated, done, finish, pending]);
 
   const handleStatus = (index, id, status) => {
+    console.log(index)
+    console.log(orderlist)
     const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `;
 
     if (status === 'pending') {
@@ -163,7 +162,7 @@ function ListOrders({ filterType }) {
             .map((item, index) => {
               return (
                 <div key={item.id} className="card-template">
-                  <CardsKitchen>{item}</CardsKitchen>
+                  <CardsKitchen key={item.name}>{item}</CardsKitchen>
 
                   {pending &&
                     item.status === 'pending' &&
@@ -184,7 +183,9 @@ function ListOrders({ filterType }) {
                     item.status !== 'finished' && (
                       <Button
                         key={Math.random()}
-                        onClick={(e) => handleStatus(e, item.id, item.status)}
+                        onClick={() =>
+                          handleStatus(index, item.id, item.status)
+                        }
                         className={item.status === 'doing' && 'btn-done'}
                       >
                         {item.status === 'doing' && 'DONE'}
@@ -193,8 +194,10 @@ function ListOrders({ filterType }) {
 
                   {done && item.status === 'done' && (
                     <Button
-                      key={item.id}
-                      onClick={(e) => handleStatus(e, item.id, item.status)}
+                      key={Math.random()}
+                      onClick={() =>
+                        handleStatus(index, item.id, item.status)
+                      }
                       className={item.status === 'done' && 'btn-done'}
                     >
                       {'DELIVERY'}
@@ -202,7 +205,7 @@ function ListOrders({ filterType }) {
                   )}
                   {done && item.status === 'pending' && role === 'hall' && (
                     <Button
-                      key={item.id}
+                      key={Math.random()}
                       onClick={() => handleDelete(index, item.id, item.status)}
                       className={item.status === 'pending' && 'btn-done'}
                     >
