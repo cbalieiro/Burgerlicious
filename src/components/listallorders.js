@@ -9,24 +9,24 @@ import ModalMessage from '../components/modal';
 
 function ListOrders({ filterType }) {
   const translatePTtoEN = {
-    "Misto quente": "Cheese Sandwich",
-    "Café americano": "Americano Coffee",
-    "Café com leite": "Espresso Coffee",
-    "Suco de fruta natural": "Orange juice",
-    "Batata frita": "Fries",
-    "Anéis de cebola": "Onion rings",
-    "Água 500mL": "Water 500mL",
-    "Água 750mL": "Water 750mL",
-    "Refrigerante 500mL": "Soda 500mL",
-    "Refrigerante 750mL": "Soda 750mL",
-    "Hambúrguer simples": "Smash burger",
-    "Hambúrguer duplo": "Double burger",
-    "carne": "Meat",
-    "frango": "Chicken",
-    "vegetariano": "Veggie",
-    "queijo": "Cheese",
-    "ovo": "Egg"
-}
+    'Misto quente': 'Cheese Sandwich',
+    'Café americano': 'Americano Coffee',
+    'Café com leite': 'Espresso Coffee',
+    'Suco de fruta natural': 'Orange juice',
+    'Batata frita': 'Fries',
+    'Anéis de cebola': 'Onion rings',
+    'Água 500mL': 'Water 500mL',
+    'Água 750mL': 'Water 750mL',
+    'Refrigerante 500mL': 'Soda 500mL',
+    'Refrigerante 750mL': 'Soda 750mL',
+    'Hambúrguer simples': 'Smash burger',
+    'Hambúrguer duplo': 'Double burger',
+    carne: 'Meat',
+    frango: 'Chicken',
+    vegetariano: 'Veggie',
+    queijo: 'Cheese',
+    ovo: 'Egg',
+  };
 
   const nameLS = JSON.parse(localStorage.getItem('currentUser'));
   const { token, role } = nameLS;
@@ -45,8 +45,6 @@ function ListOrders({ filterType }) {
   const [deleteID, setDeleteID] = React.useState(null);
   const [deleteIndex, setDeleteIndex] = React.useState(null);
   const [deleteStatus, setDeleteStatus] = React.useState(null);
-  
-
 
   React.useEffect(() => {
     async function fetchOrders() {
@@ -123,11 +121,22 @@ function ListOrders({ filterType }) {
   const cancelOrder = (answer) => {
     setModalShow(false);
     if (answer === true) {
-
-
-
+      if (deleteStatus === 'pending') {
+        const method = RequestOptions.getAndDelete('DELETE', token);
+        const URL = `https://lab-api-bq.herokuapp.com/orders/${deleteID}  `;
+        CallAPI(URL, method).then((json) => {
+          if (!json.code) {
+            const newOrders = [...orderlist];
+            newOrders.splice(deleteIndex, 1);
+            setOrderlist(newOrders);
+          } else {
+            setCode(String(json.code));
+            setShow(true);
+          }
+        });
+      }
     }
-};
+  };
 
   const handleStatus = (index, id, status) => {
     const URL = `https://lab-api-bq.herokuapp.com/orders/${id}  `;
@@ -137,24 +146,20 @@ function ListOrders({ filterType }) {
       const method = RequestOptions.put(token, body);
       CallAPI(URL, method).then((json) => {
         if (!json.code) {
-          setCode('200');
+          const newOrders = [...orderlist];
+          newOrders.splice(index, 1, json);
+          setOrderlist(newOrders);
+        } else {
+          setCode(String(json.code));
           setShow(true);
-        const newOrders = [...orderlist];
-        newOrders.splice(index, 1, json);
-        setOrderlist(newOrders);
-      } else {
-        setCode(String(json.code));
-        setShow(true);
-      }
-    });
-  }
+        }
+      });
+    }
     if (status === 'doing') {
       const body = 'done';
       const method = RequestOptions.put(token, body);
       CallAPI(URL, method).then((json) => {
         if (!json.code) {
-          setCode('200');
-          setShow(true);
           const newOrders = [...orderlist];
           newOrders.splice(index, 1);
           setOrderlist(newOrders);
@@ -164,14 +169,12 @@ function ListOrders({ filterType }) {
         }
       });
     }
-    
+
     if (status === 'done') {
       const body = 'finished';
       const method = RequestOptions.put(token, body);
       CallAPI(URL, method).then((json) => {
         if (!json.code) {
-          setCode('200');
-          setShow(true);
           const newOrders = [...orderlist];
           newOrders.splice(index, 1);
           setOrderlist(newOrders);
@@ -185,9 +188,9 @@ function ListOrders({ filterType }) {
 
   const handleDelete = (index, id, status) => {
     setModalShow(true);
-    setDeleteID(id)
-    setDeleteIndex(index)
-    setDeleteStatus(status)
+    setDeleteID(id);
+    setDeleteIndex(index);
+    setDeleteStatus(status);
   };
 
   function result() {
