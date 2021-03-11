@@ -1,11 +1,21 @@
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-shadow */
+/* eslint-disable no-plusplus */
+/* eslint-disable import/order */
+/* eslint-disable prettier/prettier */
+
 import React, { useEffect, useState } from 'react';
 import CallAPI from '../services/api';
 import 'bootstrap/dist/css/bootstrap.css';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-import MenuItems from '../components/menudetails';
-import ToastGroup from '../components/toast';
-import ModalMessage from '../components/modal';
+import MenuItems from "./Menudetails";
+import ToastGroup from "./Toast";
+import ModalMessage from "./Modal";
 
 
 const Menu = () => {
@@ -70,7 +80,7 @@ const Menu = () => {
 
     const handleMinusClick = (index) => {
         const productsList = [...products];
-        if (productsList[index] > 0) {
+        if (productsList[index].quantity > 0) {
             productsList[index].quantity--;
             setProducts(productsList);
         }

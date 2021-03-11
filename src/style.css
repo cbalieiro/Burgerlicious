@@ -573,7 +573,7 @@ h4.title-card {
   border-top: 1px solid #ffbb5a;
 }
 
-.btn-done {
+.btn-done , .btn-delete {
   width: 320px;
   height: 43px;
   left: 44px;
@@ -587,7 +587,7 @@ h4.title-card {
   letter-spacing: 3px;
 }
 
-.btn-doing {
+.btn-doing , .btn-finish {
   width: 320px;
   height: 43px;
   left: 44px;
