@@ -110,7 +110,7 @@ label {
   background-color: transparent;
   outline: none;
   margin: 12px 0px 20px;
-  padding: 5px 8px 5px;
+  padding: 5px 8px 5px; 
   color: #584944;
 }
 
@@ -172,8 +172,8 @@ footer a {
   border-bottom: 2px solid #ffbb5a;
   outline: transparent;
   line-height: 13px;
-  padding: 10px 0px;
-  color: gray;
+  padding: 10px 8px 10px;
+  color: #9b8d89;
   margin: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -348,7 +348,7 @@ header {
   font-size: 14px;
 }
 
-.burger-items label:active {
+.burger-items label.active {
   font-weight: 700;
   color: #fca730;
 }
@@ -362,9 +362,58 @@ header {
   padding-right: 5px;
 }
 
+/* radio-button */
+
 input[type='radio'] {
   display: none;
 }
+
+/* modal */
+
+.modal-text {
+  width: 100%;
+  text-align: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #584944;
+}
+
+.modal-bottom {
+  display: flex;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.modal-button {
+  width: 90px;
+  height: 30px;
+  margin: 0 20px;
+  padding: 0 15px;
+  border-radius: 5px;
+  border-color: transparent;
+  background: #f0504a;
+  outline: none;
+  font-weight: 500;
+  align-items: center;
+  text-align: center;
+  color: #fff8d8;
+}
+
+.yes-button {
+  border: solid 3px #f0504a;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #f0504a;
+}
+
+/* */
 
 input,
 textarea {
@@ -905,5 +954,31 @@ h4.title-card {
 
   .burger-details {
     padding-right: 30px;
+  }
+
+  .toast-body, .toast-header {
+    min-width: 300px;
+    flex-wrap: wrap;
+  }
+
+  header {
+    align-items: center;
+    padding: 20px;
+  }
+
+  .logo {
+    display: none;
+  }
+
+  .buttons {
+    flex-direction: row;
+  }
+
+  .orders-button {
+    margin: 0 10px;
+  }
+
+  .user-info {
+    display: none;
   }
 }

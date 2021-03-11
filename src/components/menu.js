@@ -88,7 +88,6 @@ const Menu = () => {
     };
 
     const createOrder = ({ client, table, products }) => {
-        console.log(products)
         if (products.length === 0) {
             handleError('003');
         }
