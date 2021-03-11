@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-use-before-define */
@@ -110,7 +111,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
     }
 
     const createItemObject = (code, count) => {
-        const updatedItem = dataTranslated.find(i => i.id === code)
+        const updatedItem = dataTranslated.find(i => i.id == code)
         const newProduct = { quantity: count, ...updatedItem }
         addItem(newProduct);
     }
