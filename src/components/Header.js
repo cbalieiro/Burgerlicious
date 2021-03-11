@@ -25,7 +25,7 @@ const Header = ({ role, name }) => {
       <header>
         <section>
           <div className='user-info'>
-            <span className='team-work'>{nameFunction()}:</span>{' '}
+            <span className='team-work'>{nameFunction().toUpperCase()}:</span>{' '}
             {name.toUpperCase()}
           </div>
           <Button

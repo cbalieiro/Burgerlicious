@@ -13,13 +13,23 @@ const ModalMessage = (props) => (
       centered
     >
       <Modal.Body>
-        <p className='modal-text'>Do you really want to cancel?</p>
-        <button type='button' onClick={() => props.cancelOrder(true)}>
-          YES
-        </button>
-        <button type='button' onClick={() => props.cancelOrder(false)}>
-          NO
-        </button>
+        <p className='modal-text'>Do you really want to delete?</p>
+        <section className='modal-bottom'>
+          <button
+            type='button'
+            className='modal-button yes-button'
+            onClick={() => props.cancelOrder(true)}
+          >
+            YES
+          </button>
+          <button
+            type='button'
+            className='modal-button'
+            onClick={() => props.cancelOrder(false)}
+          >
+            NO
+          </button>
+        </section>
       </Modal.Body>
     </Modal>
   </div>
