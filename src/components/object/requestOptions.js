@@ -1,41 +1,40 @@
 const RequestOptions = {
   post(props) {
     const request = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
+        accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: props,
-    };
-    return request;
+    }
+    return request
   },
 
-  getAndDelete(method , token) {
-      const request = {
-      method: method,
-      headers: {
-        accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        'Authorization': `${token}`,
-      },
-    };
-    return request;
-  },
-
-  put(token , body) {
+  getAndDelete(method, token) {
     const request = {
-      method: "PUT",
+      method,
       headers: {
-        accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        'Authorization': `${token}`,
+        accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `${token}`,
       },
-      body: `status=${body}`      
-    };
-    return request;
+    }
+    return request
   },
 
-};
+  put(token, body) {
+    const request = {
+      method: 'PUT',
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: `${token}`,
+      },
+      body: `status=${body}`,
+    }
+    return request
+  },
+}
 
-export default RequestOptions;
+export default RequestOptions

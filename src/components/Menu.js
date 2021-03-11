@@ -1,11 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import CallAPI from '../services/api';
-import 'bootstrap/dist/css/bootstrap.css';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
-import MenuItems from '../components/menudetails';
-import ToastGroup from '../components/toast';
-import ModalMessage from '../components/modal';
+/* eslint-disable consistent-return */
+/* eslint-disable array-callback-return */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-shadow */
+/* eslint-disable no-plusplus */
+/* eslint-disable import/order */
+/* eslint-disable prettier/prettier */
+import React, { useEffect, useState } from 'react'
+import CallAPI from '../services/api'
+import 'bootstrap/dist/css/bootstrap.css'
+import Accordion from 'react-bootstrap/Accordion'
+import Card from 'react-bootstrap/Card'
+import MenuItems from './Menudetails'
+import ToastGroup from './Toast'
+import ModalMessage from './Modal'
 
 
 const Menu = () => {
@@ -93,22 +102,22 @@ const Menu = () => {
         }
         else {
             const listItemsOrder = products.map((item) => ({
-                "id": item.id,
-                "qtd": item.quantity,
+                'id': item.id,
+                'qtd': item.quantity,
             }));
 
             const body = JSON.stringify({
-                "client": client,
-                "table": table,
-                "products": listItemsOrder,
+                'client': client,
+                'table': table,
+                'products': listItemsOrder,
             });
 
             CallAPI('https://lab-api-bq.herokuapp.com/orders', {
                 method: 'POST',
                 headers: {
-                    "Content-Type": 'application/json',
-                    "accept": 'application/json',
-                    "Authorization": token,
+                    'Content-Type': 'application/json',
+                    'accept': 'application/json',
+                    'Authorization': token,
                 },
                 body,
             }).then((json) => {
@@ -150,58 +159,58 @@ const Menu = () => {
 
     return (
         <>
-            <section className="menu-info">
-                <section className="items-accordion">
-                    <Accordion defaultActiveKey="0">
+            <section className='menu-info'>
+                <section className='items-accordion'>
+                    <Accordion defaultActiveKey='0'>
                         <Card>
-                            <Accordion.Toggle as={Card.Header} eventKey="0">
+                            <Accordion.Toggle as={Card.Header} eventKey='0'>
                                 BREAKFAST
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="0">
-                                <Card.Body className="card-accordion">
-                                    <section className="item-menu">
+                            <Accordion.Collapse eventKey='0'>
+                                <Card.Body className='card-accordion'>
+                                    <section className='item-menu'>
                                         <button
-                                            className="menu-button"
+                                            className='menu-button'
                                             onClick={() => setMenuSection('Snacks')}
                                         >
-                                            Snacks <span className="material-icons"> keyboard_arrow_right </span>
+                                            Snacks <span className='material-icons'> keyboard_arrow_right </span>
                                         </button>
                                         <button
-                                            className="menu-button last-menu-item"
+                                            className='menu-button last-menu-item'
                                             onClick={() => setMenuSection('DrinksCoffee')}
                                         >
-                                            Drinks <span className="material-icons"> keyboard_arrow_right</span>
+                                            Drinks <span className='material-icons'> keyboard_arrow_right</span>
                                         </button>
                                     </section>
                                 </Card.Body>
                             </Accordion.Collapse>
                         </Card>
                         <Card>
-                            <Accordion.Toggle as={Card.Header} eventKey="1">
+                            <Accordion.Toggle as={Card.Header} eventKey='1'>
                                 BURGER
                             </Accordion.Toggle>
-                            <Accordion.Collapse eventKey="1">
+                            <Accordion.Collapse eventKey='1'>
                                 <Card.Body>
-                                    <section className="item-menu">
+                                    <section className='item-menu'>
                                         <button
-                                            className="menu-button"
+                                            className='menu-button'
                                             onClick={() => setMenuSection('Burgers')}
                                         >
                                             Burgers
-                                            <span className="material-icons"> keyboard_arrow_right </span>
+                                            <span className='material-icons'> keyboard_arrow_right </span>
                                         </button>
                                         <button
-                                            className="menu-button"
+                                            className='menu-button'
                                             onClick={() => setMenuSection('Sides')}
                                         >
-                                            Sides <span className="material-icons"> keyboard_arrow_right </span>
+                                            Sides <span className='material-icons'> keyboard_arrow_right </span>
                                         </button>
                                         <button
-                                            className="menu-button last-menu-item"
+                                            className='menu-button last-menu-item'
                                             onClick={() => setMenuSection('Drinks')}
                                         >
                                             Drinks
-                                            <span className="material-icons"> keyboard_arrow_right </span>
+                                            <span className='material-icons'> keyboard_arrow_right </span>
                                         </button>
                                     </section>
                                 </Card.Body>
@@ -210,19 +219,19 @@ const Menu = () => {
                     </Accordion>
                 </section>
 
-                <section className="section-details">
+                <section className='section-details'>
                     <MenuItems option={menuSection} addItem={addItem} handleError={handleError} />
                 </section>
             </section>
 
-            <form className="order-summary" onSubmit={(event) => handleSendOrder(event)}>
-                <section className="client-info">
+            <form className='order-summary' onSubmit={(event) => handleSendOrder(event)}>
+                <section className='client-info'>
                     <label>
                         Client:
                         <input
-                            type="text"
-                            placeholder="Client name"
-                            className="form-input"
+                            type='text'
+                            placeholder='Client name'
+                            className='form-input'
                             value={order.client}
                             onChange={(event) => {
                                 setOrder({ ...order, client: event.target.value });
@@ -234,11 +243,11 @@ const Menu = () => {
                     <label>
                         Table:
                         <input
-                            type="number"
-                            placeholder="Table number"
-                            className="form-input"
-                            min="1"
-                            max="30"
+                            type='number'
+                            placeholder='Table number'
+                            className='form-input'
+                            min='1'
+                            max='30'
                             value={order.table}
                             onChange={(event) => {
                                 setOrder({ ...order, table: event.target.value });
@@ -248,51 +257,51 @@ const Menu = () => {
                     </label>
                 </section>
 
-                <section className="products-info">
+                <section className='products-info'>
                     {products.length > 0 &&
                         products.map((item, index) => {
                             if (item.quantity > 0) {
                                 return (
                                     <section key={item.id}>
-                                        <section className="item-description list-items">
+                                        <section className='item-description list-items'>
                                             <button
-                                                className="delete-item"
+                                                className='delete-item'
                                                 onClick={() => deleteProduct(index)}
                                             >
-                                                <span className="material-icons">delete</span>
+                                                <span className='material-icons'>delete</span>
                                             </button>
-                                            <p className="product">{item.name}</p>
-                                            <section className="input-group">
+                                            <p className='product'>{item.name}</p>
+                                            <section className='input-group'>
                                                 <button
-                                                    type="button"
-                                                    className="count-button"
+                                                    type='button'
+                                                    className='count-button'
                                                     onClick={() => handlePlusClick(index)
                                                     }> + </button>
-                                                <p className="quantity-field">{item.quantity}</p>
+                                                <p className='quantity-field'>{item.quantity}</p>
                                                 <button
-                                                    type="button"
-                                                    className="count-button"
+                                                    type='button'
+                                                    className='count-button'
                                                     onClick={() =>
                                                         item.quantity > 0 && handleMinusClick(index)
                                                     }> - </button>
                                             </section>
                                         </section>
-                                        <p className="product burger-info">{item.flavor} {item.complement}</p>
+                                        <p className='product burger-info'>{item.flavor} {item.complement}</p>
                                     </section>
                                 );
                             }
                         })}
                 </section>
 
-                <section className="bottom-section">
-                    <p className="total-price"> TOTAL PRICE: <span className="total-value">${totalToPay}</span></p>
-                    <section className="order-button-section">
+                <section className='bottom-section'>
+                    <p className='total-price'> TOTAL PRICE: <span className='total-value'>${totalToPay}</span></p>
+                    <section className='order-button-section'>
                         <button
-                            type="button"
-                            className="cancel-button"
+                            type='button'
+                            className='cancel-button'
                             onClick={(event) => handleCancel(event)}>
                             CANCEL </button>
-                        <button type="submit" className="form-order"> SEND </button>
+                        <button type='submit' className='form-order'> SEND </button>
                     </section>
                 </section>
             </form>

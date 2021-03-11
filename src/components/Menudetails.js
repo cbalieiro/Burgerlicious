@@ -1,6 +1,15 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-use-before-define */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-shadow */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable arrow-body-style */
+/* eslint-disable react/prop-types */
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 import useFetch from "../services/Hooks/useFetch";
-import requestOptions from "../components/object/requestOptions"
+import requestOptions from "./object/requestOptions"
 // import Loading from "../components/errors/loading"
 
 const MenuItems = ({ option, addItem, handleError }) => {
@@ -101,7 +110,7 @@ const MenuItems = ({ option, addItem, handleError }) => {
     }
 
     const createItemObject = (code, count) => {
-        const updatedItem = dataTranslated.find(i => i.id == code)
+        const updatedItem = dataTranslated.find(i => i.id === code)
         const newProduct = { quantity: count, ...updatedItem }
         addItem(newProduct);
     }
@@ -172,41 +181,41 @@ const MenuItems = ({ option, addItem, handleError }) => {
                         <section className="burger-items">
                             <label>
                                 Smash burger $10
-                                <input type="radio" name="size" value={"Smash burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                                <input type="radio" name="size" value="Smash burger" onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Double burger $10
-                                 <input type="radio" name="size" value={"Double burger"} onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
+                                 <input type="radio" name="size" value="Double burger" onChange={(event) => { setBurger({ ...burger, name: event.target.value }) }} />
                             </label>
                         </section>
 
                         <section className="burger-items">
                             <label>
                                 Meat
-                                <input type="radio" name="burger" value={"Meat"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                                <input type="radio" name="burger" value="Meat" onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Chicken
-                             <input type="radio" name="burger" value={"Chicken"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                             <input type="radio" name="burger" value="Chicken" onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Veggie
-                                <input type="radio" name="burger" value={"Veggie"} onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
+                                <input type="radio" name="burger" value="Veggie" onChange={(event) => { setBurger({ ...burger, flavor: event.target.value }) }} />
                             </label>
                         </section>
 
                         <section className="burger-items">
                             <label>
                                 Cheese $1
-                        <input type="radio" name="extra" value={"Cheese"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                        <input type="radio" name="extra" value="Cheese" onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
                             </label>
 
                             <label>
                                 Egg $1
-                    <input type="radio" name="extra" value={"Egg"} onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
+                    <input type="radio" name="extra" value="Egg" onChange={(event) => { setBurger({ ...burger, complement: event.target.value }) }} />
                             </label>
                         </section>
                     </section>

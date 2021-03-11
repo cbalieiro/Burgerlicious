@@ -1,20 +1,17 @@
-import React from 'react';
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Menu from "../../components/menu";
+import React from 'react'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
+import Menu from '../../components/Menu'
 
 const Hall = () => {
-  const nameLS = JSON.parse(localStorage.getItem('currentUser'));
+  const nameLS = JSON.parse(localStorage.getItem('currentUser'))
 
   return (
     <>
-      <Header
-        role={nameLS.role}
-        name={nameLS.name}
-      />
+      <Header role={nameLS.role} name={nameLS.name} />
 
-      <main className="home">
-        <section className="menu-details">
+      <main className='home'>
+        <section className='menu-details'>
           <Menu />
         </section>
       </main>
@@ -22,6 +19,6 @@ const Hall = () => {
       <Footer />
     </>
   )
-};
+}
 
-export default Hall;
+export default Hall
