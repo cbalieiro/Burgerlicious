@@ -883,7 +883,7 @@ h4.title-card {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 414px) {
 
  .order-button-section, .total-price {
     margin-top: 30px;
