@@ -1,7 +1,9 @@
 const isAuthenticated = () => {
   const validation = localStorage.getItem(`token`)
-  if (validation !== undefined && validation !== null) { return true }
-  return false;
+  if (validation !== undefined && validation !== null) {
+    return true
+  }
+  return false
 }
 
-export default isAuthenticated;
+export default isAuthenticated
