@@ -223,7 +223,7 @@ $ git push origin my-feature
 🛠 JavaScript
 
 &nbsp;
-🛠 React-Bootstrap
+🛠 [React-Bootstrap](https://react-bootstrap.github.io/)
 
 &nbsp;
 🛠 CSS3
@@ -233,13 +233,13 @@ $ git push origin my-feature
 ## Créditos
 
 &nbsp;
-💛 [Laboratoria](https://www.laboratoria.la/)
+[Laboratoria](https://www.laboratoria.la/) 💛
 
 &nbsp;
-🍔 Logo desenvolvida com [Icons8](https://icons8.com/vector-creator/)
+Logo por [Icons8](https://icons8.com/vector-creator/) 🍔 
 
 &nbsp;
-✏️ Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?)
+Ícones por [Material Design](https://material.io/) e fonte [Poppins](https://fonts.google.com/specimen/Poppins?) ✏️
 
 ---
 
